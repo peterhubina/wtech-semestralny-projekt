@@ -1,0 +1,33 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+main {
+
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background-image: url('path-to-image.jpg');*/
+    background-size: cover;
+    background-position: center;
+}
+
+.footer {
+    background-color: #f8f9fa;
+}
+
+.main-content {
+    text-align: center; /* Center the text */
+    color: black; /* Set text color */
+}
+
+.social-icons {
+    font-size: 1.5em;
+    color: #333;
+}
