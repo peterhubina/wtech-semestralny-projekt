@@ -32,11 +32,20 @@ main {
 .social-icons {
     font-size: 1.5em;
     color: #333;
-
-    & > a {
-        margin: 0 10px;
-    }
 }
+
+.social-icons a {
+    padding: .25rem .25rem .25rem 0;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
 
 .card {
     border: none;
@@ -48,4 +57,30 @@ main {
 
 .footer {
     flex-shrink: 0; /* Footer shouldn't shrink */
+}
+
+.footer-col a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-col a:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .footer-col {
+        margin: 1rem 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .footer-col {
+        margin: 1rem;
+    }
+}
+
+.col-container {
+    text-align: center;
 }

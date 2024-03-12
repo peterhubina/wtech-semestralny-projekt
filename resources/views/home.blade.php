@@ -9,7 +9,6 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="../resources/css/templates.css" rel="stylesheet">
     <title>Main Page</title>
 </head>
 <body>
@@ -70,7 +69,7 @@
             <div class="row">
                 <div class="col-6 col-md-3 mb-3">
                     <div class="card">
-                        <img src="../resources/assets/img/plant.webp" class="card-img-top" alt="Zamioculcas">
+                        <img src="../resources/assets/plant.png" class="card-img-top" alt="Zamioculcas">
                         <div class="card-body">
                             <h5 class="card-title">Zamioculcas zamiifolia</h5>
                         </div>
@@ -78,7 +77,7 @@
                 </div>
                 <div class="col-6 col-md-3 mb-3">
                     <div class="card">
-                        <img src="../resources/assets/img/plant.webp" class="card-img-top" alt="Zamioculcas">
+                        <img src="../resources/assets/plant.png" class="card-img-top" alt="Zamioculcas">
                         <div class="card-body">
                             <h5 class="card-title">Zamioculcas zamiifolia</h5>
                         </div>
@@ -86,7 +85,7 @@
                 </div>
                 <div class="col-6 col-md-3 mb-3">
                     <div class="card">
-                        <img src="../resources/assets/img/plant.webp" class="card-img-top" alt="Zamioculcas">
+                        <img src="../resources/assets/plant.png" class="card-img-top" alt="Zamioculcas">
                         <div class="card-body">
                             <h5 class="card-title">Zamioculcas zamiifolia</h5>
                         </div>
@@ -94,7 +93,7 @@
                 </div>
                 <div class="col-6 col-md-3 mb-3">
                     <div class="card">
-                        <img src="../resources/assets/img/plant.webp" class="card-img-top" alt="Zamioculcas">
+                        <img src="../resources/assets/plant.png" class="card-img-top" alt="Zamioculcas">
                         <div class="card-body">
                             <h5 class="card-title">Zamioculcas zamiifolia</h5>
                         </div>
@@ -109,38 +108,15 @@
             <!-- Seeds Subcategory -->
             <h2 class="mb-3">Seeds</h2>
             <div class="row">
-                <div class="col-6 col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
+                        <img src="path-to-seed-image.jpg" class="card-img-top" alt="Flower Category 1">
                         <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
+                            <h5 class="card-title">Flower Category 1</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
-                        <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
-                        <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
-                        <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
-                        </div>
-                    </div>
-                </div>
+                <!-- Repeat for other seeds -->
                 <!-- More button -->
                 <div class="w-100 text-center mt-3">
                     <button class="btn btn-outline-primary">More</button>
@@ -150,78 +126,15 @@
             <!-- Gardening Tools Subcategory -->
             <h2 class="mb-3">Gardening tools</h2>
             <div class="row">
-                <div class="col-6 col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
+                        <img src="" class="card-img-top" alt="Tool Category 1">
                         <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
+                            <h5 class="card-title">Tool Category 1</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
-                        <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
-                        <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
-                        <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- More button -->
-                <div class="w-100 text-center mt-3">
-                    <button class="btn btn-outline-primary">More</button>
-                </div>
-            </div>
-
-            <h2 class="mb-3">Garden Care</h2>
-            <div class="row">
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
-                        <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
-                        <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
-                        <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <img src="../resources/assets/img/plant.png" class="card-img-top" alt="Zamioculcas">
-                        <div class="card-body">
-                            <h5 class="card-title">Zamioculcas zamiifolia</h5>
-                        </div>
-                    </div>
-                </div>
+                <!-- Repeat for other tools -->
                 <!-- More button -->
                 <div class="w-100 text-center mt-3">
                     <button class="btn btn-outline-primary">More</button>
@@ -299,5 +212,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
+@vite(['resources/sass/templates.scss'])
 </body>
 </html>
