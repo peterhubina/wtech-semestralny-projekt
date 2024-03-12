@@ -31,3 +31,7 @@ main {
     font-size: 1.5em;
     color: #333;
 }
+
+.card {
+    border: none;
+}
