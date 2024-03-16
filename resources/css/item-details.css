@@ -13,3 +13,7 @@
 .shopping-button {
     padding: .75rem;
 }
+
+.wrapper {
+    flex-direction: column;
+}

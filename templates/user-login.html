@@ -21,6 +21,8 @@
         />
         <link href="../resources/css/templates.css" rel="stylesheet" />
         <link href="../resources/css/login-page.css" rel="stylesheet" />
+        <link href="../resources/css/user-login.css" rel="stylesheet" />
+
         <title>Main Page</title>
     </head>
     <body>
@@ -29,7 +31,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
                     <div class="container-fluid">
                         <!-- Logo placeholder -->
-                        <a class="navbar-brand" href="#">LOGO</a>
+                        <a class="navbar-brand" href="home.html">LOGO</a>
                         <!-- Toggler/collapsible Button -->
                         <button
                             class="navbar-toggler"
@@ -49,13 +51,11 @@
                         >
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Offer</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact</a>
+                                    <a
+                                        class="nav-link"
+                                        href="home.html#products"
+                                        >Products</a
+                                    >
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Visit Us</a>
@@ -63,9 +63,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">About</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
                             </ul>
                             <!-- Login and Shopping cart icons -->
-                            <div class="right d-flex ml-auto">
+                            <div class="right d-flex ml-3">
                                 <button
                                     type="button"
                                     class="btn btn-outline-dark"
@@ -86,7 +89,7 @@
                     <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1"
-                                >Email address:</label
+                                ><h4>Email address</h4></label
                             >
                             <input
                                 type="email"
@@ -96,7 +99,9 @@
                             />
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password:</label>
+                            <label for="exampleInputPassword1"
+                                ><h4>Password</h4></label
+                            >
                             <input
                                 type="password"
                                 class="form-control"
@@ -115,7 +120,7 @@
                 <div class="container">
                     <div class="row">
                         <!-- Social media icons -->
-                        <div class="footer-col col-md-4 col-lg-3">
+                        <div class="footer-col col-12 col-md-6 col-lg-3">
                             <div class="col-container">
                                 <div>LOGO</div>
                                 <div>© 2010 — 2020</div>
@@ -137,37 +142,31 @@
                             </div>
                         </div>
                         <!-- Footer links -->
-                        <div class="footer-col col-md-4 col-lg-2">
+                        <div
+                            class="footer-col side-col col-12 col-md-6 col-lg-3"
+                        >
                             <div class="col-container">
                                 <h5>Product</h5>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Product</a></li>
-                                    <li><a href="#">Product</a></li>
-                                    <li><a href="#">Product</a></li>
+                                    <li><a href="#">Plants</a></li>
+                                    <li><a href="#">Seeds</a></li>
+                                    <li><a href="#">Gardening Tools</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="footer-col col-md-4 col-lg-2">
-                            <div class="col-container">
-                                <h5>Features</h5>
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Feature</a></li>
-                                    <li><a href="#">Feature</a></li>
-                                    <li><a href="#">Feature</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="footer-col col-md-4 col-lg-2">
+                        <div
+                            class="footer-col side-col col-12 col-md-6 col-lg-3"
+                        >
                             <div class="col-container">
                                 <h5>About</h5>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Resource</a></li>
-                                    <li><a href="#">Resource</a></li>
-                                    <li><a href="#">Resource</a></li>
+                                    <li><a href="#">Info Page</a></li>
+                                    <li><a href="#">Info Page</a></li>
+                                    <li><a href="#">Info Page</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="footer-col col-md-4 col-lg-3">
+                        <div class="footer-col col-12 col-md-6 col-lg-3">
                             <div class="col-container">
                                 <h5>Contact</h5>
                                 <ul class="list-unstyled">

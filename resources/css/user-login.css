@@ -1,0 +1,31 @@
+.wrapper {
+    min-height: 100%;
+}
+
+.login-page {
+    flex: 1;
+
+    display: flex;
+    justify-content: flex-end;
+
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+@media (min-width: 767.98px) {
+    .login-page {
+        margin-right: 30%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .login-page {
+        margin-right: 3rem;
+    }
+}
+
+@media (max-width: 992px) { 
+    .login-page {
+        min-height: 80vh;
+    }
+ }

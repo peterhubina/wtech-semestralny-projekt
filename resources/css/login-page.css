@@ -1,4 +1,9 @@
 .wrapper {
+    background-image: url('../assets/img/home-background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     flex-direction: column;
 }
 
