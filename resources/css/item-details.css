@@ -1,0 +1,15 @@
+.selector {
+    gap: 2rem;
+}
+
+.quantity-selector {
+    gap: .25rem;
+}
+
+.quantity-selector #quantity {
+    width: 3rem;
+}
+
+.shopping-button {
+    padding: .75rem;
+}

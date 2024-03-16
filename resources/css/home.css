@@ -1,8 +1,18 @@
-.main-wrapper {
-    height: 70vh;
+.banner {
+    height: 90vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    width: 100%;
+    background-image: url('../assets/img/home-background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-wrapper {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .main-content {
@@ -37,4 +47,16 @@ main {
 
 .card {
     border: none;
+}
+
+@media (min-width: 767.98px) {
+    .banner {
+        margin-right: 30%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .banner {
+        margin-right: 3rem;
+    }
 }
