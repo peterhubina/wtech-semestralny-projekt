@@ -1,0 +1,40 @@
+.main-wrapper {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main-content {
+    text-align: center; /* Center the text */
+    color: black; /* Set text color */
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+main {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-size: cover;
+    background-position: center;
+
+    flex: 1 0 auto;
+}
+
+.card-body a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.card {
+    border: none;
+}
