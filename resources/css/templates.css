@@ -1,7 +1,23 @@
+:root {
+    --bs-primary: #0b3e27; /* Your new primary color */
+}
+
 body, html {
     height: 100%;
     margin: 0;
 }
+
+/*
+header {
+    background-color: var(--bs-primary);
+}
+*/
+
+/*
+header > * {
+    color: white;
+}
+*/
 
 .footer {
     background-color: #f8f9fa;
