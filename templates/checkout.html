@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--    @vite('resources/css/app.css')-->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="../resources/css/templates.css" rel="stylesheet">
+    <title>Main Page</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+        <div class="container-fluid">
+            <!-- Logo placeholder -->
+            <a class="navbar-brand" href="#">LOGO</a>
+            <!-- Toggler/collapsible Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Offer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Visit Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+                <!-- Login and Shopping cart icons -->
+                <div class="right d-flex ml-auto">
+                    <button type="button" class="btn btn-outline-dark">Login</button>
+                    <a class="nav-link text-dark" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="flex flex-col py-10 p-6 sm:px-12">
+    <div class="flex gap-8 xl:gap-20 flex-col xl:flex-row">
+        <!-- Form -->
+        <div class="flex flex-col gap-4 w-full">
+            <div class="text-lg lg:text-xl xl:text-2xl">Shipping information</div>
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
+                <div class="flex flex-col sm:w-[50%]">
+                    <label for="first_name">First name</label>
+                    <input type="text" name="first_name" id="first_name"
+                           class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
+                </div>
+                <div class="flex flex-col sm:w-[50%]">
+                    <label for="last_name">Last name</label>
+                    <input type="text" name="last_name" id="last_name"
+                           class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
+                <div class="flex flex-col sm:w-[50%]">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" name="phone" id="phone"
+                           class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
+                </div>
+                <div class="flex flex-col sm:w-[50%]">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email"
+                           class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
+                <div class="flex flex-col sm:w-[50%]">
+                    <label for="apartment_number">Apartment number</label>
+                    <input type="text" name="apartment_number" id="apartment_number"
+                           class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
+                </div>
+                <div class="flex flex-col sm:w-[50%]">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address"
+                           class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
+                <div class="flex flex-col sm:w-[50%]">
+                    <label for="postal_code">Postal code</label>
+                    <input type="text" name="postal_code" id="postal_code"
+                           class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
+                </div>
+                <div class="flex flex-col sm:w-[50%]">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city"
+                           class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <label for="note">Note</label>
+                <textarea type="text" name="note" id="note"
+                          class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5"></textarea>
+            </div>
+        </div>
+        <!-- Summary -->
+        <div class="flex flex-col gap-2">
+            <h2 class="text-lg lg:text-xl xl:text-2xl">Summary of your order</h2>
+            <div class="flex flex-col gap-0.5">
+                <span class="bg-black w-full h-0.5"></span>
+                <!-- Summary elements -->
+                <div
+                    class="flex bg-neutral-200 py-2 md:py-3 xl:py-4 px-2 justify-between items-center flex-col sm:flex-row gap-4 sm:gap-10 md:gap-20 xl:gap-0">
+                    <p class="xl:w-60 line-clamp-1 xl:line-clamp-2">Cupressus sempervirens Stricta (Italian cypress
+                        tree)</p>
+                    <div class="flex gap-10">
+                        <p>80,00€/ks</p>
+                        <p>2ks</p>
+                        <p>160,00€</p>
+                    </div>
+                </div>
+                <div
+                    class="flex bg-neutral-200 py-2 md:py-3 xl:py-4 px-2 justify-between items-center flex-col sm:flex-row gap-4 sm:gap-10 md:gap-20 xl:gap-0">
+                    <p class="xl:w-60 line-clamp-1 xl:line-clamp-2">Cupressus sempervirens Stricta (Italian cypress
+                        tree). Lorem ipsum dolor sit amet consectetur.</p>
+                    <div class="flex gap-10">
+                        <p>80,00€/ks</p>
+                        <p>2ks</p>
+                        <p>160,00€</p>
+                    </div>
+                </div>
+                <div
+                    class="flex bg-neutral-200 py-2 md:py-3 xl:py-4 px-2 justify-between items-center flex-col sm:flex-row gap-4 sm:gap-10 md:gap-20 xl:gap-0">
+                    <p class="xl:w-60 line-clamp-1 xl:line-clamp-2">Cupressus sempervirens Stricta (Italian cypress
+                        tree)</p>
+                    <div class="flex gap-10">
+                        <p>80,00€/ks</p>
+                        <p>2ks</p>
+                        <p>160,00€</p>
+                    </div>
+                </div>
+                <span class="bg-black w-full h-0.5"></span>
+            </div>
+            <div class="flex text-lg xl:text-xl py-2 justify-between">
+                <div class="flex flex-col items-end gap-0.5">
+                    <p>Sum without tax:</p>
+                    <p>DPH:</p>
+                    <p>Sum with tax:</p>
+                </div>
+                <div class="flex flex-col items-end gap-0.5">
+                    <p>512,00€</p>
+                    <p>128,00€</p>
+                    <p>640,00€</p>
+                </div>
+            </div>
+            <span class="bg-black w-full h-0.5"></span>
+            <!-- Shipping and payment options -->
+            <div class="flex flex-col gap-4">
+                <h2 class="text-lg lg:text-xl xl:text-2xl">Shipping options</h2>
+                <div class="flex gap-4 items-center text-lg">
+                    <input type="radio" name="shipping" id="courier" checked class="cursor-pointer">
+                    <label for="courier" class="cursor-pointer">Courier</label>
+                    <input type="radio" name="shipping" id="us" class="cursor-pointer">
+                    <label for="us" class="cursor-pointer">Us</label>
+                    <input type="radio" name="shipping" id="personal" class="cursor-pointer">
+                    <label for="personal" class="cursor-pointer">Personal take</label>
+                </div>
+                <h2 class="text-lg lg:text-xl xl:text-2xl">Payment options</h2>
+                <div class="flex gap-4 items-center text-lg">
+                    <input type="radio" name="payment" id="card" checked class="cursor-pointer">
+                    <label for="card" class="cursor-pointer">Card</label>
+                    <input type="radio" name="payment" id="google" class="cursor-pointer">
+                    <label for="google" class="cursor-pointer">Google pay</label>
+                </div>
+            </div>
+            <button class="bg-black text-white w-full h-14 rounded-xl text-lg">Continue to payment</button>
+        </div>
+    </div>
+</main>
+<footer class="footer mt-auto py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Social media icons -->
+            <div class="footer-col col-12 col-md-6 col-lg-3">
+                <div class="col-container">
+                    <div>LOGO</div>
+                    <div>© 2010 — 2020</div>
+                    <div>Privacy — Terms</div>
+                    <div class="social-icons">
+                        <a href="#" class="me-2"
+                        ><i class="fab fa-twitter"></i
+                        ></a>
+                        <a href="#" class="me-2"
+                        ><i class="fab fa-facebook-f"></i
+                        ></a>
+                        <a href="#" class="me-2"
+                        ><i class="fab fa-instagram"></i
+                        ></a>
+                        <a href="#" class="me-2"
+                        ><i class="fab fa-linkedin-in"></i
+                        ></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer links -->
+            <div
+                class="footer-col side-col col-12 col-md-6 col-lg-3"
+            >
+                <div class="col-container">
+                    <h5>Product</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Plants</a></li>
+                        <li><a href="#">Seeds</a></li>
+                        <li><a href="#">Gardening Tools</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="footer-col side-col col-12 col-md-6 col-lg-3"
+            >
+                <div class="col-container">
+                    <h5>About</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Info Page</a></li>
+                        <li><a href="#">Info Page</a></li>
+                        <li><a href="#">Info Page</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-col col-12 col-md-6 col-lg-3">
+                <div class="col-container">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a
+                                href="mailto:info@theurbangardener.com"
+                            >info@theurbangardener.com</a
+                            >
+                        </li>
+                        <li>
+                            <a href="tel:+421420420420"
+                            >+421 420 420 420</a
+                            >
+                        </li>
+                        <li>Address 123, City 420 69, Slovakia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</body>
+</html>
