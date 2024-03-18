@@ -86,3 +86,8 @@ header > * {
 .col-container {
     text-align: center;
 }
+
+
+.navbar-collapse {
+    visibility: visible !important;
+}
