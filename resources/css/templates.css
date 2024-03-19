@@ -58,6 +58,12 @@ header > * {
     text-decoration: none;
 }
 
+.footer h5 {
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding-bottom: 0.5rem;
+}
+
 .footer-col a:hover {
     color: inherit;
     text-decoration: underline;
