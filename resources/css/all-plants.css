@@ -94,6 +94,14 @@ main {
     border-bottom-right-radius: 10px; 
 }
 
+.navbar-brand {
+    margin-left: 19px;
+}
+
+.login {
+    height: 40px;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     opacity: 1;
