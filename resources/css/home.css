@@ -33,7 +33,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     background-size: cover;
     background-position: center;
 
@@ -59,4 +59,8 @@ main {
     .banner {
         margin-right: 3rem;
     }
+}
+
+.form-search {
+    padding-left: 2rem;
 }

@@ -93,7 +93,10 @@ header > * {
     text-align: center;
 }
 
-
 .navbar-collapse {
     visibility: visible !important;
+}
+
+.form-search {
+    padding-left: 2rem;
 }
