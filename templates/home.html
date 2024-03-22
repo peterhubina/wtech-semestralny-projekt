@@ -23,10 +23,12 @@
             <header>
                 <nav class="navbar navbar-expand-md bg-body-tertiary">
                     <div class="container-fluid" style="gap: .5rem">
-                        <a class="navbar-brand" href="#">Navbar</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+                        <div>
+                            <a class="navbar-brand" href="#">Navbar</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-lg-0">
                                 <li class="nav-item">
@@ -45,16 +47,32 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="info-page.html#contact">Contact</a>
                                 </li>
+                                <li class="nav-item d-block d-md-none">
+                                    <button type="submit" class="btn btn-outline-dark">
+                                        Login
+                                    </button>
+                                </li>
+                                <li class="nav-item d-block d-md-none">
+                                    <a class="nav-link text-dark" href="#"
+                                    ><i class="fa-solid fa-cart-shopping"></i
+                                    ></a>
+                                </li>
                             </ul>
                         </div>
                         <!-- New container for the form to ensure it breaks onto a new line on small screens -->
                         <div class="w-75 d-md-none"></div> <!-- This div creates a break line only on md and smaller screens -->
                         <div class="d-flex flex-column flex-md-row justify-content-end" style="flex-grow: 1;">
-                            <form class="d-flex w-100 w-md-auto position-relative" role="search">
-                                <input class="form-control me-2 pl-5 form-search" type="search" placeholder="Search" aria-label="Search">
+                            <form class="d-flex w-100 input-form w-md-auto position-relative" role="search">
+                                <input class="form-control pl-5 form-search justify-content-end w-50" type="search" placeholder="Search" aria-label="Search">
                                 <a class="btn d-flex align-items-center justify-content-center" href="#">
                                     <i class="fas fa-search position-absolute"></i>
                                 </a>
+                                <button type="submit" class="btn btn-outline-dark d-none d-md-block">
+                                    Login
+                                </button>
+                                <a class="align-items-center nav-link text-dark d-none d-md-flex" href="#"
+                                ><i class="fa-solid fa-cart-shopping"></i
+                                ></a>
                             </form>
                         </div>
                     </div>

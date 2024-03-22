@@ -100,3 +100,8 @@ header > * {
 .form-search {
     padding-left: 2rem;
 }
+
+.input-form {
+    gap: .5rem;
+    justify-content: flex-end;
+}
