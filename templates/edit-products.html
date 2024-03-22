@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Category</title>
+    <title>Edit Products</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- FontAwesome -->
@@ -37,16 +37,34 @@
 
         </header>
 
-        <!-- Category Form -->
+        <!-- Products Form -->
         <div class="container d-flex flex-column align-items-center" id="custom-form">
-            <p class="fs-1 text-uppercase">Add Category</p>
+            <p class="fs-1 text-uppercase">Edit Product</p>
 
-            <form class="category-form">
-                <div class="my-5">
-                    <input type="text" class="form-control" id="name" placeholder="Category Name">
+            <form class="category-form row">
+                <div class="col">
+                    <div class="mb-3 mt-3">
+                        <input type="text" class="form-control" id="name" placeholder="Product 1">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="description" placeholder="Description 1">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="price" placeholder="Price 1">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="quantity" placeholder="Quantity 1">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="img" placeholder="Img 1">
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-light btn-lg d-block mx-auto submit-button mt-3">Save</button>
+                <div class="col mb-4">
+                    <img src="../resources/assets/img/plant.webp" class="card-img-top" alt="...">
+                </div>
+
             </form>
+            <button type="submit" class="btn btn-light btn-lg d-block mx-auto submit-button">Save</button>
         </div>
 
 

@@ -1,3 +1,12 @@
 #custom-form {
     margin-top: 80px;
 }
+
+.category-form {
+    width: 50%;
+}
+
+.submit-button {
+    border: 1px solid black; 
+    width: 40%;
+}

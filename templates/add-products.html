@@ -22,31 +22,13 @@
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <div class="collapse navbar-collapse justify-content-end fs-4" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Products</a>
+                                <a class="nav-link mx-2 text-uppercase" href="#">Manage Products</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Customer</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Promos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Flash Sale</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Discount</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Cart</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link mx-2 text-uppercase" href="#">Manage Categories</a>
                             </li>
                         </ul>
                     </div>
@@ -57,10 +39,10 @@
 
         <!-- Products Form -->
         <div class="container d-flex flex-column align-items-center" id="custom-form">
-            <p class="fs-1">Add Category</p>
+            <p class="fs-1 text-uppercase">Add Product</p>
 
-            <form class="w-80">
-                <div class="mb-3 mt-5">
+            <form class="category-form">
+                <div class="mb-3 mt-3">
                     <input type="text" class="form-control" id="name" placeholder="Product Name">
                 </div>
                 <div class="mb-3">
@@ -72,11 +54,10 @@
                 <div class="mb-3">
                     <input type="text" class="form-control" id="quantity" placeholder="Quantity">
                 </div>
-                <label for="product-image" class="form-label">Product Image</label>
-                <div class="mb-5">
-                    <input type="file" class="form-control" id="product-image">
+                <div class="mb-4">
+                    <input type="text" class="form-control" id="category-image" placeholder="Image Link">
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg d-block mx-auto">Save</button>
+                <button type="submit" class="btn btn-light btn-lg d-block mx-auto submit-button">Save</button>
             </form>
         </div>
 

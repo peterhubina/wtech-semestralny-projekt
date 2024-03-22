@@ -16,3 +16,7 @@
     padding-left: 80px;
     padding-right: 80px;
 }
+
+.submit-button {
+    border: 1px solid black; 
+}
