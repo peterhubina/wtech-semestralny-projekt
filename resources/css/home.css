@@ -64,3 +64,20 @@ main {
 .form-search {
     padding-left: 2rem;
 }
+
+.form-width {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .form-width {
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .form-width {
+        max-width: 40%;
+    }
+}
+
