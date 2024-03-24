@@ -105,3 +105,19 @@ header > * {
     gap: .5rem;
     justify-content: flex-end;
 }
+
+.form-width {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .form-width {
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .form-width {
+        max-width: 40%;
+    }
+}
