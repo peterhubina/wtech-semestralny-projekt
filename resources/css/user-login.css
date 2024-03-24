@@ -1,5 +1,12 @@
 .wrapper {
     min-height: 100%;
+
+    background-image: url('../assets/img/home-background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    flex-direction: column;
 }
 
 .login-page {
@@ -24,7 +31,7 @@
     }
 }
 
-@media (max-width: 992px) { 
+@media (max-width: 992px) {
     .login-page {
         min-height: 80vh;
     }
