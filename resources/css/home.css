@@ -48,6 +48,13 @@ main {
     border: none;
 }
 
+@media (max-width: 575.98px) {
+    .main-heading {
+        width: 14rem;
+        text-align: right;
+    }
+}
+
 @media (min-width: 767.98px) {
     .banner {
         margin-right: 30%;
