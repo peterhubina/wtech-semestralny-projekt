@@ -17,39 +17,47 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
-        <div class="container-fluid">
-            <!-- Logo placeholder -->
-            <a class="navbar-brand" href="home.html">LOGO</a>
-            <!-- Toggler/collapsible Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid px-5">
+
+            <a class="navbar-brand mr-3 p-0" href="home.html">
+                <img src="../resources/assets/img/logo.webp" alt="Logo" style="height: 50px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- Navbar links -->
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="home.html#products">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Offer</a>
+                        <a class="nav-link" href="info-page.html#visit">Visit Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="info-page.html#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Visit Us</a>
+                        <a class="nav-link" href="info-page.html#contact">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                    <li class="nav-item d-flex justify-content-center d-md-none" style="gap: .75rem;">
+                        <a class="btn btn-outline-dark d-md-inline-block" href="user-login.html">Login</a>
+                        <a class="nav-link text-dark" href="shopping-cart.html"><i
+                            class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                 </ul>
-                <!-- Login and Shopping cart icons -->
-                <div class="right d-flex ml-auto">
-                    <button type="button" class="btn btn-outline-dark">Login</button>
-                    <a class="nav-link text-dark" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>
+
+                <form class="d-flex mt-3 mt-md-0 form-width" style="gap: .5rem;">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn no-outline" type="submit"><i class="fas fa-search"></i></button>
+                    <a class="btn btn-outline-dark d-none d-md-inline-block ms-auto"
+                       href="user-login.html">Login</a>
+                    <a class="nav-link text-dark d-none d-md-flex align-items-center mx-3"
+                       href="shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                </form>
             </div>
         </div>
     </nav>
@@ -194,9 +202,10 @@
             <!-- Social media icons -->
             <div class="footer-col col-12 col-md-6 col-lg-3">
                 <div class="col-container">
-                    <div class="text-3xl pb-2">LOGO</div>
-                    <div>©2024</div>
-                    <div>Privacy — Terms</div>
+                    <div class="mb-2 flex justify-center">
+                        <img src="../resources/assets/img/logo.webp" alt="Logo" style="height: 50px; width: auto;">
+                    </div>
+                    <div>© 2024</div>
                     <div class="social-icons">
                         <a href="#" class="me-2"
                         ><i class="fab fa-twitter"></i
@@ -218,12 +227,12 @@
                 class="footer-col side-col col-12 col-md-6 col-lg-3"
             >
                 <div class="col-container">
-                    <h5>Product</h5>
+                    <h5>Categories</h5>
                     <ul class="list-unstyled">
                         <li><a href="home.html#plants">Plants</a></li>
                         <li><a href="home.html#seeds">Seeds</a></li>
-                        <li><a href="home.html#tools">Gardening Tools</a></li>
-                        <li><a href="home.html#care">Garden Care</a></li>
+                        <li><a href="home.html#gardening-tools">Gardening Tools</a></li>
+                        <li><a href="home.html#garden-care">Garden Care</a></li>
                     </ul>
                 </div>
             </div>
@@ -235,7 +244,7 @@
                     <ul class="list-unstyled">
                         <li><a href="info-page.html#about">About</a></li>
                         <li><a href="info-page.html#contact">Contact</a></li>
-                        <li><a href="info-page.html#visit">Visit us</a></li>
+                        <li><a href="info-page.html#visit">Visit Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -264,8 +273,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
 </html>
