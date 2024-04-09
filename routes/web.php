@@ -13,14 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/all-plants', function () {
-    return view('all-plants');
-})->name('all-plants.show');
-
-
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
-})->name('home.show');
+});
 
 use App\Http\Controllers\UserController;
 Route::resource('users', UserController::class);

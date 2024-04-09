@@ -185,4 +185,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'Vite' => \Illuminate\Support\Facades\Vite::class,
+
 ];
