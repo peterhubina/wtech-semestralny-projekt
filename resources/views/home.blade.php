@@ -30,13 +30,13 @@
                     @foreach ($category->products as $product)
                         <div class="col-6 col-md-3 mb-3">
                             <div class="card">
-                                <a href="{{ route('item-details.show', $product) }}">
-                                    <img
-                                        src="{{ asset('assets/img/' . $product->images->first()->imagePath) }}"
-                                        class="card-img-top"
-                                        alt="{{ $product->images->first()->altText }}"
-                                    />
-                                </a>
+                                    <a href="{{ route('item-details.show', $product) }}">
+                                        <img
+                                            src="{{ asset('storage/'.$product->images->first()->imagePath) }}"
+                                            class="card-img-top"
+                                            alt="{{ $product->images->first()->altText }}"
+                                        />
+                                    </a>
 
                                 <div class="card-body">
                                     <a href="{{ route('item-details.show', $product) }}">

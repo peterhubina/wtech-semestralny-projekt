@@ -17,12 +17,17 @@ class ImageFactory extends Factory
      */
     public function definition(): array
     {
+        $fakerFileName = $this->faker->image(
+            storage_path("app/public/img"),
+            800,
+            600
+        );
+
         return [
             'title' => $this->faker->word,
-            'imagePath' => $this->faker->imageUrl(), // Generates a random image URL
+            'imagePath' => "app/public/img/" . basename($fakerFileName),
             'altText' => $this->faker->sentence,
-            'productId' => Product::inRandomOrder()->first()->id, // Gets a random product ID
-            //
+            'productId' => Product::inRandomOrder()->first()->id,
         ];
     }
 }

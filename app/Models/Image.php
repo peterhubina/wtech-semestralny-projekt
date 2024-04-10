@@ -13,10 +13,10 @@ class Image extends Model
         'title',
         'imagePath',
         'altText',
-        'product_id',
+        'productId',
     ];
 
     public function product() {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, "productId", "id");
     }
 }

@@ -10,9 +10,11 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $categories = Category::with(['products' => function ($query) {
-            $query->take(4);
-        }])->get();
+        $categories = Category::with('products')->get();
+
+        $categories->each(function ($category) {
+            $category->setRelation('products', $category->products->take(4));
+        });
 
         return view('home', compact('categories'));
     }
