@@ -3,10 +3,6 @@
 @section('title', 'Item Details')
 
 @section('stylesheets')
-    <!-- Page-specific styles -->
-    @vite('resources/css/templates.css')
-    @vite('resources/css/home.css')
-    @vite('resources/js/app.js')
     @vite('resources/css/item-details.css')
 @endsection
 

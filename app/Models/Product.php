@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'productCode', 'title', 'height', 'description', 'price', 'stockQuantity',
         'createdAt', 'updatedAt', 'deletedAt', 'categoryId'

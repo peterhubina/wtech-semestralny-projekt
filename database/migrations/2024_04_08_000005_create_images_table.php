@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 100);
             $table->string('imagePath', 255);
             $table->string('altText', 100);
-            $table->timestamp('createdAt')->nullable();
+            $table->timestamps();
             $table->unsignedBigInteger('productId');
             $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
         });

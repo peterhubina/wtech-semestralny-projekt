@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,21 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-use App\Http\Controllers\UserController;
+Route::get('/', [ProductController::class, 'index'])->name('home.show');
 
 Route::resource('users', UserController::class);
 
 Route::get('/all-plants', function () {
     return view('all-plants');
 })->name('all-plants.show');
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home.show');
 
 Route::get('/info-page', function () {
     return view('info-page');
