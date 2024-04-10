@@ -48,3 +48,7 @@ Route::get('/checkout', function () {
 Route::get('/user-login', function () {
     return view('user-login');
 })->name('user-login.show');
+
+Route::get('/item-details', function () {
+    return view('item-details');
+})->name('item-details.show');
