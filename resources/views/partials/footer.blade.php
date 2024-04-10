@@ -4,8 +4,10 @@
             <!-- Social media icons -->
             <div class="footer-col col-12 col-md-6 col-lg-3">
                 <div class="col-container">
-                    <div class="mb-2">
-                        <img src="{{ asset('assets/img/logo.webp') }}" alt="Logo" style="height: 50px; width: auto;">
+                    <div class="mb-2 flex justify-center">
+                        <a href="/">
+                            <img src="{{ asset('assets/img/logo.webp') }}" alt="Logo" style="height: 50px; width: auto;">
+                        </a>
                     </div>
                     <div>© 2024</div>
                     <div class="social-icons">

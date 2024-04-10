@@ -1,62 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@extends('components.layout')
+
+@section('title', 'Shopping Cart')
+
+@section('stylesheets')
+    <!-- Page-specific styles -->
+    @vite('resources/css/templates.css')
     @vite('resources/css/app.css')
-    @vite(['resources/css/templates.css', 'resources/js/app.js'])
+    @vite('resources/js/app.js')
+@endsection
 
-    <!-- FontAwesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <title>Shopping Cart</title>
-</head>
-<body>
-<header>
-    <nav class="navbar navbar-expand-md bg-body-tertiary">
-        <div class="container-fluid px-5">
-
-            <a class="navbar-brand mr-3 p-0" href="{{ route('home.show') }}">
-                <img src="{{ asset('assets/img/logo.webp') }}" alt="Logo" style="height: 50px; width: auto;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto text-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home.show') }}#products">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('info-page.show') }}#visit">Visit Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('info-page.show') }}#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('info-page.show') }}#contact">Contact</a>
-                    </li>
-                    <li class="nav-item d-flex justify-content-center d-md-none" style="gap: .75rem;">
-                        <a class="btn btn-outline-dark d-md-inline-block" href="{{ route('user-login.show') }}">Login</a>
-                        <a class="nav-link text-dark" href="{{ route('shopping-cart.show') }}"><i
-                                class="fa-solid fa-cart-shopping"></i></a>
-                    </li>
-                </ul>
-
-                <form class="d-flex mt-3 mt-md-0 form-width" style="gap: .5rem;">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn no-outline" type="submit"><i class="fas fa-search"></i></button>
-                    <a class="btn btn-outline-dark d-none d-md-inline-block ms-auto"
-                       href="{{ route('user-login.show') }}">Login</a>
-                    <a class="nav-link text-dark d-none d-md-flex align-items-center mx-3"
-                       href="{{ route('shopping-cart.show') }}"><i class="fa-solid fa-cart-shopping"></i></a>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
+@section('content')
 <main class="flex flex-col items-center py-10 px-6">
     <div class="flex gap-10 flex-col xl:flex-row">
         <!-- Cards -->
@@ -231,91 +184,10 @@
                 </div>
             </div>
             <span class="bg-black w-full h-0.5"></span>
-            <a href="checkout.blade.php"
+            <a href="{{ route ('checkout.show')}}"
                class="flex items-center justify-center bg-black text-white w-full h-14 rounded-xl text-lg hover:no-underline hover:bg-neutral-800">Continue
                 to checkout</a>
         </div>
     </div>
 </main>
-<footer class="footer mt-auto py-5">
-    <div class="container">
-        <div class="row">
-            <!-- Social media icons -->
-            <div class="footer-col col-12 col-md-6 col-lg-3">
-                <div class="col-container">
-                    <div class="mb-2 flex justify-center">
-                        <img src="{{ asset('assets/img/logo.webp') }}" alt="Logo" style="height: 50px; width: auto;">
-                    </div>
-                    <div>© 2024</div>
-                    <div class="social-icons">
-                        <a href="#" class="me-2"
-                        ><i class="fab fa-twitter"></i
-                            ></a>
-                        <a href="#" class="me-2"
-                        ><i class="fab fa-facebook-f"></i
-                            ></a>
-                        <a href="#" class="me-2"
-                        ><i class="fab fa-instagram"></i
-                            ></a>
-                        <a href="#" class="me-2"
-                        ><i class="fab fa-linkedin-in"></i
-                            ></a>
-                    </div>
-                </div>
-            </div>
-            <!-- Footer links -->
-            <div
-                class="footer-col side-col col-12 col-md-6 col-lg-3"
-            >
-                <div class="col-container">
-                    <h5>Categories</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="home.html#plants">Plants</a></li>
-                        <li><a href="home.html#seeds">Seeds</a></li>
-                        <li><a href="home.html#gardening-tools">Gardening Tools</a></li>
-                        <li><a href="home.html#garden-care">Garden Care</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div
-                class="footer-col side-col col-12 col-md-6 col-lg-3"
-            >
-                <div class="col-container">
-                    <h5>Info</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="info-page.blade.php#about">About</a></li>
-                        <li><a href="info-page.blade.php#contact">Contact</a></li>
-                        <li><a href="info-page.blade.php#visit">Visit Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-col col-12 col-md-6 col-lg-3">
-                <div class="col-container">
-                    <h5>Contact</h5>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a
-                                href="mailto:info@theurbangardener.com"
-                            >info@theurbangardener.com</a
-                            >
-                        </li>
-                        <li>
-                            <a href="tel:+421420420420"
-                            >+421 420 420 420</a
-                            >
-                        </li>
-                        <li>Address 123, City 420 69, Slovakia</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection
