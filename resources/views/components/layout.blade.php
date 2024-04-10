@@ -8,17 +8,16 @@
     <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <!-- Application CSS -->
-    @vite('resources/css/templates.css')
-    @vite('resources/css/home.css')
-    @vite('resources/css/item-details.css')
-    @vite('resources/js/app.js')
+
+    @yield('stylesheets')
+
     <title>@yield('title', 'Main Page')</title>
 </head>
 <body>
 <div class="wrapper">
     @include('partials.header')
 
-    {{$slot}}
+    @yield('content')
 
     @include('partials.footer')
 </div>

@@ -31,10 +31,10 @@
                 <div class="col-container">
                     <h5>Categories</h5>
                     <ul class="list-unstyled">
-                        <li><a href="home.html#plants">Plants</a></li>
-                        <li><a href="home.html#seeds">Seeds</a></li>
-                        <li><a href="home.html#gardening-tools">Gardening Tools</a></li>
-                        <li><a href="home.html#garden-care">Garden Care</a></li>
+                        <li><a href="{{ route ('home.show')}}#plants">Plants</a></li>
+                        <li><a href="{{ route ('home.show')}}#seeds">Seeds</a></li>
+                        <li><a href="{{ route ('home.show')}}#gardening-tools">Gardening Tools</a></li>
+                        <li><a href="{{ route ('home.show')}}#garden-care">Garden Care</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,9 +44,9 @@
                 <div class="col-container">
                     <h5>Info</h5>
                     <ul class="list-unstyled">
-                        <li><a href="info-page.html#about">About</a></li>
-                        <li><a href="info-page.html#contact">Contact</a></li>
-                        <li><a href="info-page.html#visit">Visit Us</a></li>
+                        <li><a href="{{ route ('info-page.show')}}#about">About</a></li>
+                        <li><a href="{{ route ('info-page.show')}}#contact">Contact</a></li>
+                        <li><a href="{{ route ('info-page.show')}}#visit">Visit Us</a></li>
                     </ul>
                 </div>
             </div>

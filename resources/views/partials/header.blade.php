@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-md bg-body-tertiary">
         <div class="container-fluid px-5">
 
-            <a class="navbar-brand mr-3 p-0" href="home.html">
+            <a class="navbar-brand mr-3 p-0" href="{{ route ('home.show')}}">
                 <img src="{{ asset('assets/img/logo.webp') }}" alt="Logo" style="height: 50px; width: auto;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,28 +12,28 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="home.html#products">Products</a>
+                        <a class="nav-link" href="{{ route ('home.show')}}#products">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="info-page.html#visit">Visit Us</a>
+                        <a class="nav-link" href="{{ route ('info-page.show')}}#visit">Visit Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="info-page.html#about">About</a>
+                        <a class="nav-link" href="{{ route ('info-page.show')}}#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="info-page.html#contact">Contact</a>
+                        <a class="nav-link" href="{{ route ('info-page.show')}}#contact">Contact</a>
                     </li>
                     <li class="nav-item d-flex justify-content-center d-md-none" style="gap: .75rem;">
-                        <a class="btn btn-outline-dark d-md-inline-block" href="user-login.html">Login</a>
-                        <a class="nav-link text-dark" href="shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a class="btn btn-outline-dark d-md-inline-block" href="{{ route ('home.show')}}">Login</a>
+                        <a class="nav-link text-dark" href="{{ route ('shopping-cart.show')}}"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                 </ul>
 
                 <form class="d-flex mt-3 mt-md-0 form-width" style="gap: .5rem;">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn no-outline" type="submit"><i class="fas fa-search"></i></button>
-                    <a class="btn btn-outline-dark d-none d-md-inline-block ms-auto" href="user-login.html">Login</a>
-                    <a class="nav-link text-dark d-none d-md-flex align-items-center mx-3" href="shopping-cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a class="btn btn-outline-dark d-none d-md-inline-block ms-auto" href="{{ route ('user-login.show')}}">Login</a>
+                    <a class="nav-link text-dark d-none d-md-flex align-items-center mx-3" href="{{ route ('shopping-cart.show')}}"><i class="fa-solid fa-cart-shopping"></i></a>
                 </form>
             </div>
         </div>

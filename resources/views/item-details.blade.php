@@ -1,4 +1,16 @@
-<x-layout>
+@extends('components.layout')
+
+@section('title', 'Item Details')
+
+@section('stylesheets')
+    <!-- Page-specific styles -->
+    @vite('resources/css/templates.css')
+    @vite('resources/css/home.css')
+    @vite('resources/js/app.js')
+    @vite('resources/css/item-details.css')
+@endsection
+
+@section('content')
     <main class="login-page">
         <div class="content-container my-5">
             <div class="container my-4">
@@ -44,9 +56,9 @@
                         </h2>
                         <!-- Product tags -->
                         <div class="tags">
-                                    <span class="badge bg-secondary"
-                                    >Decorative</span
-                                    >
+                                <span class="badge bg-secondary"
+                                >Decorative</span
+                                >
                             <span class="badge bg-success"
                             >Evergreen</span
                             >
@@ -115,4 +127,4 @@
             </div>
         </div>
     </main>
-</x-layout>
+@endsection

@@ -1,4 +1,8 @@
-<x-layout>
+@extends('components.layout')
+
+@section('title', 'Home')
+
+@section('content')
     <main class="flex-column">
         <div class="banner">
             <div class="main-wrapper">
@@ -15,367 +19,41 @@
             </div>
         </div>
 
-        <!-- Subcategories Section -->
-        <section class="container my-4" id="products">
-            <!-- Plants Subcategory -->
-            <h2 class="mb-3" id="plants">Plants</h2>
-            <div class="row">
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
+        @foreach ($categories as $category)
+            <section class="container my-4" id="category-{{ $category->id }}">
+                <h2 class="mb-3">{{ $category->title }}</h2>
+                <div class="row">
+                    @foreach ($category->products as $product)
+                        <div class="col-6 col-md-3 mb-3">
+                            <div class="card">
+                                <a href="{{ route('product.show', $product) }}">
+                                    <img
+                                        src="{{ asset('storage/' . $product->images->first()->imagePath) }}"
+                                        class="card-img-top"
+                                        alt="{{ $product->images->first()->altText }}"
+                                    />
+                                </a>
 
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
+                                <div class="card-body">
+                                    <a href="{{ route('product.show', $product) }}">
+                                        <h5 class="card-title">{{ $product->title }}</h5>
+                                    </a>
+                                    <!-- Include other product info if needed -->
+                                </div>
+                            </div>
                         </div>
+                    @endforeach
+                    <!-- More button -->
+                    <div class="w-100 text-center mt-3">
+                        <a class="btn btn-outline-primary" href="{{ route('all-plants.show', $category) }}">
+                            More
+                        </a>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
+            </section>
+        @endforeach
 
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
 
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- More button -->
-                <div class="w-100 text-center mt-3">
-                    <a
-                        class="btn btn-outline-primary"
-                        href="all-plants.html"
-                    >
-                        More
-                    </a>
-                </div>
-            </div>
-
-            <!-- Seeds Subcategory -->
-            <h2 class="mb-3" id="seeds">Seeds</h2>
-            <div class="row">
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- More button -->
-                <div class="w-100 text-center mt-3">
-                    <a
-                        class="btn btn-outline-primary"
-                        href="all-plants.html"
-                    >
-                        More
-                    </a>
-                </div>
-            </div>
-
-            <!-- Gardening Tools Subcategory -->
-            <h2 class="mb-3" id="gardening-tools">Gardening tools</h2>
-            <div class="row">
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- More button -->
-                <div class="w-100 text-center mt-3">
-                    <a
-                        class="btn btn-outline-primary"
-                        href="all-plants.html"
-                    >
-                        More
-                    </a>
-                </div>
-            </div>
-
-            <h2 class="mb-3" id="garden-care">Garden Care</h2>
-            <div class="row">
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 mb-3">
-                    <div class="card">
-                        <a href="item-details.html"
-                        ><img
-                                src="{{ asset('assets/img/plant.webp') }}"
-                                class="card-img-top"
-                                alt="Zamioculcas"
-                            />
-                        </a>
-
-                        <div class="card-body">
-                            <a href="item-details.html">
-                                <h5 class="card-title">
-                                    Zamioculcas zamiifolia
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- More button -->
-                <a
-                    class="w-100 text-center mt-3"
-                    href="all-plants.html"
-                >
-                    <button class="btn btn-outline-primary">
-                        More
-                    </button>
-                </a>
-            </div>
-        </section>
     </main>
-</x-layout>
+@endsection
 
