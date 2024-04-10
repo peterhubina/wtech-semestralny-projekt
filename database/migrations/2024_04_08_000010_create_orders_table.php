@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->decimal('totalPrice', 10, 2);
+            $table->enum('payment', ['Card', 'Google Pay']);
+            $table->timestamp('createdAt')->nullable();
+            $table->unsignedBigInteger('userId');
+            $table->unsignedBigInteger('shippingId');
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('shippingId')->references('id')->on('shipping_info')->onDelete('cascade');
         });
     }
 
