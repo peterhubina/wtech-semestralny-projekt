@@ -42,7 +42,6 @@
                                     <a href="{{ route('item-details.show', $product) }}">
                                         <h5 class="card-title">{{ $product->title }}</h5>
                                     </a>
-                                    <!-- Include other product info if needed -->
                                 </div>
                             </div>
                         </div>

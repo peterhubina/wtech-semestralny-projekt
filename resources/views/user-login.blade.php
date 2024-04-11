@@ -34,9 +34,12 @@
                     />
                 </div>
 
-                <button type="submit" class="btn btn-outline-dark mt-2">
-                    Login
-                </button>
+                <div class="d-flex mt-2">
+                    <button type="submit" class="btn btn-outline-dark">
+                        Login
+                    </button>
+                    <p class="px-2 m-0 align-self-center">Not a member? <a href="{{ route('register.show') }}">Register</a></p>
+                </div>
             </form>
 
         </div>

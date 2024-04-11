@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +29,6 @@ Route::get('/info-page', function () {
     return view('info-page');
 })->name('info-page.show');
 
-Route::get('/user-register', function () {
-    return view('user-register');
-})->name('user-register.show');
-
 Route::get('/shopping-cart', function () {
     return view('shopping-cart');
 })->name('shopping-cart.show');
@@ -40,10 +37,13 @@ Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout.show');
 
-Route::get('/item-details', function () {
-    return view('item-details');
-})->name('item-details.show');
+Route::get('/item-details/{product}', [ProductController::class, 'show'])->name('item-details.show');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.show');
 
 Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
+
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+

@@ -18,4 +18,11 @@ class ProductController extends Controller
 
         return view('home', compact('categories'));
     }
+
+    public function show(Product $product)
+    {
+        $product->load('images');
+
+        return view('item-details', compact('product'));
+    }
 }
