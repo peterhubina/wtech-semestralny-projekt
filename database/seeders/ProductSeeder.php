@@ -20,11 +20,11 @@ class ProductSeeder extends Seeder
 
         foreach ($categories as $category) {
             $products = Product::factory()->count(10)->make()->each(function ($product) use ($category) {
-                $product->categoryId = $category->id;
+                $product->category_id = $category->id;
                 $product->save();
 
                 Image::factory()->create([
-                    'productId' => $product->id,
+                    'product_id' => $product->id,
                 ]);
             });
         }

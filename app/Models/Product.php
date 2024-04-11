@@ -27,7 +27,7 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class, 'productId');
+        return $this->hasMany(Image::class, 'product_id');
     }
 
     public function tags() : BelongsToMany
@@ -37,6 +37,6 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'categoryId');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

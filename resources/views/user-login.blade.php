@@ -2,30 +2,35 @@
 
 @section('title', 'Login')
 
+@section('stylesheets')
+    @vite('resources/css/user-login.css')
+@endsection
+
 @section('content')
     <main class="login-page">
         <div class="content-container my-5">
             <h1 class="mb-3">User Login</h1>
-            <form>
+            <form method="POST" action="{{ route('login.show') }}">
+                @csrf
                 <div class="form-group">
-                    <label for="exampleInputEmail1"
-                    ><h4>Email</h4></label
-                    >
+                    <label for="email"><h4>Email</h4></label>
                     <input
                         type="email"
                         class="form-control"
-                        id="exampleInputEmail1"
+                        id="email"
+                        name="email"
                         aria-describedby="emailHelp"
+                        required
                     />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1"
-                    ><h4>Password</h4></label
-                    >
+                    <label for="password"><h4>Password</h4></label>
                     <input
                         type="password"
                         class="form-control"
-                        id="exampleInputPassword1"
+                        id="password"
+                        name="password"
+                        required
                     />
                 </div>
 
@@ -33,6 +38,7 @@
                     Login
                 </button>
             </form>
+
         </div>
     </main>
 @endsection

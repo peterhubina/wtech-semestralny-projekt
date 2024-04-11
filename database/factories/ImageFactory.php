@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Image>
@@ -17,17 +18,17 @@ class ImageFactory extends Factory
      */
     public function definition(): array
     {
-        $fakerFileName = $this->faker->image(
-            storage_path("app/public/img"),
+        $imageFile = $this->faker->image(
+            storage_path("app/public"),
             800,
             600
         );
 
         return [
             'title' => $this->faker->word,
-            'imagePath' => "app/public/img/" . basename($fakerFileName),
+            'imagePath' => Storage::disk('public')->putFile('images', $imageFile),
             'altText' => $this->faker->sentence,
-            'productId' => Product::inRandomOrder()->first()->id,
+            'product_id' => Product::inRandomOrder()->first()->id,
         ];
     }
 }

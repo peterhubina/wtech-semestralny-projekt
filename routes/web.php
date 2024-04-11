@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,10 +40,10 @@ Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout.show');
 
-Route::get('/user-login', function () {
-    return view('user-login');
-})->name('user-login.show');
-
 Route::get('/item-details', function () {
     return view('item-details');
 })->name('item-details.show');
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.show');
+
+Route::post('/login', [LoginController::class, 'login']);

@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedInteger('quantity');
             $table->decimal('priceSummary', 10, 2);
             $table->timestamp('createdAt')->nullable();
-            $table->unsignedBigInteger('orderId');
-            $table->unsignedBigInteger('productId');
-            $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
 
     }

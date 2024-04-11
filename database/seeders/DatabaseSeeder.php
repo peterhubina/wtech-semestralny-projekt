@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         // For each category, create 10 products
         foreach ($categories as $category) {
             Product::factory()->count(10)->create([
-                'categoryId' => $category->id,
+                'category_id' => $category->id,
             ]);
         }
     }

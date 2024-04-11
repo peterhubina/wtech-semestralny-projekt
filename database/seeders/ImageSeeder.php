@@ -19,7 +19,7 @@ class ImageSeeder extends Seeder
         foreach ($products as $product) {
             for ($i = 0; $i < 3; $i++) {
                 Image::factory()->create([
-                    'productId' => $product->id,
+                    'product_id' => $product->id,
                 ]);
             }
         }

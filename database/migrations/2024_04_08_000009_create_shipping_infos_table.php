@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('email', 254);
             $table->text('note')->nullable();
             $table->enum('delivery', ['Courier', 'Us', 'Personal']);
-            $table->unsignedBigInteger('addressId');
-            $table->foreign('addressId')->references('id')->on('addresses')->onDelete('cascade');
+            $table->unsignedBigInteger('address_id');
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
         });
 
     }

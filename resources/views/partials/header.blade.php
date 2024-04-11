@@ -32,7 +32,7 @@
                 <form class="d-flex mt-3 mt-md-0 form-width" style="gap: .5rem;">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn no-outline" type="submit"><i class="fas fa-search"></i></button>
-                    <a class="btn btn-outline-dark d-none d-md-inline-block ms-auto" href="{{ route ('user-login.show')}}">Login</a>
+                    <a class="btn btn-outline-dark d-none d-md-inline-block ms-auto" href="{{ route ('login.show')}}">Login</a>
                     <a class="nav-link text-dark d-none d-md-flex align-items-center mx-3" href="{{ route ('shopping-cart.show')}}"><i class="fa-solid fa-cart-shopping"></i></a>
                 </form>
             </div>

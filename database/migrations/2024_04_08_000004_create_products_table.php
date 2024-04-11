@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->unsignedInteger('stockQuantity');
             $table->timestamps();
-            $table->foreignId('categoryId')->references('id')->on('categories');
+            $table->foreignId('category_id')->references('id')->on('categories');
             $table->softDeletes();
         });
     }
