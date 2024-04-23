@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +63,7 @@ Route::get('/edit-category', function () {
 
 Route::get('/item-details/{product}', [ProductController::class, 'show'])->name('item-details.show');
 
+/*
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.show');
 
 Route::post('/login', [LoginController::class, 'login']);
@@ -71,4 +71,17 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
 
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
+*/
+/*
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+*/
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
