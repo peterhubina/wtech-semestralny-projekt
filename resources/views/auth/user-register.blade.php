@@ -1,6 +1,6 @@
 @extends('components.layout')
 
-@section('title', 'Login')
+@section('title', 'Register')
 
 @section('stylesheets')
     @vite('resources/css/user-login.css')
@@ -9,8 +9,8 @@
 @section('content')
     <main class="login-page">
         <div class="content-container my-5">
-            <h1 class="mb-3">User Login</h1>
-            <form method="POST" action="{{ route('login.show') }}">
+            <h1 class="mb-3">User Registration</h1>
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="form-group">
                     <label for="email"><h4>Email</h4></label>
@@ -19,7 +19,6 @@
                         class="form-control"
                         id="email"
                         name="email"
-                        aria-describedby="emailHelp"
                         required
                     />
                 </div>
@@ -33,15 +32,21 @@
                         required
                     />
                 </div>
-
-                <div class="d-flex mt-2">
-                    <button type="submit" class="btn btn-outline-dark">
-                        Login
-                    </button>
-                    <p class="px-2 m-0 align-self-center">Not a member? <a href="{{ route('register.show') }}">Register</a></p>
+                <div class="form-group">
+                    <label for="password_confirmation"><h4>Confirm Password</h4></label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password_confirmation"
+                        name="password_confirmation"
+                        required
+                    />
                 </div>
-            </form>
 
+                <button type="submit" class="btn btn-outline-dark mt-2">
+                    Register
+                </button>
+            </form>
         </div>
     </main>
 @endsection
