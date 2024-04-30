@@ -30,5 +30,7 @@ class DatabaseSeeder extends Seeder
                 'category_id' => $category->id,
             ]);
         }
+
+        $this->call(ImageSeeder::class);
     }
 }

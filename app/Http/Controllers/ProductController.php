@@ -25,4 +25,64 @@ class ProductController extends Controller
 
         return view('item-details', compact('product'));
     }
+
+    public function showAllPlants(Request $request, $category) {
+        $category = $category ?? $request->input('category');
+        $query = Product::with('images');
+
+        if (!empty($category)) {
+            $query->whereHas('category', function ($q) use ($category) {
+                $q->where('id', $category);  
+            });
+        }
+
+        if ($request->has('max_price')) {
+            $query->where('price', '<=', $request->max_price);
+        }
+
+        if ($request->has('price_order') && $request->price_order == 'cheapest') {
+            $query->orderBy('price');
+        } elseif ($request->has('price_order') && $request->price_order == 'expensive') {
+            $query->orderBy('price', 'desc');
+        }
+        
+        if ($request->has('country')) {
+            $query->where('country', $request->country);
+        }
+    
+        $products = $query->paginate(8);
+
+        return view('all-plants', compact('products'));
+    }
+
+    public function productsAdmin() {
+        $products = Product::with('images')
+                           ->orderBy('id', 'asc')
+                           ->paginate(4);
+    
+        return view('manage-products', compact('products'));
+    }
+    
+
+    public function productsEdit(Product $product) {
+        $product->load('images'); 
+
+        return view('edit-products', compact('product'));
+    }
+
+    public function update(Request $request, Product $product) {
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer',
+            'imagePath' => 'required|string'
+        ]);
+
+        $product->update($data);
+
+        // If you need to update the image or handle more complex operations, do that here
+
+        return redirect()->route('mg-products.show')->with('success', 'Product updated successfully!');
+    }
 }

@@ -20,9 +20,9 @@ Route::get('/', [ProductController::class, 'index'])->name('home.show');
 
 Route::resource('users', UserController::class);
 
-Route::get('/all-plants', function () {
-    return view('all-plants');
-})->name('all-plants.show');
+Route::get('/all-plants/{category}', [ProductController::class, 'showAllPlants'])->name('all-plants.show');
+
+Route::post('/cart/add', 'App\Http\Controllers\CartController@add')->name('cart.add');
 
 Route::get('/info-page', function () {
     return view('info-page');
@@ -37,9 +37,7 @@ Route::get('/checkout', function () {
 })->name('checkout.show');
 
 // Admin section
-Route::get('/manage-products', function () {
-    return view('manage-products');
-})->name('mg-products.show');
+Route::get('/manage-products', [ProductController::class, 'productsAdmin'])->name('mg-products.show');
 
 Route::get('/manage-category', function () {
     return view('manage-category');
@@ -56,6 +54,10 @@ Route::get('/add-category', function () {
 Route::get('/edit-products', function () {
     return view('edit-products');
 })->name('edit-products.show');
+
+Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
+
+Route::get('/edit-products/{product}', [ProductController::class, 'productsEdit'])->name('edit-products.show');
 
 Route::get('/edit-category', function () {
     return view('edit-category');

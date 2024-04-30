@@ -1,7 +1,7 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
 :root {
-    --bs-primary: #0b3e27; /* Your new primary color */
+    --bs-primary: #0b3e27; /* Primary color */
 }
 
 body, html {

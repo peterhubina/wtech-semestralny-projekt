@@ -1,5 +1,6 @@
-#custom-table {
+.products-table {
     margin-top: 40px;
+    width: 90%;
 }
 
 .category-table .img-thumbnail {
@@ -8,8 +9,8 @@
 }
 
 .products-table .img-thumbnail {
-    width: 60px;
-    height: 60px;
+    width: 180px;
+    height: 100px;
 }
 
 .btn-lg {
@@ -19,8 +20,4 @@
 
 .submit-button {
     border: 1px solid black; 
-}
-
-.pagination li {
-    margin: 0 3px; /* Space out the pagination items */
 }

@@ -102,3 +102,38 @@ input[type="number"]::-webkit-outer-spin-button {
     }
 }
 
+/* Ensure the pagination container is flex and items are aligned */
+nav.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for the pagination links */
+nav.d-flex ul {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+}
+
+nav.d-flex ul li {
+    margin: 0 5px; /* Adjust spacing between pagination items */
+}
+
+nav.d-flex ul li a {
+    text-decoration: none;
+    color: #0275d8; /* Adjust link color */
+    background-color: #fff; /* Adjust background color */
+    padding: 5px 10px; /* Adjust padding */
+    border: 1px solid #ddd; /* Adjust border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+nav.d-flex ul li.active a, 
+nav.d-flex ul li a:hover {
+    color: #fff; /* Color for active/hover state */
+    background-color: #0275d8; /* Background color for active/hover state */
+    border-color: #0275d8; /* Border color for active/hover state */
+}
+
+
