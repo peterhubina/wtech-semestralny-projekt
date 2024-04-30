@@ -23,8 +23,6 @@ Route::resource('users', UserController::class);
 
 Route::get('/all-plants/{category}', [ProductController::class, 'showAllPlants'])->name('all-plants.show');
 
-Route::post('/cart/add', 'App\Http\Controllers\CartController@add')->name('cart.add');
-
 Route::get('/info-page', function () {
     return view('info-page');
 })->name('info-page.show');

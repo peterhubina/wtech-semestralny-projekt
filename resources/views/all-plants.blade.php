@@ -104,7 +104,7 @@
                                             <p class="card-text mb-0">{{ number_format($product->price, 2, ',', '.') }} €</p>
                                         </div>
                                         
-                                        <form class="product-row d-flex justify-content-between align-items-center" method="POST" action="{{ route('cart.add') }}">
+                                        <form class="product-row d-flex justify-content-between align-items-center" method="POST" action="{{ route('cart.add', $product) }}">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <div class="col-5 p-0">
