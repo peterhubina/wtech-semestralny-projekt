@@ -4,6 +4,7 @@
 
 @section('stylesheets')
     @vite('resources/css/item-details.css')
+    @vite('resources/js/counter.js')
 @endsection
 
 @section('content')
@@ -24,22 +25,21 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-4">
-                                <img                                src="{{ asset('assets/img/thuja.webp') }}"
-                                                                    alt="Thumbnail"
-                                                                    class="img-fluid card"
+                            <div class="col-6">
+                                <img
+                                    src="{{ asset('storage/' . $product->images[1]->imagePath) }}"
+                                    alt="{{ $product->images[1]->altText }}"
+                                    class="img-fluid card"
                                 />
-                            </div>                        <div class="col-4">
-                                <img                                src="{{ asset('assets/img/thuja.webp') }}"
-                                                                    alt="Thumbnail"
-                                                                    class="img-fluid card"
+                            </div>
+                            <div class="col-6">
+                                <img
+                                    src="{{ asset('storage/' . $product->images[2]->imagePath) }}"
+                                    alt="{{ $product->images[2]->altText }}"
+                                    class="img-fluid card"
                                 />
-                            </div>                        <div class="col-4">
-                                <img                                src="{{ asset('assets/img/thuja.webp') }}"
-                                                                    alt="Thumbnail"
-                                                                    class="img-fluid card"
-                                />
-                            </div>                    </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-6">
@@ -53,7 +53,7 @@
                         </div>
 
 
-                        <p class="mt-3"><strong>{{ $product->height }}</strong></p>
+                        <p class="mt-3"><strong>{{ $product->height }}cm</strong></p>
                         <h3 class="mb-4">{{ number_format($product->price, 2) }} €</h3>
 
                         <div
