@@ -13,6 +13,16 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="form-group">
+                    <label for="name"><h4>Name</h4></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        name="name"
+                        required
+                    />
+                </div>
+                <div class="form-group">
                     <label for="email"><h4>Email</h4></label>
                     <input
                         type="email"

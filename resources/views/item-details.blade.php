@@ -44,15 +44,13 @@
 
                     <div class="col-md-6">
                         <h2>{{ $product->title }}</h2>
-                        <!-- Product tags -->
                         <div class="tags">
-                            <span class="badge bg-secondary"
-                            >Decorative</span
-                            >                        <span class="badge bg-success"
-                            >Evergreen</span
-                            >                        <span class="badge bg-info"
-                            >Frostproof</span
-                            >                    </div>
+                            @if($product->tags->isNotEmpty())
+                                @foreach ($product->tags as $tag)
+                                    <span class="badge bg-secondary">{{ $tag->title }}</span>
+                                @endforeach
+                            @endif
+                        </div>
 
 
                         <p class="mt-3"><strong>{{ $product->height }}</strong></p>
