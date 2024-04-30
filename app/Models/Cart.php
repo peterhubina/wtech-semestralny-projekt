@@ -12,7 +12,7 @@ class Cart extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'totalPrice',
+        'total_price',
         'user_id',
     ];
 
