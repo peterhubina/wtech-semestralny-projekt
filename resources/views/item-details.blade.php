@@ -59,33 +59,38 @@
                         <div
                             class="selector d-flex align-items-center mb-4 flex-row"
                         >
-                            <div class="quantity-selector d-flex">
-                                <button                                class="btn btn-outline-secondary quantity-minus"
-                                                                       type="button"
-                                                                       data-type="minus"
-                                                                       data-field=""
+                            <form action={{ route('cart.add', $product) }} method="POST">
+                                @csrf
+                                <div class="quantity-selector d-flex">
+                                    <button class="btn btn-outline-secondary quantity-minus"
+                                       type="button"
+                                       data-type="minus"
+                                       data-field=""
+                                    >
+                                        -
+                                    </button>
+                                    <input id="quantity"
+                                      type="text"
+                                      class="form-control text-center"
+                                      value="1"
+                                      min="1"
+                                      max="100"
+                                    />
+                                    <button class="btn btn-outline-secondary quantity-plus"
+                                       type="button"
+                                       data-type="plus"
+                                       data-field=""
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                                <button class="shopping-button btn btn-primary" type="submit"
                                 >
-                                    -
+                                    Add to shopping cart
+                                    <i class="fa fa-shopping-cart"></i>
                                 </button>
-                                <input                                id="quantity"
-                                                                      type="text"
-                                                                      class="form-control text-center"
-                                                                      value="1"
-                                                                      min="1"
-                                                                      max="100"
-                                />
-                                <button                                class="btn btn-outline-secondary quantity-plus"
-                                                                       type="button"
-                                                                       data-type="plus"
-                                                                       data-field=""
-                                >
-                                    +
-                                </button>
-                            </div>                        <button                            class="shopping-button btn btn-primary"
-                            >
-                                Add to shopping cart
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>                    </div>
+                            </form>
+                        </div>
                         <p>{{ $product->description }}</p>
                         <!-- Additional information could go here -->
                     </div>

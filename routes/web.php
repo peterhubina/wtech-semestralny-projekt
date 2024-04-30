@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -36,6 +37,8 @@ Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout.show');
 
+Route::post('/cart/{product}/add', [CartController::class, 'addToCart'])->name('cart.add');
+
 // Admin section
 Route::get('/manage-products', function () {
     return view('manage-products');
@@ -62,21 +65,6 @@ Route::get('/edit-category', function () {
 })->name('edit-category.show');
 
 Route::get('/item-details/{product}', [ProductController::class, 'show'])->name('item-details.show');
-
-/*
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.show');
-
-Route::post('/login', [LoginController::class, 'login']);
-
-Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
-
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
-*/
-/*
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
