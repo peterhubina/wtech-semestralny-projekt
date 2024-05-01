@@ -11,7 +11,7 @@
 <main>
     <!-- Products Table -->
     <div class="container-fluid d-flex flex-column align-items-center" id="custom-table">
-        <div class="table-responsive w-75 products-table">
+        <div class="table-responsive products-table">
             <div class="d-flex justify-content-between align-items-center">
                 <p class="fs-1 mx-5 mb-0 text-uppercase">Manage Products</p>
                 <div>
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <table class="table table-striped table-hover table-bordered fs-5 mt-4">
+            <table class="table table-striped table-hover table-bordered fs-5 mt-4" id='custom-table'>
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -35,116 +35,52 @@
                     </tr>
                 </thead>
                 <tbody>
+                @foreach($products as $product)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Flower 1</td>
-                        <td>Lorem Ipsum</td>
-                        <td>33.00/stalk</td>
+                        <th scope="row">{{ $product->id }}</th>
+                        <td>{{ $product->title }}</td>
+                        <td>{{ $product->description }}</td>
+                        <td>{{ $product->price }}</td>
                         <td>1</td>
-                        <td><img src="{{ asset('assets/img/plant.webp') }}" class="img-thumbnail" alt="..."></td>
+                        <td><img src="{{ asset('storage/'.$product->images->first()->imagePath) }}" class="img-thumbnail" alt="..."></td>
                         <td>
-                            <div class="d-flex flex-column align-items-start">
-                                <a href="{{ route('edit-products.show') }}" class="w-100">
+                            <div class="d-flex flex-column align-items-start mt-3">
+                                <a href="{{ route('edit-products.show', $product) }}" class="w-100">
                                     <button type="button"
                                         class="btn btn-sm btn-light mb-2 w-100 submit-button">Edit</button>
                                 </a>
-                                
+                               
                                 <button type="button" class="btn btn-sm btn-light w-100 submit-button">Delete</button>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Flower 2</td>
-                        <td>Lorem Ipsum</td>
-                        <td>33.00/stalk</td>
-                        <td>1</td>
-                        <td><img src="{{ asset('assets/img/plant.webp') }}" class="img-thumbnail" alt="..."></td>
-                        <td>
-                            <div class="d-flex flex-column align-items-start">
-                                <a href="{{ route('edit-products.show') }}" class="w-100">
-                                    <button type="button"
-                                        class="btn btn-sm btn-light mb-2 w-100 submit-button">Edit</button>
-                                </a>
-                                <button type="button" class="btn btn-sm btn-light w-100 submit-button">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Flower 3</td>
-                        <td>Lorem Ipsum</td>
-                        <td>33.00/stalk</td>
-                        <td>1</td>
-                        <td><img src="{{ asset('assets/img/plant.webp') }}" class="img-thumbnail" alt="..."></td>
-                        <td>
-                            <div class="d-flex flex-column align-items-start">
-                                <a href="{{ route('edit-products.show') }}" class="w-100">
-                                    <button type="button"
-                                        class="btn btn-sm btn-light mb-2 w-100 submit-button">Edit</button>
-                                </a>
-                                <button type="button" class="btn btn-sm btn-light w-100 submit-button">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Flower 4</td>
-                        <td>Lorem Ipsum</td>
-                        <td>33.00/stalk</td>
-                        <td>1</td>
-                        <td><img src="{{ asset('assets/img/plant.webp') }}" class="img-thumbnail" alt="..."></td>
-                        <td>
-                            <div class="d-flex flex-column align-items-start">
-                                <a href="{{ route('edit-products.show') }}" class="w-100">
-                                    <button type="button"
-                                        class="btn btn-sm btn-light mb-2 w-100 submit-button">Edit</button>
-                                </a>
-                                <button type="button" class="btn btn-sm btn-light w-100 submit-button">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Flower 5</td>
-                        <td>Lorem Ipsum</td>
-                        <td>33.00/stalk</td>
-                        <td>1</td>
-                        <td><img src="{{ asset('assets/img/plant.webp') }}" class="img-thumbnail" alt="..."></td>
-                        <td>
-                            <div class="d-flex flex-column align-items-start">
-                                <a href="{{ route('edit-products.show') }}" class="w-100">
-                                    <button type="button"
-                                        class="btn btn-sm btn-light mb-2 w-100 submit-button">Edit</button>
-                                </a>
-                                <button type="button" class="btn btn-sm btn-light w-100 submit-button">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
+                @endforeach
                 </tbody>
+                
             </table>
         </div>
 
-        <nav aria-label="Page navigation" class="d-flex justify-content-center mb-5">
-            <ul class="pagination">
-                <li class="page-item">
-                <a class="page-link text-dark" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-                </li>
-                <li class="page-item active"><a class="page-link text-dark" href="#">1</a></li>
-                <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                <li class="page-item disabled"><span class="page-link text-dark">...</span></li>
-                <li class="page-item"><a class="page-link text-dark" href="#">10</a></li>
-                <li class="page-item"><a class="page-link text-dark" href="#">11</a></li>
-                <li class="page-item"><a class="page-link text-dark" href="#">12</a></li>
-                <li class="page-item">
-                <a class="page-link text-dark" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-                </li>
-            </ul>
-        </nav>
+        @if ($products->lastPage() > 1)
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item {{ ($products->currentPage() == 1) ? ' disabled' : '' }}">
+                        <a class="page-link" href="{{ $products->url(1) }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for ($i = 1; $i <= $products->lastPage(); $i++)
+                        <li class="page-item {{ ($products->currentPage() == $i) ? ' active' : '' }}">
+                            <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @endfor
+                    <li class="page-item {{ ($products->currentPage() == $products->lastPage()) ? ' disabled' : '' }}">
+                        <a class="page-link" href="{{ $products->url($products->currentPage()+1) }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        @endif
+    </div>
 </main>
 @endsection
