@@ -6,23 +6,27 @@
                 <div class="col-container">
                     <div class="mb-2 flex justify-center">
                         <a href="/">
-                            <img src="{{ asset('assets/img/logo.webp') }}" alt="Logo" style="height: 50px; width: auto;">
+                            <img src="{{ asset('assets/img/logo.webp') }}" alt="Logo"
+                                 style="height: 50px; width: auto;">
                         </a>
                     </div>
                     <div>© 2024</div>
                     <div class="social-icons">
-                        <a href="#" class="me-2"
-                        ><i class="fab fa-twitter"></i
-                            ></a>
-                        <a href="#" class="me-2"
-                        ><i class="fab fa-facebook-f"></i
-                            ></a>
-                        <a href="#" class="me-2"
-                        ><i class="fab fa-instagram"></i
-                            ></a>
-                        <a href="#" class="me-2"
-                        ><i class="fab fa-linkedin-in"></i
-                            ></a>
+                        <a href="https://github.com/peterhubina/wtech-semestralny-projekt" class="me-2">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://github.com/peterhubina/wtech-semestralny-projekt" class="me-2">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://github.com/peterhubina/wtech-semestralny-projekt" class="me-2">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://github.com/peterhubina/wtech-semestralny-projekt" class="me-2">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://github.com/peterhubina/wtech-semestralny-projekt" class="me-2">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -33,10 +37,13 @@
                 <div class="col-container">
                     <h5>Categories</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{{ route ('home.show')}}#plants">Plants</a></li>
-                        <li><a href="{{ route ('home.show')}}#seeds">Seeds</a></li>
-                        <li><a href="{{ route ('home.show')}}#gardening-tools">Gardening Tools</a></li>
-                        <li><a href="{{ route ('home.show')}}#garden-care">Garden Care</a></li>
+                        @if($categories)
+                            @foreach ($categories->take(4) as $category)
+                                <li>
+                                    <a href="{{ route ('home.show')}}#{{ strtolower($category->title) }}">{{ $category->title }}</a>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>
