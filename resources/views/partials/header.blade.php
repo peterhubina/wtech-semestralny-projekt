@@ -12,7 +12,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route ('home.show')}}#products">Products</a>
+                        <a class="nav-link" href="{{ route ('all-plants.show')}}">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route ('info-page.show')}}#visit">Visit Us</a>
@@ -35,7 +35,7 @@
                 </ul>
 
                 <form class="d-flex mt-3 mt-md-0 form-width" style="gap: .5rem;">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control rounded-3 border-neutral-200 h-[2.30rem]" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn no-outline" type="submit"><i class="fas fa-search"></i></button>
                     @auth
                         <a class="btn btn-outline-dark d-none d-md-inline-block ms-auto" href="{{ route('logout') }}"

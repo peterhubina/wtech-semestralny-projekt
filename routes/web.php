@@ -21,7 +21,7 @@ Route::get('/', [ProductController::class, 'index'])->name('home.show');
 
 Route::resource('users', UserController::class);
 
-Route::get('/all-plants/{category}', [ProductController::class, 'showAllPlants'])->name('all-plants.show');
+Route::get('/all-plants/{category?}', [ProductController::class, 'showAllPlants'])->name('all-plants.show');
 
 Route::get('/info-page', function () {
     return view('info-page');
@@ -72,4 +72,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

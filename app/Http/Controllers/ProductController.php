@@ -26,13 +26,13 @@ class ProductController extends Controller
         return view('item-details', compact('product'));
     }
 
-    public function showAllPlants(Request $request, $category) {
+    public function showAllPlants(Request $request, $category = null) {
         $category = $category ?? $request->input('category');
         $query = Product::with('images');
 
         if (!empty($category)) {
             $query->whereHas('category', function ($q) use ($category) {
-                $q->where('id', $category);  
+                $q->where('id', $category);
             });
         }
 
@@ -45,11 +45,11 @@ class ProductController extends Controller
         } elseif ($request->has('price_order') && $request->price_order == 'expensive') {
             $query->orderBy('price', 'desc');
         }
-        
+
         if ($request->has('country')) {
             $query->where('country', $request->country);
         }
-    
+
         $products = $query->paginate(8);
 
         return view('all-plants', compact('products'));
@@ -59,13 +59,13 @@ class ProductController extends Controller
         $products = Product::with('images')
                            ->orderBy('id', 'asc')
                            ->paginate(4);
-    
+
         return view('manage-products', compact('products'));
     }
-    
+
 
     public function productsEdit(Product $product) {
-        $product->load('images'); 
+        $product->load('images');
 
         return view('edit-products', compact('product'));
     }
