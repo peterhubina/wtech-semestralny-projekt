@@ -88,7 +88,7 @@
                                     @if($product->images->isNotEmpty())
                                         <a href="{{ route('item-details.show', $product) }}">
                                             <img
-                                                src="{{ asset('storage/'.$product->images->first()->imagePath) }}"
+                                                src="{{ $product->images->first()->imagePath }}"
                                                 class="card-img-top"
                                                 alt="{{ $product->images->first()->altText }}"
                                             />
@@ -103,7 +103,7 @@
                                             <p class="card-text mb-0 text-muted">{{ $product->height }} cm</p>
                                             <p class="card-text mb-0">{{ number_format($product->price, 2, ',', '.') }} €</p>
                                         </div>
-                                        
+
                                         <form class="product-row d-flex justify-content-between align-items-center" method="POST" action="{{ route('cart.add', $product) }}">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -149,14 +149,14 @@
                             </nav>
                         @endif
                     </div>
-                        
-                    
+
+
                 </div>
-            </div> 
-        </div> 
+            </div>
+        </div>
     </div>
 
-    
+
 </main>
 
 <script>
@@ -164,10 +164,10 @@
     function updateRangeValue(value) {
         var priceRange = document.getElementById('price-range');
         var priceForm = document.getElementById('price-form');
-        
+
         // Make sure the value is within the range limits
         value = Math.max(priceRange.min, Math.min(value, priceRange.max));
-        
+
         priceRange.value = value;
         priceForm.value = value;
     }
@@ -197,7 +197,7 @@
     document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('filterForm');
     const category = window.location.pathname.split('/')[2]; // Assuming URL format is /all-plants/{category}
-    
+
     if (category) {
         form.action = `/all-plants/${category}`; // Set the form's action
         form.querySelector('input[name="category"]').value = category; // Set the hidden input value

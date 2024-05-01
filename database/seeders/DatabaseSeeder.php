@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ImageSeeder::class,
             ProductTagSeeder::class,
+            UserSeeder::class,
+            UserCartsWithItemsSeeder::class
         ]);
     }
 }

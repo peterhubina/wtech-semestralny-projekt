@@ -33,7 +33,7 @@
                                 <div class="card">
                                     <a href="{{ route('item-details.show', $product) }}">
                                         <img
-                                            src="{{ asset('storage/'.$product->images->first()->imagePath) }}"
+                                            src="{{ $product->images->first()->imagePath }}"
                                             class="card-img-top"
                                             alt="{{ $product->images->first()->altText }}"
                                         />

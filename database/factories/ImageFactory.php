@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Image>
@@ -18,17 +17,13 @@ class ImageFactory extends Factory
      */
     public function definition(): array
     {
-        $imageFile = $this->faker->image(
-            storage_path("app/public/images"),
-            800,
-            600
-        );
+        $imageSeed = rand(1, 10000);
+        $randomImage = "https://picsum.photos/seed/{$imageSeed}/800/600";
 
         return [
             'title' => $this->faker->word,
-            'imagePath' => Storage::disk('public')->putFile('images', $imageFile),
-            'altText' => $this->faker->sentence,
-            'product_id' => Product::inRandomOrder()->first()->id,
+            'imagePath' => $randomImage,
+            'altText' => $this->faker->sentence
         ];
     }
 }
