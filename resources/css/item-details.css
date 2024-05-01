@@ -7,7 +7,7 @@
 }
 
 .quantity-selector #quantity {
-    width: 3rem;
+    width: 7rem;
 }
 
 .shopping-button {
@@ -16,4 +16,9 @@
 
 .wrapper {
     flex-direction: column;
+}
+
+.gallery-item > img {
+    border-radius: 0;
+    border: none;
 }

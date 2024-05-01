@@ -1,6 +1,8 @@
+import $ from "jquery";
+
 $(document).ready(function(){
 
-    var quantitiy=0;
+    var quantity=0;
     $('.quantity-plus').click(function(e){
         console.log("Clicked plus");
         // Stop acting like a button
@@ -27,9 +29,17 @@ $(document).ready(function(){
         // If is not undefined
 
         // Increment
-        if(quantity>0){
+        if(quantity>1){
             $('#quantity').val(quantity - 1);
         }
     });
+
+    $('#quantity').blur(function() {
+        var $this = $(this);
+        if ($this.val() === '' || isNaN($this.val()) || parseInt($this.val()) <= 0) {
+            $this.val(1);
+        }
+    });
+
 
 });

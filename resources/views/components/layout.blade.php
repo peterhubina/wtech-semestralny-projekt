@@ -14,6 +14,7 @@
     @vite('resources/css/templates.css')
     @vite('resources/js/app.js')
     @yield('stylesheets')
+    @yield('scripts')
 
     <title>@yield('title', 'Main Page')</title>
 </head>
@@ -25,6 +26,5 @@
 
     @include('partials.footer')
 </div>
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->
 </body>
 </html>

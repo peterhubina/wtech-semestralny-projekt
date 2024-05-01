@@ -4,7 +4,10 @@
 
 @section('stylesheets')
     @vite('resources/css/item-details.css')
-    @vite('resources/js/counter.js')
+@endsection
+
+@section('scripts')
+@vite('resources/js/counter.js')
 @endsection
 
 @section('content')
@@ -25,14 +28,14 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-6 gallery-item">
                                 <img
                                     src="{{ asset('storage/' . $product->images[1]->imagePath) }}"
                                     alt="{{ $product->images[1]->altText }}"
                                     class="img-fluid card"
                                 />
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 gallery-item">
                                 <img
                                     src="{{ asset('storage/' . $product->images[2]->imagePath) }}"
                                     alt="{{ $product->images[2]->altText }}"
@@ -61,7 +64,7 @@
                         >
                             <form action={{ route('cart.add', $product) }} method="POST">
                                 @csrf
-                                <div class="quantity-selector d-flex">
+                                <div class="quantity-selector d-flex mb-3">
                                     <button class="btn btn-outline-secondary quantity-minus"
                                        type="button"
                                        data-type="minus"
@@ -70,7 +73,7 @@
                                         -
                                     </button>
                                     <input id="quantity"
-                                      type="text"
+                                      type="number"
                                       class="form-control text-center"
                                       value="1"
                                       min="1"
