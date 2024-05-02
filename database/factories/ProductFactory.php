@@ -20,9 +20,24 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        // Generate a random title with 1-5 words
+        $titleWords = $this->faker->words($this->faker->numberBetween(2, 8));
+
+        // Randomly decide if the first letter of each word should be uppercase
+        if ($this->faker->randomElement([true, false])) {
+            foreach ($titleWords as $i => $word) {
+                $titleWords[$i] = ucfirst($word);
+            }
+        }
+
+        $title = implode(' ', $titleWords);
+
+        // Make the first letter uppercase
+        $title = ucfirst($title);
+
         return [
             'productCode' => $this->faker->bothify('?????-#####'), // Random string like ABCD-12345
-            'title' => $this->faker->words(3, true), // Random title consisting of 3 words
+            'title' => $title,
             'height' => $this->faker->randomNumber(2), // Random number with 2 digits
             'description' => $this->faker->text(200), // Random text with 200 characters
             'price' => $this->faker->randomFloat(2, 1, 1000), // Random float between 1 and 1000 with 2 decimal places

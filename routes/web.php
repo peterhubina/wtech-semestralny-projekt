@@ -27,13 +27,9 @@ Route::get('/info-page', function () {
     return view('info-page');
 })->name('info-page.show');
 
-Route::get('/shopping-cart', function () {
-    return view('shopping-cart');
-})->name('shopping-cart.show');
+Route::get('/shopping-cart', [CartController::class, 'index'])->name('shopping-cart.show');
 
-Route::get('/checkout', function () {
-    return view('checkout');
-})->name('checkout.show');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.show');
 
 Route::post('/cart/{product}/add', [CartController::class, 'addToCart'])->name('cart.add');
 

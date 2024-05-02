@@ -76,36 +76,17 @@
             <div class="flex flex-col gap-0.5">
                 <span class="bg-black w-full h-0.5"></span>
                 <!-- Summary elements -->
-                <div
-                    class="flex bg-neutral-200 py-2 md:py-3 xl:py-4 px-2 justify-between items-center flex-col sm:flex-row gap-4 sm:gap-10 md:gap-20 xl:gap-0">
-                    <p class="xl:w-60 line-clamp-1 xl:line-clamp-2">Cupressus sempervirens Stricta (Italian cypress
-                        tree)</p>
-                    <div class="flex gap-10">
-                        <p>80,00€/ks</p>
-                        <p>2ks</p>
-                        <p>160,00€</p>
+                @foreach($cartItems as $cartItem)
+                    <div
+                        class="flex bg-neutral-200 py-2 md:py-3 xl:py-4 px-2 justify-between items-center flex-col sm:flex-row gap-4 sm:gap-10 md:gap-20 xl:gap-0">
+                        <p class="xl:w-60 line-clamp-1 xl:line-clamp-2">{{ $cartItem->product->title }}</p>
+                        <div class="flex gap-10">
+                            <p>{{ $cartItem->product->price }}€/ks</p>
+                            <p>{{ $cartItem->quantity }}ks</p>
+                            <p>{{ $cartItem->price_summary }}€</p>
+                        </div>
                     </div>
-                </div>
-                <div
-                    class="flex bg-neutral-200 py-2 md:py-3 xl:py-4 px-2 justify-between items-center flex-col sm:flex-row gap-4 sm:gap-10 md:gap-20 xl:gap-0">
-                    <p class="xl:w-60 line-clamp-1 xl:line-clamp-2">Cupressus sempervirens Stricta (Italian cypress
-                        tree). Lorem ipsum dolor sit amet consectetur.</p>
-                    <div class="flex gap-10">
-                        <p>80,00€/ks</p>
-                        <p>2ks</p>
-                        <p>160,00€</p>
-                    </div>
-                </div>
-                <div
-                    class="flex bg-neutral-200 py-2 md:py-3 xl:py-4 px-2 justify-between items-center flex-col sm:flex-row gap-4 sm:gap-10 md:gap-20 xl:gap-0">
-                    <p class="xl:w-60 line-clamp-1 xl:line-clamp-2">Cupressus sempervirens Stricta (Italian cypress
-                        tree)</p>
-                    <div class="flex gap-10">
-                        <p>80,00€/ks</p>
-                        <p>2ks</p>
-                        <p>160,00€</p>
-                    </div>
-                </div>
+                @endforeach
                 <span class="bg-black w-full h-0.5"></span>
             </div>
             <div class="flex text-lg xl:text-xl py-2 justify-between">
@@ -115,9 +96,9 @@
                     <p>Sum with tax:</p>
                 </div>
                 <div class="flex flex-col items-end gap-0.5">
-                    <p>512,00€</p>
-                    <p>128,00€</p>
-                    <p>640,00€</p>
+                    <p>{{ $total_price * 0.8 }}€</p>
+                    <p>{{ $total_price * 0.2 }}€</p>
+                    <p>{{ $total_price }}€</p>
                 </div>
             </div>
             <span class="bg-black w-full h-0.5"></span>
