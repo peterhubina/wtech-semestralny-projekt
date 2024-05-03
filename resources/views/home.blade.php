@@ -7,6 +7,11 @@
 @endsection
 
 @section('content')
+    @if (session('success'))
+        <div id="success-popup" class="success-popup">
+            {{ session('success') }}
+        </div>
+    @endif
     <main class="flex-column">
         <div class="banner">
             <div class="main-wrapper">

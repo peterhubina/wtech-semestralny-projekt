@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
-        'totalPrice', 'payment', 'createdAt', 'userId', 'shippingId'
+        'totalPrice', 'payment', 'created_at', 'userId', 'shippingId'
     ];
 
     public function user()

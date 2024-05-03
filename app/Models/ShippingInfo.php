@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ShippingInfo extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $fillable = [
         'firstname',
@@ -17,6 +18,7 @@ class ShippingInfo extends Model
         'note',
         'delivery',
         'address_id',
+        'created_at',
     ];
 
     public function address()

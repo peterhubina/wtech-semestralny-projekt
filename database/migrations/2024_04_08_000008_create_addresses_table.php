@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('address', 100);
             $table->string('zipcode', 20);
             $table->string('city', 50);
+            $table->timestamp('created_at');
         });
 
     }

@@ -25,7 +25,7 @@ class CartController extends Controller
             $total_price = $cart->total_price;
         }
 
-        return view('shopping-cart', compact('cartItems','total_price'));
+        return view('shopping-cart', compact('cartItems', 'total_price'));
     }
 
     public function checkout()
@@ -42,6 +42,10 @@ class CartController extends Controller
             $total_price = $cart->total_price;
         }
 
+        if (!$cartItems || sizeof($cartItems) == 0) {
+            return redirect()->route('shopping-cart.show')->with('error', 'Your cart is empty. Please add some products to your cart before proceeding to checkout.');
+        }
+
         return view('checkout', compact('cartItems', 'total_price'));
     }
 
@@ -56,7 +60,7 @@ class CartController extends Controller
             // Find or create a cart for the user
             $cart = Cart::firstOrCreate(
                 ['user_id' => $user->id,
-                'total_price' => 0]
+                    'total_price' => 0]
             );
 
             // Check if the product is already in the cart

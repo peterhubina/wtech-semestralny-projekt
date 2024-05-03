@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shipping_info', function (Blueprint $table) {
+        Schema::create('shipping_infos', function (Blueprint $table) {
             $table->id();
             $table->string('firstname', 50);
             $table->string('lastname', 50);
@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('delivery', ['Courier', 'Us', 'Personal']);
             $table->unsignedBigInteger('address_id');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
+            $table->timestamp('created_at');
         });
 
     }

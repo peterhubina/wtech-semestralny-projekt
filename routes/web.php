@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -30,6 +31,7 @@ Route::get('/info-page', function () {
 Route::get('/shopping-cart', [CartController::class, 'index'])->name('shopping-cart.show');
 
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.show');
+Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout.process');
 
 Route::post('/cart/{product}/add', [CartController::class, 'addToCart'])->name('cart.add');
 

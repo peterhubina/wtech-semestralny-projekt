@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->decimal('totalPrice', 10, 2);
             $table->enum('payment', ['Card', 'Google Pay']);
-            $table->timestamp('createdAt')->nullable();
+            $table->timestamp('created_at');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('shipping_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('shipping_id')->references('id')->on('shipping_info')->onDelete('cascade');
+            $table->foreign('shipping_id')->references('id')->on('shipping_infos')->onDelete('cascade');
         });
     }
 
