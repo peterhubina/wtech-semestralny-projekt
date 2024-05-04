@@ -23,7 +23,7 @@ Route::get('/', [ProductController::class, 'index'])->name('home.show');
 
 Route::resource('users', UserController::class);
 
-Route::get('/all-plants/{category}', [ProductController::class, 'showAllPlants'])->name('all-plants.show');
+Route::get('/all-plants/{category?}', [ProductController::class, 'showAllPlants'])->name('all-plants.show');
 
 Route::get('/info-page', function () {
     return view('info-page');
@@ -35,7 +35,6 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.sho
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout.process');
 
 Route::post('/cart/{product}/add', [CartController::class, 'addToCart'])->name('cart.add');
-
 
 
 

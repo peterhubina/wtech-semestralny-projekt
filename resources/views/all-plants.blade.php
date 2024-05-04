@@ -83,9 +83,9 @@
                                     @if($product->images->isNotEmpty())
                                         <a href="{{ route('item-details.show', $product) }}">
                                             <img
-                                                src="{{ $product->getTitular()->first()->imagePath }}"
+                                                src="{{ $product->images->first()->imagePath }}"
                                                 class="card-img-top"
-                                                alt="{{ $product->getTitular()->first()->altText }}"
+                                                alt="{{ $product->images->first()->altText }}"
                                             />
                                         </a>
                                     @else
