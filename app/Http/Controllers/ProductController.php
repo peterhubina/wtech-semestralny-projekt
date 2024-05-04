@@ -66,7 +66,7 @@ class ProductController extends Controller
         $products = Product::with('images')
                            ->orderBy('id', 'asc')
                            ->paginate(8);
-    
+
         return view('manage-products', compact('products'));
     }
 
@@ -75,7 +75,7 @@ class ProductController extends Controller
         $product->load('images');
         $temp = Image::whereNull('product_id')->get();
         $current = $product->images;
-        
+
         $images = $current->merge($temp);
         $categories = Category::all();
 
@@ -99,7 +99,7 @@ class ProductController extends Controller
             'category_id' => 'required|integer',
             'imagePath' => 'required|string|exists:images,imagePath'
         ]);
-        
+
         Image::where('product_id', $product->id)
         ->where('is_titular', true)
         ->update(['is_titular' => false]);
@@ -114,7 +114,7 @@ class ProductController extends Controller
         }
 
         $product->update($data);
-    
+
         return redirect()->route('mg-products.show')->with('success', 'Product updated successfully!');
     }
 
@@ -127,10 +127,10 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'stockQuantity' => 'required|integer'
         ]);
-        
+
         $faker = Faker::create();
         $data['productCode'] = $faker->bothify('?????-#####');
-    
+
         $product = Product::create($data);
 
         $image = Image::where('imagePath', $request->imagePath)->first();
@@ -173,7 +173,18 @@ class ProductController extends Controller
     public function categoryAdmin() {
         $categories = Category::orderBy('id', 'asc')
                        ->paginate(8);
-    
+
         return view('manage-category', compact('categories'));
+    }
+
+    public function search(Request $request) {
+        $searchTerm = $request->input('search');
+
+        $products = Product::with('images')
+            ->where('title', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('description', 'LIKE', '%' . $searchTerm . '%')
+            ->paginate(8);
+
+        return view('all-plants', compact('products'));
     }
 }
