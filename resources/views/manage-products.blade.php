@@ -41,8 +41,8 @@
                         <td>{{ $product->title }}</td>
                         <td>{{ $product->description }}</td>
                         <td>{{ $product->price }}</td>
-                        <td>1</td>
-                        <td><img src="{{ asset('storage/'.$product->images->first()->imagePath) }}" class="img-thumbnail" alt="..."></td>
+                        <td>{{ $product->stockQuantity }}</td>
+                        <td><img src="{{ $product->getTitular()->imagePath }}" class="img-thumbnail" alt="..."></td>
                         <td>
                             <div class="d-flex flex-column align-items-start mt-3">
                                 <a href="{{ route('edit-products.show', $product) }}" class="w-100">
@@ -50,7 +50,9 @@
                                         class="btn btn-sm btn-light mb-2 w-100 submit-button">Edit</button>
                                 </a>
                                
-                                <button type="button" class="btn btn-sm btn-light w-100 submit-button">Delete</button>
+                                <a href="{{ route('delete-products.show', $product) }}" class="w-100">
+                                    <button type="button" class="btn btn-sm btn-light w-100 submit-button">Delete</button>
+                                </a>
                             </div>
                         </td>
                     </tr>

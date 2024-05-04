@@ -13,7 +13,7 @@
         <div class="container d-flex flex-column align-items-center" id="custom-form">
             <p class="fs-1 text-uppercase">Add Category</p>
 
-            <form class="category-form">
+            <form class="category-form" action="{{ route('category.add') }}">
                 <div class="my-5">
                     <input type="text" class="form-control" id="name" placeholder="Category Name">
                 </div>

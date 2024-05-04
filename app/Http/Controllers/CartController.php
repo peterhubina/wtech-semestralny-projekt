@@ -83,8 +83,8 @@ class CartController extends Controller
             $cartItem->save();
 
             // Update the cart's total price
-            $cart->totalPrice = $cart->cartItems->sum(function ($item) {
-                return $item->priceSummary;
+            $cart->total_price = $cart->cartItems->sum(function ($item) {
+                return $item->price_summary;
             });
             $cart->save();
 

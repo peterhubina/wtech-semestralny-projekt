@@ -13,7 +13,7 @@ class Image extends Model
         'title',
         'imagePath',
         'altText',
-        'productId',
+        'product_id',
     ];
 
     public function product() {

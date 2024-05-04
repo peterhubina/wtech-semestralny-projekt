@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $fillable = [
         'productCode', 'title', 'height', 'description', 'price', 'stockQuantity',
-        'createdAt', 'updatedAt', 'deletedAt', 'categoryId'
+        'createdAt', 'updatedAt', 'deletedAt', 'category_id'
     ];
 
     public function orderItems()
@@ -28,6 +28,11 @@ class Product extends Model
     public function images()
     {
         return $this->hasMany(Image::class, 'product_id');
+    }
+
+    public function getTitular()
+    {
+        return $this->images()->where('is_titular', true)->first();
     }
 
     public function tags()

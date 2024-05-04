@@ -14,7 +14,7 @@
         <p class="fs-1 text-uppercase">Edit Category</p>
         <form class="category-form">
             <div class="my-5">
-                <input type="text" class="form-control" id="name" placeholder="Category 1">
+                <input type="text" class="form-control" id="name" value="{{ $category->title }}">
             </div>
             <button type="submit" class="btn btn-light btn-lg d-block mx-auto submit-button mt-3">Save</button>
         </form>

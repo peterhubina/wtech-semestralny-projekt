@@ -22,7 +22,7 @@ Route::get('/', [ProductController::class, 'index'])->name('home.show');
 
 Route::resource('users', UserController::class);
 
-Route::get('/all-plants/{category?}', [ProductController::class, 'showAllPlants'])->name('all-plants.show');
+Route::get('/all-plants/{category}', [ProductController::class, 'showAllPlants'])->name('all-plants.show');
 
 Route::get('/info-page', function () {
     return view('info-page');
@@ -38,29 +38,23 @@ Route::post('/cart/{product}/add', [CartController::class, 'addToCart'])->name('
 // Admin section
 Route::get('/manage-products', [ProductController::class, 'productsAdmin'])->name('mg-products.show');
 
-Route::get('/manage-category', function () {
-    return view('manage-category');
-})->name('mg-category.show');
+Route::get('/manage-category', [ProductController::class, 'categoryAdmin'])->name('mg-category.show');
 
-Route::get('/add-products', function () {
-    return view('add-products');
-})->name('add-products.show');
+Route::get('/add-products', [ProductController::class, 'productsAdd'])->name('add-products.show');
 
 Route::get('/add-category', function () {
     return view('add-category');
 })->name('add-category.show');
 
-Route::get('/edit-products', function () {
-    return view('edit-products');
-})->name('edit-products.show');
+Route::put('/product-edit/{product}', [ProductController::class, 'updateProduct'])->name('product.update');
 
-Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
+Route::put('/product-add', [ProductController::class, 'addProduct'])->name('product.add');
 
 Route::get('/edit-products/{product}', [ProductController::class, 'productsEdit'])->name('edit-products.show');
 
-Route::get('/edit-category', function () {
-    return view('edit-category');
-})->name('edit-category.show');
+Route::get('/delete-product/{product}', [ProductController::class, 'deleteProduct'])->name('delete-products.show');
+
+Route::get('/edit-category/{category}', [ProductController::class, 'categoryEdit'])->name('edit-category.show');
 
 Route::get('/item-details/{product}', [ProductController::class, 'show'])->name('item-details.show');
 

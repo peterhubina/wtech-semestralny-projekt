@@ -12,7 +12,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route ('all-plants.show')}}">Products</a>
+                        <a class="nav-link" href="{{ route ('all-plants.show', 1)}}">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route ('info-page.show')}}#visit">Visit Us</a>
