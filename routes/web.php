@@ -5,6 +5,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,26 +36,8 @@ Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout.p
 
 Route::post('/cart/{product}/add', [CartController::class, 'addToCart'])->name('cart.add');
 
-// Admin section
-Route::get('/manage-products', [ProductController::class, 'productsAdmin'])->name('mg-products.show');
 
-Route::get('/manage-category', [ProductController::class, 'categoryAdmin'])->name('mg-category.show');
 
-Route::get('/add-products', [ProductController::class, 'productsAdd'])->name('add-products.show');
-
-Route::get('/add-category', function () {
-    return view('add-category');
-})->name('add-category.show');
-
-Route::put('/product-edit/{product}', [ProductController::class, 'updateProduct'])->name('product.update');
-
-Route::put('/product-add', [ProductController::class, 'addProduct'])->name('product.add');
-
-Route::get('/edit-products/{product}', [ProductController::class, 'productsEdit'])->name('edit-products.show');
-
-Route::get('/delete-product/{product}', [ProductController::class, 'deleteProduct'])->name('delete-products.show');
-
-Route::get('/edit-category/{category}', [ProductController::class, 'categoryEdit'])->name('edit-category.show');
 
 Route::get('/item-details/{product}', [ProductController::class, 'show'])->name('item-details.show');
 
@@ -62,6 +45,36 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Admin section
+
+Route::get('/admin', function () {
+    return view('auth/admin-login');
+})->name('admin.show');
+
+Route::post('/admin-login', [LoginController::class, 'adminLogin'])->name('admin-login');
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('/manage-products', [ProductController::class, 'productsAdmin'])->name('mg-products.show');
+
+    Route::get('/manage-category', [ProductController::class, 'categoryAdmin'])->name('mg-category.show');
+
+    Route::get('/add-products', [ProductController::class, 'productsAdd'])->name('add-products.show');
+
+    Route::get('/add-category', function () {
+        return view('add-category');
+    })->name('add-category.show');
+
+    Route::put('/product-edit/{product}', [ProductController::class, 'updateProduct'])->name('product.update');
+
+    Route::put('/product-add', [ProductController::class, 'addProduct'])->name('product.add');
+
+    Route::get('/edit-products/{product}', [ProductController::class, 'productsEdit'])->name('edit-products.show');
+
+    Route::get('/delete-product/{product}', [ProductController::class, 'deleteProduct'])->name('delete-products.show');
+
+    Route::get('/edit-category/{category}', [ProductController::class, 'categoryEdit'])->name('edit-category.show');
 });
 
 require __DIR__ . '/auth.php';

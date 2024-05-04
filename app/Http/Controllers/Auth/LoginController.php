@@ -30,4 +30,26 @@ class LoginController extends Controller
             'email' => 'Incorrect credentials.',
         ])->onlyInput('email');
     }
+
+    public function adminLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            if (Auth::user()->checkAdmin()) {
+                return redirect()->intended('manage-products');
+            } else {
+                return redirect()->back();
+            }
+        }
+
+        return back()->withErrors([
+            'email' => 'Incorrect credentials.',
+        ])->onlyInput('email');
+    }
 }

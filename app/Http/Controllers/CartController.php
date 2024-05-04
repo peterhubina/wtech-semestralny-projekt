@@ -53,7 +53,26 @@ class CartController extends Controller
     {
         // Check if the user is logged in
         if (!Auth::check()) {
-            // Store the product ID in the session
+            $cart = session('cart', []);
+
+            // Check if the product is already in the session cart
+            if (isset($cart[$product->id])) {
+                // Update quantity and price summary
+                $cart[$product->id]['quantity'] += $request->quantity;
+                $cart[$product->id]['price_summary'] = $cart[$product->id]['quantity'] * $product->price;
+            } else {
+                // Add new product to the cart
+                $cart[$product->id] = [
+                    'product_id' => $product->id,
+                    'quantity' => $request->quantity,
+                    'price_summary' => $request->quantity * $product->price
+                ];
+            }
+
+            // Save the updated cart back to the session
+            session(['cart' => $cart]);
+
+            return response()->json(['message' => 'Product added to cart successfully']);
         } else {
             $user = Auth::user();
 

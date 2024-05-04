@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $fillable = [
         'productCode', 'title', 'height', 'description', 'price', 'stockQuantity',
-        'createdAt', 'updatedAt', 'deletedAt', 'category_id'
+        'created_at', 'updated_at', 'deleted_at', 'category_id', 'country', 'type'
     ];
 
     public function orderItems()

@@ -35,6 +35,12 @@ class ProductFactory extends Factory
         // Make the first letter uppercase
         $title = ucfirst($title);
 
+        // Define a list of countries
+        $countries = ['USA', 'Canada', 'UK', 'Australia', 'Germany'];
+
+        // Define the types
+        $types = ['Outdoor', 'Indoor'];
+
         return [
             'productCode' => $this->faker->bothify('?????-#####'), // Random string like ABCD-12345
             'title' => $title,
@@ -42,7 +48,9 @@ class ProductFactory extends Factory
             'description' => $this->faker->text(200), // Random text with 200 characters
             'price' => $this->faker->randomFloat(2, 1, 1000), // Random float between 1 and 1000 with 2 decimal places
             'stockQuantity' => $this->faker->numberBetween(0, 100), // Random number between 0 and 100
-            'category_id' => Category::inRandomOrder()->first()->id, // Assuming you have a CategoryFactory
+            'category_id' => Category::inRandomOrder()->first()->id, 
+            'country' => $this->faker->randomElement($countries), // Randomly selected country from the list
+            'type' => $this->faker->randomElement($types), // Randomly selected type 'Outdoor' or 'Indoor'
         ];
     }
 }

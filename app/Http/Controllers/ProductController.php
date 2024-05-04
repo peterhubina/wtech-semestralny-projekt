@@ -31,6 +31,7 @@ class ProductController extends Controller
     public function showAllPlants(Request $request, $category = null) {
         $category = $category ?? $request->input('category');
         $query = Product::with('images');
+        $countries = Product::select('country')->distinct()->pluck('country');
 
         if (!empty($category)) {
             $query->whereHas('category', function ($q) use ($category) {
@@ -48,13 +49,17 @@ class ProductController extends Controller
             $query->orderBy('price', 'desc');
         }
 
-        if ($request->has('country')) {
-            $query->where('country', $request->country);
+        if ($request->has('country') && is_array($request->country) && count($request->country) > 0) {
+            $query->whereIn('country', $request->country);
+        }
+
+        if ($request->has('type') && is_array($request->type) && count($request->type) > 0) {
+            $query->whereIn('type', $request->type);
         }
 
         $products = $query->paginate(16);
 
-        return view('all-plants', compact('products'));
+        return view('all-plants', compact('products', 'countries'));
     }
 
     public function productsAdmin() {

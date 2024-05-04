@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('productCode', 25);
             $table->string('title', 100);
             $table->string('height', 10);
+            $table->string('country', 20);
+            $table->string('type', 10);
             $table->text('description', 3000);
             $table->decimal('price', 8, 2);
             $table->unsignedInteger('stockQuantity');

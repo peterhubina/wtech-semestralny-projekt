@@ -49,26 +49,21 @@
                             <!-- Country filter options -->
                             <div class="mb-3">
                                 <p class="mb-1">Country</p>
-                                <!-- Dynamically generate these options based on available countries -->
-                                <!-- Example for two countries -->
-                                <input type="checkbox" name="country[]" value="country1" id="country1" {{ in_array('country1', request('country', [])) ? 'checked' : '' }}>
-                                <label for="country1">Country 1</label><br>
-                                <input type="checkbox" name="country[]" value="country2" id="country2" {{ in_array('country2', request('country', [])) ? 'checked' : '' }}>
-                                <label for="country2">Country 2</label>
+                                @foreach($countries as $country)
+                                    <input type="checkbox" name="country[]" value="{{ $country }}" id="country_{{ $country }}" {{ in_array($country, request('country', [])) ? 'checked' : '' }}>
+                                    <label for="country_{{ $country }}">{{ $country }}</label><br>
+                                @endforeach
                             </div>
 
                             <!-- Type filter options -->
                             <div class="mb-3">
                                 <p class="mb-1">Type</p>
-                                <!-- Assume 'type1' and 'type2' are the types available -->
-                                <input type="checkbox" name="type[]" value="type1" id="type1" {{ in_array('type1', request('type', [])) ? 'checked' : '' }}>
-                                <label for="type1">Type 1</label><br>
-                                <input type="checkbox" name="type[]" value="type2" id="type2" {{ in_array('type2', request('type', [])) ? 'checked' : '' }}>
-                                <label for="type2">Type 2</label>
+                                <input type="checkbox" name="type[]" value="Indoor" id="type_indoor" {{ in_array('Indoor', request('type', [])) ? 'checked' : '' }}>
+                                <label for="type_indoor">Indoor</label><br>
+                                
+                                <input type="checkbox" name="type[]" value="Outdoor" id="type_outdoor" {{ in_array('Outdoor', request('type', [])) ? 'checked' : '' }}>
+                                <label for="type_outdoor">Outdoor</label>
                             </div>
-
-                            <!-- Setting filter options -->
-                            <!-- Add setting checkboxes here -->
 
                             <!-- Apply Filters Button -->
                             <button type="submit" class="btn btn-primary">Apply Filters</button>
