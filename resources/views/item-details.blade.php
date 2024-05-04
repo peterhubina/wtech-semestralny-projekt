@@ -20,7 +20,7 @@
                         <div class="product-img-wrapper">
                             @if ($product->images->isNotEmpty())
                                 <img
-                                    src="{{ $product->images->first()->imagePath }}"
+                                    src="{{ $product->getTitular()->imagePath }}"
                                     alt="{{ $product->images->first()->altText }}"
                                     class="img-fluid mb-3"
                                 />

@@ -57,11 +57,14 @@ class CartController extends Controller
         } else {
             $user = Auth::user();
 
-            // Find or create a cart for the user
-            $cart = Cart::firstOrCreate(
-                ['user_id' => $user->id,
-                    'total_price' => 0]
-            );
+            $cart = Cart::where('user_id', $user->id)->first();
+
+            if (!$cart) {
+                $cart = Cart::create([
+                    'user_id' => $user->id,
+                    'total_price' => 0 
+                ]);
+            }
 
             // Check if the product is already in the cart
             $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $product->id)->first();
@@ -69,7 +72,7 @@ class CartController extends Controller
             if ($cartItem) {
                 // If already in the cart, just update the quantity and price summary
                 $cartItem->quantity += $request->quantity;
-                $cartItem->priceSummary = $cartItem->quantity * $product->price;
+                $cartItem->price_summary = $cartItem->quantity * $product->price;
             } else {
                 // If not in the cart, create a new cart item
                 $cartItem = new CartItem([
