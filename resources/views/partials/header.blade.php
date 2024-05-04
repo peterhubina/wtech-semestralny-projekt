@@ -34,7 +34,7 @@
                     </li>
                 </ul>
 
-                <form class="d-flex mt-3 mt-md-0 form-width" style="gap: .5rem;">
+                <form class="d-flex mt-3 mt-md-0 form-width" style="gap: .5rem;" action={{route("products.search")}}>
                     <input class="form-control rounded-3 border-neutral-200 h-[2.30rem]" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn no-outline" type="submit"><i class="fas fa-search"></i></button>
                     @auth
