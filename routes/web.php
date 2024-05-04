@@ -58,6 +58,8 @@ Route::get('/edit-category/{category}', [ProductController::class, 'categoryEdit
 
 Route::get('/item-details/{product}', [ProductController::class, 'show'])->name('item-details.show');
 
+Route::get('/search/', [ProductController::class, 'search'])->name('products.search');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
