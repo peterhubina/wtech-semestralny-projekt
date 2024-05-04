@@ -54,7 +54,7 @@
                             <label for="imagePath" class="form-label">Image Link</label>
                             <select class="form-control" id="imagePath" name="imagePath" onchange="updateProductImage()">
                                 @foreach($images as $image)
-                                    <option value="{{ $image->imagePath }}" {{ ($product->getTitular() && $product->getTitular()->imagePath == $image->imagePath) ? 'selected' : '' }}>
+                                    <option value="{{ $image->imagePath }}" {{ ($product->getTitular()->first() && $product->getTitular()->first()->imagePath == $image->imagePath) ? 'selected' : '' }}>
                                         {{ $image->title }}
                                     </option>
                                 @endforeach
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <img src="{{ $product->getTitular() ? $product->getTitular()->imagePath : '' }}" id="productImage" class="card-img-top titular" alt="Product Image">
+                        <img src="{{ $product->getTitular()->first() ? $product->getTitular()->first()->imagePath : '' }}" id="productImage" class="card-img-top titular" alt="Product Image">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-light btn-lg d-block mx-auto edit-button mb-5">Save</button>

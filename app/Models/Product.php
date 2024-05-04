@@ -32,7 +32,7 @@ class Product extends Model
 
     public function getTitular()
     {
-        return $this->images()->where('is_titular', true)->first();
+        return $this->images()->orderByDesc('is_titular')->get();
     }
 
     public function tags()

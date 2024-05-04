@@ -20,7 +20,7 @@
                         <div class="product-img-wrapper">
                             @if ($product->images->isNotEmpty())
                                 <img
-                                    src="{{ $product->getTitular()->imagePath }}"
+                                    src="{{ $product->getTitular()->first()->imagePath }}"
                                     alt="{{ $product->images->first()->altText }}"
                                     class="img-fluid mb-3"
                                 />
@@ -30,15 +30,15 @@
                         <div class="row">
                             <div class="col-6 gallery-item">
                                 <img
-                                    src="{{ $product->images[1]->imagePath }}"
-                                    alt="{{ $product->images[1]->altText }}"
+                                    src="{{ $product->getTitular()->slice(1, 1)->first()->imagePath }}"
+                                    alt="{{ $product->getTitular()->slice(1, 1)->first()->altText }}"
                                     class="img-fluid card"
                                 />
                             </div>
                             <div class="col-6 gallery-item">
                                 <img
-                                    src="{{ $product->images[2]->imagePath }}"
-                                    alt="{{ $product->images[2]->altText }}"
+                                    src="{{ $product->getTitular()->slice(2, 1)->first()->imagePath }}"
+                                    alt="{{ $product->getTitular()->slice(2, 1)->first()->altText }}"
                                     class="img-fluid card"
                                 />
                             </div>

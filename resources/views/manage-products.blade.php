@@ -42,7 +42,7 @@
                         <td>{{ $product->description }}</td>
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->stockQuantity }}</td>
-                        <td><img src="{{ $product->getTitular()->imagePath }}" class="img-thumbnail" alt="..."></td>
+                        <td><img src="{{ $product->getTitular()->first()->imagePath }}" class="img-thumbnail" alt="..."></td>
                         <td>
                             <div class="d-flex flex-column align-items-start mt-3">
                                 <a href="{{ route('edit-products.show', $product) }}" class="w-100">
