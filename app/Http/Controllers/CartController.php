@@ -13,16 +13,31 @@ class CartController extends Controller
 {
     public function index()
     {
-        // TODO: Implement user from Auth::user() instead of hardcoding
-        $user = User::where('role', 'User')->first();
-        $cart = Cart::where('user_id', $user->id)->first();
-
         $cartItems = [];
         $total_price = 0;
 
-        if ($cart) {
-            $cartItems = $cart->cartItems;
-            $total_price = $cart->total_price;
+        if (Auth::check()) {
+            // User is authenticated, get the user and their cart from the database
+            $user = Auth::user();
+            $cart = Cart::where('user_id', $user->id)->first();
+            if ($cart) {
+                $cartItems = $cart->cartItems->filter(function ($cartItem) {
+                    // Only include the cart item if the associated product exists
+                    return $cartItem->product !== null;
+                });
+                $total_price = $cart->total_price;
+            }
+        } else {
+            // User is a guest, get the cart from the session
+            $cart = session('cart', []);
+            foreach ($cart as $item) {
+                $product = Product::find($item['product_id']);
+                if ($product) {
+                    $cartItem = new CartItem($item);
+                    $cartItems[] = $cartItem;
+                    $total_price += $cartItem->price_summary;
+                }
+            }
         }
 
         return view('shopping-cart', compact('cartItems', 'total_price'));
@@ -30,16 +45,31 @@ class CartController extends Controller
 
     public function checkout()
     {
-        // TODO: Implement user from Auth::user() instead of hardcoding
-        $user = User::where('role', 'User')->first();
-        $cart = Cart::where('user_id', $user->id)->first();
-
         $cartItems = [];
         $total_price = 0;
 
-        if ($cart) {
-            $cartItems = $cart->cartItems;
-            $total_price = $cart->total_price;
+        if (Auth::check()) {
+            // User is authenticated, get the user and their cart from the database
+            $user = Auth::user();
+            $cart = Cart::where('user_id', $user->id)->first();
+            if ($cart) {
+                $cartItems = $cart->cartItems->filter(function ($cartItem) {
+                    // Only include the cart item if the associated product exists
+                    return $cartItem->product !== null;
+                });
+                $total_price = $cart->total_price;
+            }
+        } else {
+            // User is a guest, get the cart from the session
+            $cart = session('cart', []);
+            foreach ($cart as $item) {
+                $product = Product::find($item['product_id']);
+                if ($product) {
+                    $cartItem = new CartItem($item);
+                    $cartItems[] = $cartItem;
+                    $total_price += $cartItem->price_summary;
+                }
+            }
         }
 
         if (!$cartItems || sizeof($cartItems) == 0) {
@@ -71,8 +101,6 @@ class CartController extends Controller
 
             // Save the updated cart back to the session
             session(['cart' => $cart]);
-
-            return response()->json(['message' => 'Product added to cart successfully']);
         } else {
             $user = Auth::user();
 
@@ -81,7 +109,7 @@ class CartController extends Controller
             if (!$cart) {
                 $cart = Cart::create([
                     'user_id' => $user->id,
-                    'total_price' => 0 
+                    'total_price' => 0
                 ]);
             }
 
@@ -110,7 +138,7 @@ class CartController extends Controller
             });
             $cart->save();
 
-            return response()->json(['message' => 'Product added to cart successfully']);
         }
+        return back()->with('cart-message', 'Product added to cart successfully');
     }
 }

@@ -16,7 +16,7 @@
         </div>
     @endif
     <main class="flex flex-col items-center py-10 px-6">
-        @if($cartItems == null || $cartItems->isEmpty())
+        @if (!$cartItems || sizeof($cartItems) == 0)
             <div class="flex flex-col items-center gap-4">
                 <h2 class="text-5xl">🧺</h2>
                 <h2 class="text-2xl">Your shopping cart is empty</h2>

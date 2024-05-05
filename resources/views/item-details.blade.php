@@ -11,7 +11,11 @@
 @endsection
 
 @section('content')
-
+    @if (session('cart-message'))
+        <div id="cart-popup" class="cart-popup">
+            {{ session('cart-message') }}
+        </div>
+    @endif
     <main class="login-page">
         <div class="content-container my-5">
             <div class="container my-4">
@@ -62,7 +66,7 @@
                         <div
                             class="selector d-flex align-items-center mb-4 flex-row"
                         >
-                            <form action={{ route('cart.add', $product) }} method="POST">
+                            <form action={{ route('shopping-cart.add', $product) }} method="POST">
                                 @csrf
                                 <div class="quantity-selector d-flex mb-3">
                                     <button class="btn btn-outline-secondary quantity-minus"

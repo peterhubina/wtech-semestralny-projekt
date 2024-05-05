@@ -8,6 +8,11 @@
 @endsection
 
 @section('content')
+@if (session('cart-message'))
+    <div id="cart-popup" class="cart-popup">
+        {{ session('cart-message') }}
+    </div>
+@endif
 <main>
     <!-- Main Content -->
     <div class="container-fluid">
@@ -60,7 +65,7 @@
                                 <p class="mb-1">Type</p>
                                 <input type="checkbox" name="type[]" value="Indoor" id="type_indoor" {{ in_array('Indoor', request('type', [])) ? 'checked' : '' }}>
                                 <label for="type_indoor">Indoor</label><br>
-                                
+
                                 <input type="checkbox" name="type[]" value="Outdoor" id="type_outdoor" {{ in_array('Outdoor', request('type', [])) ? 'checked' : '' }}>
                                 <label for="type_outdoor">Outdoor</label>
                             </div>
@@ -99,7 +104,7 @@
                                             <p class="card-text mb-0">{{ number_format($product->price, 2, ',', '.') }} €</p>
                                         </div>
 
-                                        <form class="product-row d-flex justify-content-between align-items-center" method="POST" action="{{ route('cart.add', $product) }}">
+                                        <form class="product-row d-flex justify-content-between align-items-center" method="POST" action="{{ route('shopping-cart.add', $product) }}">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <div class="col-5 p-0">
@@ -176,14 +181,14 @@
     });
 
     function changeQuantity(button, direction) {
-        const form = button.closest('form'); 
-        const input = form.querySelector('.quantity-input'); 
+        const form = button.closest('form');
+        const input = form.querySelector('.quantity-input');
         let currentValue = parseInt(input.value);
 
         if (direction === 'up') {
             input.value = currentValue + 1;
         } else if (direction === 'down') {
-            if (currentValue > 1) { 
+            if (currentValue > 1) {
                 input.value = currentValue - 1;
             }
         }

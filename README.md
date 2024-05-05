@@ -16,5 +16,6 @@ DB_PASSWORD=admin
 
 1. In project root, run `docker compose up db` - creates docker container with postgres database on specified port (if the port is already taken, replace `DB_PORT` in `.env`  with another port number.
 2. Check status of docker container - You should see running container in docker desktop app
-3. Create tables in DB by running `php artisan migrate`
-4. Run the application using `php artisan serve`
+3. Create tables in DB by running `php artisan migrate:refresh` and for seeding data run `php artisan db:seed` 
+   - or this command `php artisan migrate:refresh --seed` for executing both commands at once
+4. Run the application using `php artisan serve` and `npm run dev` in another terminal

@@ -30,13 +30,10 @@ Route::get('/info-page', function () {
 })->name('info-page.show');
 
 Route::get('/shopping-cart', [CartController::class, 'index'])->name('shopping-cart.show');
+Route::post('/shopping-cart/{product}', [CartController::class, 'addToCart'])->name('shopping-cart.add');
 
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.show');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout.process');
-
-Route::post('/cart/{product}/add', [CartController::class, 'addToCart'])->name('cart.add');
-
-
 
 Route::get('/item-details/{product}', [ProductController::class, 'show'])->name('item-details.show');
 
