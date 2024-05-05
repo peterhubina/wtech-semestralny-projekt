@@ -40,6 +40,10 @@ class ProductController extends Controller
         }
 
         if ($request->has('search')) {
+            $request->validate([
+                'search' => 'required|string'
+            ]);
+
             $query->where('title', 'ILIKE', '%' . $request->search . '%');
         }
 
