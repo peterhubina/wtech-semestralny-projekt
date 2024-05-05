@@ -1,3 +1,8 @@
+@if (session('cart-message'))
+    <div id="cart-popup" class="cart-popup">
+        {{ session('cart-message') }}
+    </div>
+@endif
 <header>
     <nav class="navbar navbar-expand-md bg-body-tertiary">
         <div class="container-fluid px-5">
@@ -34,8 +39,8 @@
                     </li>
                 </ul>
 
-                <form class="d-flex mt-3 mt-md-0 form-width" style="gap: .5rem;" method="GET" action="{{ route('all-plants.search') }}">
-                    <input class="form-control rounded-3 border-neutral-200 h-[2.30rem]" type="search" placeholder="Search" aria-label="Search" name="search">
+                <form class="d-flex mt-3 mt-md-0 form-width" name="searchForms" style="gap: .5rem;" method="GET" action="{{ route('all-plants.search') }}">
+                    <input class="form-control rounded-3 border-neutral-200 h-[2.30rem]" id="search" type="search" placeholder="Search" aria-label="Search" name="search">
                     <button class="btn no-outline" type="submit"><i class="fas fa-search"></i></button>
                     @auth
                         <a class="btn btn-outline-dark d-none d-md-inline-block ms-auto" href="{{ route('logout') }}"
