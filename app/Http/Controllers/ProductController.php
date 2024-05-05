@@ -42,9 +42,13 @@ class ProductController extends Controller
         if ($request->has('search')) {
             $request->validate([
                 'search' => 'required|string'
+            ], [
+                'search.required' => 'The search field cannot be empty.',
             ]);
 
             $query->where('title', 'ILIKE', '%' . $request->search . '%');
+
+            $request->flash();
         }
 
         if ($request->has('max_price')) {

@@ -81,8 +81,14 @@
             <div class="col-10 col-md-8 col-lg-8 mt-4 mb-5" id="main-content">
                 <div class="container-fluid">
                     <div class="row">
-                        <!-- Dynamically create cards for each product -->
-                        @foreach($products as $product)
+                        @if($products->isEmpty())
+                            <div class="col-12">
+                                <div class="alert alert-info" role="alert">
+                                    No products found for the searched query.
+                                </div>
+                            </div>
+                        @else
+                            @foreach($products as $product)
                             <div class="col-12 col-md-4 col-lg-3 mb-3">
                                 <div class="card plants-card">
                                     @if($product->images->isNotEmpty())
@@ -127,6 +133,7 @@
                                 </div>
                             </div>
                         @endforeach
+                        @endif
 
                         @if ($products->lastPage() > 1)
                             <nav aria-label="Page navigation">
