@@ -88,9 +88,9 @@
                                     @if($product->images->isNotEmpty())
                                         <a href="{{ route('item-details.show', $product) }}">
                                             <img
-                                                src="{{ $product->images->first()->imagePath }}"
+                                                src="{{ $product->getTitular()->first()->imagePath }}"
                                                 class="card-img-top"
-                                                alt="{{ $product->images->first()->altText }}"
+                                                alt="{{ $product->getTitular()->first()->altText }}"
                                             />
                                         </a>
                                     @else
@@ -98,7 +98,7 @@
                                     @endif
 
                                     <div class="card-body px-4">
-                                    <a href="{{ route('item-details.show', $product) }}"><h5 class="card-title mt-4 mb-2">{{ $product->title }}</h5></a>
+                                    <a href="{{ route('item-details.show', $product) }}" class="title-link"><h5 class="card-title ellipsis-title mt-4 mb-2">{{ $product->title }}</h5></a>
                                         <div class="d-flex justify-content-between mb-2 info">
                                             <p class="card-text mb-0 text-muted">{{ $product->height }} cm</p>
                                             <p class="card-text mb-0">{{ number_format($product->price, 2, ',', '.') }} €</p>
