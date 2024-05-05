@@ -37,7 +37,7 @@ Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout.p
 
 Route::get('/item-details/{product}', [ProductController::class, 'show'])->name('item-details.show');
 
-Route::get('/search/', [ProductController::class, 'search'])->name('products.search');
+Route::get('/all-plants/', [ProductController::class, 'showAllPlants'])->name('all-plants.search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

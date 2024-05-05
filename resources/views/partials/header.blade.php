@@ -34,8 +34,8 @@
                     </li>
                 </ul>
 
-                <form class="d-flex mt-3 mt-md-0 form-width" style="gap: .5rem;" action={{route("products.search")}}>
-                    <input class="form-control rounded-3 border-neutral-200 h-[2.30rem]" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex mt-3 mt-md-0 form-width" style="gap: .5rem;" method="GET" action="{{ route('all-plants.search') }}">
+                    <input class="form-control rounded-3 border-neutral-200 h-[2.30rem]" type="search" placeholder="Search" aria-label="Search" name="search">
                     <button class="btn no-outline" type="submit"><i class="fas fa-search"></i></button>
                     @auth
                         <a class="btn btn-outline-dark d-none d-md-inline-block ms-auto" href="{{ route('logout') }}"

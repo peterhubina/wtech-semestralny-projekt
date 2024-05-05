@@ -39,6 +39,10 @@ class ProductController extends Controller
             });
         }
 
+        if ($request->has('search')) {
+            $query->where('title', 'ILIKE', '%' . $request->search . '%');
+        }
+
         if ($request->has('max_price')) {
             $query->where('price', '<=', $request->max_price);
         }
@@ -177,7 +181,7 @@ class ProductController extends Controller
 
         return view('manage-category', compact('categories'));
     }
-
+    /*
     public function search(Request $request) {
         $searchTerm = $request->input('search');
 
@@ -187,5 +191,6 @@ class ProductController extends Controller
             ->paginate(8);
 
         return view('all-plants', compact('products'));
-    }
+    }*/
+
 }
