@@ -52,10 +52,14 @@
                         required
                     />
                 </div>
-
-                <button type="submit" class="btn btn-outline-dark mt-2">
-                    Register
-                </button>
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-dark mt-2 w-100">
+                        Register
+                    </button>
+                </div>
+                @error('password')
+                <div class="alert alert-danger mt-3">{{ $message }}</div>
+                @enderror
             </form>
         </div>
     </main>
