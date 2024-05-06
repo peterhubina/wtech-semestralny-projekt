@@ -9,8 +9,8 @@ $(document).ready(function () {
         productPrices[productId] = parseFloat($('#price-per-item-' + productId).text().replace(/[^\d.-]/g, ''));
     });
 
-    // Prevent form submission
-    $('form').submit(function (e) {
+    // Prevent form submission for quantity input form
+    $('form:has(.quantity-input)').submit(function (e) {
         e.preventDefault();
     });
 
