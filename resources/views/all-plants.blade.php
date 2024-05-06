@@ -89,7 +89,7 @@
                             </div>
                         @else
                             @foreach($products as $product)
-                            <div class="col-12 col-md-4 col-lg-3 mb-3">
+                            <div class="col-12 col-md-4 col-lg-3 mb-3 d-flex">
                                 <div class="card plants-card">
                                     @if($product->images->isNotEmpty())
                                         <a href="{{ route('item-details.show', $product) }}">
