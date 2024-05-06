@@ -9,6 +9,10 @@
     @vite('resources/js/app.js')
 @endsection
 
+@section('scripts')
+    @vite('resources/js/shopping-cart-counter.js')
+@endsection
+
 @section('content')
     @if (session('error'))
         <div id="error-popup" class="error-popup">
@@ -37,12 +41,14 @@
                     <!-- Card elements -->
                     @foreach($cartItems as $cartItem)
                         <div
-                            class="flex flex-col sm:flex-row sm:items-center bg-white rounded-2xl border overflow-clip gap-4 hover:cursor-pointer">
+                            class="flex flex-col sm:flex-row sm:items-center bg-white rounded-2xl border overflow-clip gap-4">
                             <img src="{{ $cartItem->product->getTitular()->first()->imagePath }}" alt="plant"
                                  class="object-cover h-80 sm:h-52 xl:h-44 sm:w-40">
                             <div class="flex flex-col xl:flex-row items-start gap-4 xl:gap-4 p-4 w-full">
                                 <div class="flex flex-col gap-2 w-full">
-                                    <p class="text-xl line-clamp-2">{{ $cartItem->product->title }}</p>
+                                    <a href="{{ route('item-details.show', $cartItem->product) }}">
+                                        <p class="text-xl line-clamp-2">{{ $cartItem->product->title }}</p>
+                                    </a>
                                     <div class="flex flex-row justify-between gap-4">
                                         <p class="text-black text-opacity-50 text-xl">{{ $cartItem->product->height }}
                                             cm</p>
@@ -63,12 +69,12 @@
                                                    value="{{ $cartItem->quantity }}" min="1"
                                                    data-product-id="{{ $cartItem->product->id }}">
                                             <div class="flex flex-col">
-                                                <button class="text-2xl h-6 w-10 flex justify-center"
-                                                        onclick="changeQuantity(this, 'up')">
+                                                <button type="button"
+                                                        class="text-2xl h-6 w-10 flex justify-center quantity-plus">
                                                     <i class="fa-sort-up fas translate-y-[20%]"></i>
                                                 </button>
-                                                <button class="text-2xl h-6 w-10 flex justify-center"
-                                                        onclick="changeQuantity(this, 'down')">
+                                                <button type="button"
+                                                        class="text-2xl h-6 w-10 flex justify-center quantity-minus">
                                                     <i class="fa-sort-down fas translate-y-[-20%]"></i>
                                                 </button>
                                             </div>
@@ -107,8 +113,10 @@
                                 <div class="flex gap-10">
                                     <p id="price-per-item-{{ $cartItem->product->id }}">{{ $cartItem->product->price }}
                                         €/ks</p>
-                                    <p>{{ $cartItem->quantity }}ks</p>
-                                    <p>{{ $cartItem->price_summary }}€</p>
+                                    <p id="summary-quantity-{{ $cartItem->product->id }}">{{ $cartItem->quantity }}
+                                        ks</p>
+                                    <p id="summary-price-{{ $cartItem->product->id }}">{{ $cartItem->price_summary }}
+                                        €</p>
                                 </div>
                             </div>
                         @endforeach
@@ -121,9 +129,9 @@
                             <p>Sum with tax:</p>
                         </div>
                         <div class="flex flex-col items-end gap-0.5">
-                            <p>{{ $total_price * 0.8 }}€</p>
-                            <p>{{ $total_price * 0.2 }}€</p>
-                            <p>{{ $total_price }}€</p>
+                            <p id="total-price-without-tax">{{ $total_price * 0.8 }}€</p>
+                            <p id="total-tax">{{ $total_price * 0.2 }}€</p>
+                            <p id="total-price-with-tax">{{ $total_price }}€</p>
                         </div>
                     </div>
                     <span class="bg-black w-full h-0.5"></span>
@@ -135,36 +143,6 @@
         @endif
     </main>
     <script>
-        function changeQuantity(button, direction) {
-            event.preventDefault();
-
-            const form = button.closest('form');
-            const input = form.querySelector('.quantity-input');
-            let currentValue = parseInt(input.value);
-
-            if (direction === 'up') {
-                input.value = currentValue + 1;
-            } else if (direction === 'down') {
-                if (currentValue > 1) {
-                    input.value = currentValue - 1;
-                }
-            }
-
-            if (isNaN(currentValue) || currentValue == null || currentValue < 1) {
-                input.value = 1;
-            }
-
-            // Update the summary of your order
-            const productId = input.getAttribute('data-product-id');
-            const pricePerItemElement = document.querySelector(`#price-per-item-${productId}`);
-            let pricePerItem = 0;
-            if (pricePerItemElement) {
-                pricePerItem = parseFloat(pricePerItemElement.innerText.replace(/[^\d.-]/g, ''));
-            }
-            const totalItemPrice = document.querySelector(`#total-item-price-${productId}`);
-            totalItemPrice.innerText = (input.value * pricePerItem).toFixed(2) + " €";
-        }
-
         document.querySelector('.checkout-button').addEventListener('click', function (e) {
             e.preventDefault();
 

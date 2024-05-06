@@ -169,3 +169,13 @@ header > * {
     border-right: 10px solid transparent;
     border-bottom: 10px solid #dff0d8;
 }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}

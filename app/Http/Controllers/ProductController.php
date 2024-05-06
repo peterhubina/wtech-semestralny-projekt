@@ -201,4 +201,9 @@ class ProductController extends Controller
         return view('all-plants', compact('products'));
     }*/
 
+    public function getPrice($id)
+    {
+        $product = Product::find($id);
+        return response()->json($product->price);
+    }
 }
