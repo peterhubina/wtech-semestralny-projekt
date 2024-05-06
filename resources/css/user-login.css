@@ -3,7 +3,7 @@
 
     background-image: url('../assets/img/home-background.webp');
     background-size: cover;
-    background-position: center;
+    background-position: 80%;
     background-repeat: no-repeat;
 
     flex-direction: column;
@@ -23,13 +23,13 @@
 
 @media (min-width: 767.98px) {
     .login-page {
-        margin-right: 30%;
+        margin-right: 25%;
     }
 }
 
 @media (max-width: 767.98px) {
     .login-page {
-        margin-right: 3rem;
+        margin: 0 auto;
     }
 }
 

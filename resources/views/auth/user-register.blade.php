@@ -32,6 +32,9 @@
                         required
                     />
                 </div>
+                @error('email')
+                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                @enderror
                 <div class="form-group">
                     <label for="password"><h4>Password</h4></label>
                     <input
