@@ -9,8 +9,6 @@ class Cart extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
     protected $fillable = [
         'total_price',
         'user_id',

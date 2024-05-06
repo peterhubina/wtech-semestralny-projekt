@@ -7,7 +7,7 @@
 @endsection
 
 @section('scripts')
-@vite('resources/js/counter.js')
+    @vite('resources/js/counter.js')
 @endsection
 
 @section('content')
@@ -70,23 +70,24 @@
                                 @csrf
                                 <div class="quantity-selector d-flex mb-3">
                                     <button class="btn btn-outline-secondary quantity-minus"
-                                       type="button"
-                                       data-type="minus"
-                                       data-field=""
+                                            type="button"
+                                            data-type="minus"
+                                            data-field=""
                                     >
                                         -
                                     </button>
                                     <input id="quantity"
-                                      type="number"
-                                      class="form-control text-center"
-                                      value="1"
-                                      min="1"
-                                      max="100"
+                                           name="quantity"
+                                           type="number"
+                                           class="form-control text-center"
+                                           value="1"
+                                           min="1"
+                                           max="100"
                                     />
                                     <button class="btn btn-outline-secondary quantity-plus"
-                                       type="button"
-                                       data-type="plus"
-                                       data-field=""
+                                            type="button"
+                                            data-type="plus"
+                                            data-field=""
                                     >
                                         +
                                     </button>

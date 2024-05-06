@@ -30,7 +30,9 @@ Route::get('/info-page', function () {
 })->name('info-page.show');
 
 Route::get('/shopping-cart', [CartController::class, 'index'])->name('shopping-cart.show');
+Route::post('/shopping-cart/remove', [CartController::class, 'removeItem'])->name('shopping-cart.remove');
 Route::post('/shopping-cart/{product}', [CartController::class, 'addToCart'])->name('shopping-cart.add');
+Route::post('/shopping-cart', [CartController::class, 'updateCart']);
 
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.show');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout.process');

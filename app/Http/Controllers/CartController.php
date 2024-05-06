@@ -141,4 +141,52 @@ class CartController extends Controller
         }
         return back()->with('cart-message', 'Product added to cart successfully');
     }
+
+    public function removeItem(Request $request)
+    {
+        // Check if the user is logged in
+        if (Auth::check()) {
+            // User is authenticated, get the user and their cart from the database
+            $user = Auth::user();
+            $cart = Cart::where('user_id', $user->id)->first();
+            if ($cart) {
+                $productId = $request->input('product_id');
+                $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $productId)->first();
+                if ($cartItem) {
+                    $cartItem->delete();
+                    // Update the cart's total price
+                    $cart->total_price = $cart->cartItems->sum(function ($item) {
+                        return $item->price_summary;
+                    });
+                    $cart->save();
+                }
+            }
+        } else {
+            // User is a guest, get the cart from the session
+            $cart = session('cart', []);
+            $productId = $request->input('product_id');
+            if (isset($cart[$productId])) {
+                unset($cart[$productId]);
+                // Save the updated cart back to the session
+                session(['cart' => $cart]);
+            }
+        }
+
+        return back()->with('cart-message', 'Product removed from cart successfully');
+    }
+
+    public function updateCart(Request $request)
+    {
+        $quantities = $request->input('quantities');
+
+        foreach ($quantities as $productId => $quantity) {
+            $cartItem = CartItem::where('product_id', $productId)->first();
+            if ($cartItem) {
+                $cartItem->quantity = $quantity;
+                $cartItem->save();
+            }
+        }
+
+        return redirect()->route('checkout.show');
+    }
 }
