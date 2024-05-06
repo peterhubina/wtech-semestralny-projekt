@@ -26,11 +26,11 @@
                     {{ session('status') }}
                 </div>
             @endif
-
-            <form method="POST" action="{{ route('login') }}">
+            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <div class="form-group">
-                    <label for="email"><h4>Email</h4></label>
+                <div class="form-group mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email"><h4>Email</h4></label>
                     <input
                         type="email"
                         class="form-control @error('email') is-invalid @enderror"
@@ -60,12 +60,13 @@
                 </div>
 
                 <div class="d-flex mt-2">
-                    <button type="submit" class="btn btn-outline-dark">
+                    <button type="submit" class="btn btn-dark">
                         Login
                     </button>
-                    <p class="px-2 m-0 align-self-center">Not a member? <a href="{{ route('register') }}">Register</a></p>
+                    <p class="px-2 m-0 align-self-center">Not a member? <a class="inline-block align-baseline font-bold text-sm text-black-500 hover:text-blue-800" href="{{ route('register') }}">Register</a></p>
                 </div>
             </form>
+            </div>
         </div>
     </main>
 @endsection
