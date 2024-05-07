@@ -23,24 +23,24 @@
                 <div class="text-lg lg:text-xl xl:text-2xl">Shipping information</div>
                 <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
                     <div class="flex flex-col sm:w-[50%]">
-                        <label for="first_name">First name</label>
+                        <label class="after:content-['_*'] after:text-red-500" for="first_name">First name</label>
                         <input type="text" name="first_name" id="first_name"
                                class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
                     </div>
                     <div class="flex flex-col sm:w-[50%]">
-                        <label for="last_name">Last name</label>
+                        <label class="after:content-['_*'] after:text-red-500" for="last_name">Last name</label>
                         <input type="text" name="last_name" id="last_name"
                                class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
                     <div class="flex flex-col sm:w-[50%]">
-                        <label for="phone">Phone number</label>
+                        <label class="after:content-['_*'] after:text-red-500" for="phone">Phone number</label>
                         <input type="tel" name="phone" id="phone"
-                               class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5">
+                               class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
                     </div>
                     <div class="flex flex-col sm:w-[50%]">
-                        <label for="email">Email</label>
+                        <label class="after:content-['_*'] after:text-red-500" for="email">Email</label>
                         <input type="email" name="email" id="email"
                                class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
                     </div>
@@ -48,24 +48,25 @@
 
                 <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
                     <div class="flex flex-col sm:w-[50%]">
-                        <label for="apartment_number">Apartment number</label>
+                        <label class="after:content-['_*'] after:text-red-500" for="apartment_number">Apartment
+                            number</label>
                         <input type="text" name="apartment_number" id="apartment_number"
                                class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
                     </div>
                     <div class="flex flex-col sm:w-[50%]">
-                        <label for="address">Address</label>
+                        <label class="after:content-['_*'] after:text-red-500" for="address">Address</label>
                         <input type="text" name="address" id="address"
                                class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
                     <div class="flex flex-col sm:w-[50%]">
-                        <label for="postal_code">Postal code</label>
+                        <label class="after:content-['_*'] after:text-red-500" for="postal_code">Postal code</label>
                         <input type="text" name="postal_code" id="postal_code"
                                class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
                     </div>
                     <div class="flex flex-col sm:w-[50%]">
-                        <label for="city">City</label>
+                        <label class="after:content-['_*'] after:text-red-500" for="city">City</label>
                         <input type="text" name="city" id="city"
                                class="lg:w-full border-2 border-neutral-500 rounded-lg p-1.5" required>
                     </div>
