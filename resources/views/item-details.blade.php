@@ -92,7 +92,7 @@
                                         +
                                     </button>
                                 </div>
-                                <button class="shopping-button btn btn-primary" type="submit"
+                                <button class="shopping-button btn btn-dark" type="submit"
                                 >
                                     Add to shopping cart
                                     <i class="fa fa-shopping-cart"></i>

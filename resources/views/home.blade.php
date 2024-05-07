@@ -54,7 +54,7 @@
                         @endforeach
                         <!-- More button -->
                         <div class="w-100 text-center mt-3">
-                            <a class="btn btn-outline-primary" href="{{ route('all-plants.show', $category) }}">
+                            <a class="btn btn-outline-dark" href="{{ route('all-plants.show', $category) }}">
                                 More
                             </a>
                         </div>

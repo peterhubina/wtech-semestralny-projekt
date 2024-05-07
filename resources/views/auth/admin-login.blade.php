@@ -22,7 +22,7 @@
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block mt-3">Login</button>
+                    <button type="submit" class="btn btn-dark btn-block mt-3">Login</button>
                 </form>
             </div>
         </div>
