@@ -21,7 +21,7 @@ class CartController extends Controller
             $user = Auth::user();
             $cart = Cart::where('user_id', $user->id)->first();
             if ($cart) {
-                $cartItems = $cart->cartItems->filter(function ($cartItem) {
+                $cartItems = $cart->cartItems()->orderBy('created_at', 'desc')->get()->filter(function ($cartItem) {
                     // Only include the cart item if the associated product exists
                     return $cartItem->product !== null;
                 });
@@ -38,6 +38,8 @@ class CartController extends Controller
                     $total_price += $cartItem->price_summary;
                 }
             }
+            // Order the cart items by creation time in descending order
+            $cartItems = array_reverse($cartItems);
         }
 
         return view('shopping-cart', compact('cartItems', 'total_price'));
@@ -177,16 +179,42 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
-        $quantities = $request->input('quantities');
+        $productId = $request->input('product_id');
+        $quantity = $request->input('quantity');
 
-        foreach ($quantities as $productId => $quantity) {
-            $cartItem = CartItem::where('product_id', $productId)->first();
-            if ($cartItem) {
-                $cartItem->quantity = $quantity;
-                $cartItem->save();
+        if (Auth::check()) {
+            // User is logged in, update the quantity in the database
+            $user = Auth::user();
+            $cart = Cart::where('user_id', $user->id)->first();
+            if ($cart) {
+                $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $productId)->first();
+                if ($cartItem) {
+                    $cartItem->quantity = $quantity;
+                    $cartItem->price_summary = $quantity * $cartItem->product->price;
+                    $cartItem->save();
+
+                    $cart->total_price = $cart->cartItems->sum('price_summary');
+                    $cart->save();
+                }
+            }
+        } else {
+            // User is not logged in, update the quantity in the session
+            $cart = session('cart', []);
+            if (isset($cart[$productId])) {
+                $product = Product::find($productId); // Retrieve the product from the database
+                if ($product) {
+                    $cart[$productId]['quantity'] = $quantity;
+                    $cart[$productId]['price_summary'] = $quantity * $product->price; // Update the price summary using the product price
+
+                    $total_price = 0;
+                    foreach ($cart as $item) {
+                        $total_price += $item['price_summary'];
+                    }
+                    session(['cart' => $cart, 'total_price' => $total_price]);
+                }
             }
         }
 
-        return redirect()->route('checkout.show');
+        return redirect()->route('shopping-cart.show');
     }
 }

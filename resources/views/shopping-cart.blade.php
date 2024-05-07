@@ -63,8 +63,11 @@
                                         <p class="text-2xl"
                                            id="total-item-price-{{ $cartItem->product->id }}">{{ $cartItem->price_summary }}
                                             €</p>
-                                        <form class="flex gap-2">
-                                            <input type="number" name="quantity"
+                                        <form action="{{ route('shopping-cart.update') }}" method="POST"
+                                              class="flex gap-2">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $cartItem->product->id }}">
+                                            <input type="number" id="quantity" name="quantity"
                                                    class="quantity-input flex justify-center items-center w-20 border rounded-xl"
                                                    value="{{ $cartItem->quantity }}" min="1"
                                                    data-product-id="{{ $cartItem->product->id }}">
@@ -111,12 +114,15 @@
                                     <p class="xl:w-60 line-clamp-1 xl:line-clamp-2">{{ $cartItem->product->title }}</p>
                                 </a>
                                 <div class="flex gap-10">
-                                    <p id="price-per-item-{{ $cartItem->product->id }}">{{ $cartItem->product->price }}
-                                        €/ks</p>
-                                    <p id="summary-quantity-{{ $cartItem->product->id }}">{{ $cartItem->quantity }}
-                                        ks</p>
-                                    <p id="summary-price-{{ $cartItem->product->id }}">{{ $cartItem->price_summary }}
-                                        €</p>
+                                    <p id="price-per-item-{{ $cartItem->product->id }}">
+                                        {{ $cartItem->product->price }}&nbsp;€/ks
+                                    </p>
+                                    <p id="summary-quantity-{{ $cartItem->product->id }}">
+                                        {{ $cartItem->quantity }}&nbsp;ks
+                                    </p>
+                                    <p id="summary-price-{{ $cartItem->product->id }}">
+                                        {{ $cartItem->price_summary }}&nbsp;€
+                                    </p>
                                 </div>
                             </div>
                         @endforeach
@@ -129,9 +135,9 @@
                             <p>Sum with tax:</p>
                         </div>
                         <div class="flex flex-col items-end gap-0.5">
-                            <p id="total-price-without-tax">{{ $total_price * 0.8 }}€</p>
-                            <p id="total-tax">{{ $total_price * 0.2 }}€</p>
-                            <p id="total-price-with-tax">{{ $total_price }}€</p>
+                            <p id="total-price-without-tax">{{ round($total_price * 0.8, 2) }} €</p>
+                            <p id="total-tax">{{ round($total_price * 0.2, 2) }} €</p>
+                            <p id="total-price-with-tax">{{ round($total_price, 2) }} €</p>
                         </div>
                     </div>
                     <span class="bg-black w-full h-0.5"></span>
@@ -142,32 +148,4 @@
             </div>
         @endif
     </main>
-    <script>
-        document.querySelector('.checkout-button').addEventListener('click', function (e) {
-            e.preventDefault();
-
-            let quantities = [];
-            document.querySelectorAll('.quantity-input').forEach(function (input) {
-                quantities.push({
-                    product_id: input.getAttribute('data-product-id'),
-                    quantity: input.value
-                });
-            });
-
-            let form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '/shopping-cart';
-
-            quantities.forEach(function (item) {
-                let input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'quantities[' + item.product_id + ']';
-                input.value = item.quantity;
-                form.appendChild(input);
-            });
-
-            document.body.appendChild(form);
-            form.submit();
-        });
-    </script>
 @endsection
