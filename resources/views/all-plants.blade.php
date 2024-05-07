@@ -89,7 +89,7 @@
                             </div>
                         @else
                             @foreach($products as $product)
-                            <div class="col-12 col-md-4 col-lg-3 mb-3 d-flex">
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 d-flex">
                                 <div class="card plants-card">
                                     @if($product->images->isNotEmpty())
                                         <a href="{{ route('item-details.show', $product) }}">
@@ -103,14 +103,14 @@
                                         <img src="{{ asset('assets/img/no-image-available.png') }}" class="card-img-top" alt="No image available">
                                     @endif
 
-                                    <div class="card-body px-4">
+                                    <div class="card-body px-4 d-flex flex-column">
                                     <a href="{{ route('item-details.show', $product) }}" class="title-link"><h5 class="card-title ellipsis-title mt-4 mb-2">{{ $product->title }}</h5></a>
                                         <div class="d-flex justify-content-between mb-2 info">
                                             <p class="card-text mb-0 text-muted">{{ $product->height }} cm</p>
                                             <p class="card-text mb-0">{{ number_format($product->price, 2, ',', '.') }} €</p>
                                         </div>
 
-                                        <form class="product-row d-flex justify-content-between align-items-center" method="POST" action="{{ route('shopping-cart.add', $product) }}">
+                                        <form class="product-row d-flex justify-content-between align-items-center mt-auto" method="POST" action="{{ route('shopping-cart.add', $product) }}">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <div class="col-5 p-0">
