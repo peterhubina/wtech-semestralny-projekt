@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +18,7 @@ class CartController extends Controller
         if (Auth::check()) {
             // User is authenticated, get the user and their cart from the database
             $user = Auth::user();
-            $cart = Cart::where('user_id', $user->id)->first();
+            $cart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
             if ($cart) {
                 $cartItems = $cart->cartItems()->orderBy('created_at', 'desc')->get()->filter(function ($cartItem) {
                     // Only include the cart item if the associated product exists
@@ -53,7 +52,7 @@ class CartController extends Controller
         if (Auth::check()) {
             // User is authenticated, get the user and their cart from the database
             $user = Auth::user();
-            $cart = Cart::where('user_id', $user->id)->first();
+            $cart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
             if ($cart) {
                 $cartItems = $cart->cartItems->filter(function ($cartItem) {
                     // Only include the cart item if the associated product exists
@@ -105,13 +104,13 @@ class CartController extends Controller
             session(['cart' => $cart]);
         } else {
             $user = Auth::user();
-
-            $cart = Cart::where('user_id', $user->id)->first();
+            $cart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
 
             if (!$cart) {
                 $cart = Cart::create([
                     'user_id' => $user->id,
-                    'total_price' => 0
+                    'total_price' => 0,
+                    'status' => Cart::STATUS_ACTIVE
                 ]);
             }
 

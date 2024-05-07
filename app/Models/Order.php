@@ -10,7 +10,7 @@ class Order extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'totalPrice', 'payment', 'created_at', 'userId', 'shippingId'
+        'totalPrice', 'payment', 'created_at', 'user_id', 'shipping_id'
     ];
 
     public function user()

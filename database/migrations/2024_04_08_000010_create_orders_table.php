@@ -16,7 +16,7 @@ return new class extends Migration
             $table->decimal('totalPrice', 10, 2);
             $table->enum('payment', ['Card', 'Google Pay']);
             $table->timestamp('created_at');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('shipping_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('shipping_id')->references('id')->on('shipping_infos')->onDelete('cascade');

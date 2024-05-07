@@ -7,12 +7,10 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Address;
 use App\Models\ShippingInfo;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use function Psy\debug;
 
 class OrderController extends Controller
 {
@@ -53,20 +51,28 @@ class OrderController extends Controller
         $validatedData = $validator->validated();
 
         // Get the current user's cart
-        // TODO: Implement user from Auth::user() instead of hardcoding
-        $user = User::where('role', 'User')->first();
-        $cart = Cart::where('user_id', $user->id)->first();
+        $user = Auth::user();
+        $userId = $user ? $user->id : null;
+        $cart = $userId ? Cart::where('user_id', $userId)->first() : session('cart', []);
 
-        // Get the cart items from the cart
-        $cartItems = $cart->cartItems;
-        if (!$cartItems || sizeof($cartItems) == 0) {
+        // Security check if cart is not empty
+        if (!$cart || (is_array($cart) && count($cart) === 0)) {
             return redirect()->back()->with('error', 'Your cart is empty. Please add some items to your cart before proceeding to payment.');
         }
 
+        $cartItems = $userId ? $cart->cartItems : $cart;
+
         // Calculate the total price from the cart items
-        $totalPrice = $cartItems->reduce(function ($carry, $item) {
-            return $carry + $item->price_summary;
-        }, 0);
+        $totalPrice = 0;
+        if ($userId) {
+            $totalPrice = $cartItems->reduce(function ($carry, $item) {
+                return $carry + $item->price_summary;
+            }, 0);
+        } else {
+            $totalPrice = array_reduce($cartItems, function ($carry, $item) {
+                return $carry + $item['price_summary'];
+            }, 0);
+        }
 
         // Create an address
         $address = new Address;
@@ -93,7 +99,7 @@ class OrderController extends Controller
         $order = new Order;
         $order->totalPrice = $totalPrice;
         $order->payment = $request->payment;
-        $order->user_id = $user->id;
+        $order->user_id = $userId;
         $order->created_at = now();
         $order->shipping_id = $shippingInfo->id;
         $order->save();
@@ -101,12 +107,26 @@ class OrderController extends Controller
         // Create order items
         foreach ($cartItems as $item) {
             $orderItem = new OrderItem;
-            $orderItem->quantity = $item->quantity;
-            $orderItem->priceSummary = $item->price_summary;
-            $orderItem->product_id = $item->product_id;
+            if ($userId) {
+                $orderItem->quantity = $item->quantity;
+                $orderItem->priceSummary = $item->price_summary;
+                $orderItem->product_id = $item->product_id;
+            } else {
+                $orderItem->quantity = $item['quantity'];
+                $orderItem->priceSummary = $item['price_summary'];
+                $orderItem->product_id = $item['product_id'];
+            }
             $orderItem->order_id = $order->id;
             $orderItem->created_at = now();
             $orderItem->save();
+        }
+
+        // Remove the cart from the session or set the cart status to closed
+        if ($userId) {
+            $cart->status = Cart::STATUS_CLOSED;
+            $cart->save();
+        } else {
+            $request->session()->forget('cart');
         }
 
         // Redirect the user to the home page with a success message

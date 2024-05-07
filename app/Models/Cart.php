@@ -9,9 +9,13 @@ class Cart extends Model
 {
     use HasFactory;
 
+    const STATUS_ACTIVE = 'ACTIVE';
+    const STATUS_CLOSED = 'CLOSED';
+
     protected $fillable = [
         'total_price',
         'user_id',
+        'status'
     ];
 
     public function user()
