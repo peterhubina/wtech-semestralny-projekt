@@ -13,12 +13,12 @@
     <div class="container-fluid d-flex flex-column align-items-center" id="custom-table">
         <div class="table-responsive products-table">
             <div class="d-flex justify-content-between align-items-center">
-                <p class="fs-1 mx-5 mb-0 text-uppercase">Manage Products</p>
+                <p class="fs-1 mx-5 mb-0">Manage Products</p>
                 <div>
                     <a href="{{ route('add-products.show') }}">
-                        <button type="button" class="btn btn-lg btn-light me-2 submit-button text-uppercase">Add</button>
+                        <button type="button" class="btn btn-lg btn-light me-2 submit-button">Add</button>
                     </a>
-                    <button type="button" class="btn btn-lg btn-light text-uppercase submit-button">Save</button>
+                    <button type="button" class="btn btn-lg btn-light submit-button">Save</button>
                 </div>
             </div>
 
