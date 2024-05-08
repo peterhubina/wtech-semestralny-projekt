@@ -15,7 +15,7 @@
 
         <form class="category-form" action="{{ route('product.add') }}" method="POST">
             @csrf
-            <input type="hidden" name="_method" value="PUT"> 
+            <input type="hidden" name="_method" value="PUT">
 
             <div class="container">
                 <div class="row justify-content-center">
@@ -33,7 +33,13 @@
                             <input type="text" class="form-control" id="price" placeholder="Price" name="price">
                         </div>
                         <div class="mb-3">
+                            <input type="text" class="form-control" id="country" placeholder="Country" name="country">
+                        </div>
+                        <div class="mb-3">
                             <input type="text" class="form-control" id="quantity" placeholder="Quantity" name="stockQuantity">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="type" placeholder="Type" name="type">
                         </div>
                         <div class="mb-3 mt-3">
                             <label for="category" class="form-label">Category</label>
@@ -46,14 +52,8 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="imagePath" class="form-label">Image Link</label>
-                            <select class="form-control" id="imagePath" name="imagePath" onchange="updateProductImage()">
-                                @foreach($images as $image)
-                                    <option value="{{ $image->imagePath }}">
-                                        {{ $image->title }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label for="image" class="form-label">Upload Image</label>
+                            <input type="file" class="form-control" id="image" name="image">
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -63,9 +63,18 @@
                 <button type="submit" class="btn btn-light btn-lg d-block mx-auto submit-button mb-5">Save</button>
             </div>
         </form>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 
-    
+
 
     <script>
         function updateProductImage() {

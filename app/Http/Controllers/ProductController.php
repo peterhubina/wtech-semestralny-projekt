@@ -110,14 +110,25 @@ class ProductController extends Controller
             'category_id' => 'required|integer',
             'description' => 'required|string|max:1000',
             'price' => 'required|numeric',
-            'stockQuantity' => 'required|integer'
+            'stockQuantity' => 'required|integer',
+            'country' => 'required|string|max:255',
+            'type' => 'required|string|max:10',
+            'image' => 'required',
         ]);
 
         $faker = Faker::create();
         $data['productCode'] = $faker->bothify('?????-#####');
 
+        // Handle the image upload
+        $image = $request->file('image');
+        $name = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/assets');
+        $image->move($destinationPath, $name);
+        $data['imagePath'] = '/assets/'.$name;
+
         $product = Product::create($data);
 
+        /*
         $image = Image::where('imagePath', $request->imagePath)->first();
         if ($image) {
             $image->product_id = $product->id;
@@ -125,7 +136,7 @@ class ProductController extends Controller
             $image->save();
         } else {
             return back()->withErrors(['imagePath' => 'Image not found.'])->withInput();
-        }
+        }*/
 
         return redirect()->route('mg-products.show')->with('success', 'Product inserted successfully!');
     }
