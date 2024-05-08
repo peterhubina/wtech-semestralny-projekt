@@ -4,7 +4,7 @@
 
 @section('stylesheets')
     <!-- Page-specific styles -->
-    @vite(['resources/css/all-plants.css', 'resources/js/app.js'])
+    @vite(['resources/css/all-plants.css', 'resources/js/counter.js'])
 @endsection
 
 @section('content')
@@ -114,14 +114,14 @@
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <div class="col-5 p-0">
-                                                <input type="number" name="quantity" class="form-control quantity-input" placeholder="1" value="1" min="1">
+                                                <input type="number" id="quantity" name="quantity" class="form-control quantity-input" placeholder="1" value="1" min="1">
                                             </div>
 
                                             <div class="incrementer col-2">
-                                                <button type="button" class="sort btn btn-white align-items-center border-0" onclick="changeQuantity(this, 'up')">
+                                                <button type="button" class="sort btn btn-white align-items-center border-0 quantity-plus">
                                                     <i class="fa-solid fa-sort-up fas"></i>
                                                 </button>
-                                                <button type="button" class="sort btn btn-white align-items-center border-0" onclick="changeQuantity(this, 'down')">
+                                                <button type="button" class="sort btn btn-white align-items-center border-0 quantity-minus">
                                                     <i class="fa-solid fa-sort-down fas"></i>
                                                 </button>
                                             </div>
@@ -186,20 +186,6 @@
     document.getElementById('price-form').addEventListener('input', function() {
         updateRangeValue(this.value);
     });
-
-    function changeQuantity(button, direction) {
-        const form = button.closest('form');
-        const input = form.querySelector('.quantity-input');
-        let currentValue = parseInt(input.value);
-
-        if (direction === 'up') {
-            input.value = currentValue + 1;
-        } else if (direction === 'down') {
-            if (currentValue > 1) {
-                input.value = currentValue - 1;
-            }
-        }
-    }
 
     document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('filterForm');

@@ -79,7 +79,7 @@
                                     <input id="quantity"
                                            name="quantity"
                                            type="number"
-                                           class="form-control text-center"
+                                           class="form-control text-center  quantity-input"
                                            value="1"
                                            min="1"
                                            max="100"
