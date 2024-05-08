@@ -58,17 +58,6 @@
 
 .plants-card {
     border-radius: 12px;
-    /*
-        flex: 1 0 auto;
-        display: flex;
-        flex-direction: column;
-     */
-}
-
-.plants-card .card-body {
-    /*
-    flex-grow: 1;
-     */
 }
 
 button i.fa-sort-up {
@@ -109,35 +98,12 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-
-@media (min-width: 0px) and (max-width: 767.98px) {
-    .footer-col {
-        margin: 1rem 0;
-    }
-
-    #main-content {
-        margin-left: 0px;
-    }
-
-    #plants-filter .offcanvas {
-        max-width: 95%;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .footer-col {
-        margin: 1rem;
-    }
-}
-
-/* Ensure the pagination container is flex and items are aligned */
 nav.d-flex {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Style for the pagination links */
 nav.d-flex ul {
     list-style: none;
     display: flex;
@@ -145,7 +111,7 @@ nav.d-flex ul {
 }
 
 nav.d-flex ul li {
-    margin: 0 5px; /* Adjust spacing between pagination items */
+    margin: 0 5px;
 }
 
 .pagination {
