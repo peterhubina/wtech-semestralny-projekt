@@ -12,13 +12,13 @@
     margin-left: 70px;
 }
 
-#plants-filter .offcanvas{
+#plants-filter .offcanvas {
     margin-top: 5%;
     max-width: 20%;
     max-height: 120%;
     border: 0.5px solid whitesmoke;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
 }
 
@@ -27,7 +27,7 @@
     left: 40px;
     border: 0.5px solid whitesmoke;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
 }
 
@@ -58,17 +58,34 @@
 
 .plants-card {
     border-radius: 12px;
-/*
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
- */
+    /*
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+     */
 }
 
 .plants-card .card-body {
     /*
     flex-grow: 1;
      */
+}
+
+button i.fa-sort-up {
+    transform: translateY(20%);
+}
+
+button i.fa-sort-down {
+    transform: translateY(-20%);
+}
+
+.incrementer {
+    margin-left: -15px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+    align-items: center
 }
 
 .form-control {
@@ -131,20 +148,42 @@ nav.d-flex ul li {
     margin: 0 5px; /* Adjust spacing between pagination items */
 }
 
-nav.d-flex ul li a {
-    text-decoration: none;
-    color: #0275d8; /* Adjust link color */
-    background-color: #fff; /* Adjust background color */
-    padding: 5px 10px; /* Adjust padding */
-    border: 1px solid #ddd; /* Adjust border */
-    border-radius: 5px; /* Rounded corners */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-nav.d-flex ul li.active a,
-nav.d-flex ul li a:hover {
-    color: #fff; /* Color for active/hover state */
-    background-color: #0275d8; /* Background color for active/hover state */
-    border-color: #0275d8; /* Border color for active/hover state */
+.pagination .page-link {
+    color: black;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    outline: none;
 }
 
+.pagination .page-item {
+    color: black;
+    border: 1px solid #D2D2D2;
+    border-radius: 12px;
+    outline: none;
+}
 
+.pagination .page-item:hover {
+    background: black;
+    border-color: black;
+}
+
+.pagination .page-item:hover a {
+    color: white;
+}
+
+.pagination .active {
+    background: black;
+    border-color: black;
+}
+
+.pagination .active .page-link {
+    color: white;
+}

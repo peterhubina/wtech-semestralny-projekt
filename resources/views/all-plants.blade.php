@@ -104,7 +104,7 @@
                                     @endif
 
                                     <div class="card-body px-4 d-flex flex-column">
-                                    <a href="{{ route('item-details.show', $product) }}" class="title-link"><h5 class="card-title ellipsis-title mt-4 mb-2">{{ $product->title }}</h5></a>
+                                    <a href="{{ route('item-details.show', $product) }}" class="title-link text-decoration-none text-black"><h5 class="card-title ellipsis-title mt-4 mb-2">{{ $product->title }}</h5></a>
                                         <div class="d-flex justify-content-between mb-2 info">
                                             <p class="card-text mb-0 text-muted">{{ $product->height }} cm</p>
                                             <p class="card-text mb-0">{{ number_format($product->price, 2, ',', '.') }} €</p>
@@ -117,12 +117,12 @@
                                                 <input type="number" name="quantity" class="form-control quantity-input" placeholder="1" value="1" min="1">
                                             </div>
 
-                                            <div class="col-2">
-                                                <button type="button" class="sort btn btn-white align-items-center p-0 m-0" onclick="changeQuantity(this, 'up')">
-                                                    <i class="fa-solid fa-sort-up fa-xs"></i>
+                                            <div class="incrementer col-2">
+                                                <button type="button" class="sort btn btn-white align-items-center border-0" onclick="changeQuantity(this, 'up')">
+                                                    <i class="fa-solid fa-sort-up fas"></i>
                                                 </button>
-                                                <button type="button" class="sort btn btn-white align-items-center p-0" onclick="changeQuantity(this, 'down')">
-                                                    <i class="fa-solid fa-sort-down fa-xs"></i>
+                                                <button type="button" class="sort btn btn-white align-items-center border-0" onclick="changeQuantity(this, 'down')">
+                                                    <i class="fa-solid fa-sort-down fas"></i>
                                                 </button>
                                             </div>
                                             <button type="submit" class="col-4 btn btn-sm btn-dark submit-button">
@@ -140,7 +140,7 @@
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item {{ ($products->currentPage() == 1) ? 'disabled' : '' }}">
                                         <a class="page-link" href="{{ $products->url(1) . '&' . http_build_query(request()->except('page')) }}" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
+                                            <i class="fa-solid fa-caret-left fas"></i>
                                         </a>
                                     </li>
                                     @for ($i = 1; $i <= $products->lastPage(); $i++)
@@ -150,7 +150,7 @@
                                     @endfor
                                     <li class="page-item {{ ($products->currentPage() == $products->lastPage()) ? 'disabled' : '' }}">
                                         <a class="page-link" href="{{ $products->url($products->currentPage()+1) . '&' . http_build_query(request()->except('page')) }}" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
+                                            <i class="fa-solid fa-caret-right fas"></i>
                                         </a>
                                     </li>
                                 </ul>
