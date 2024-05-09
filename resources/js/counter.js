@@ -27,7 +27,7 @@ $(document).ready(function () {
         changeQuantity(this, "down");
     });
 
-    $(".quantity-input").blur(function () {
+    quantityInput.blur(function () {
         var $this = $(this);
         if (
             $this.val() === "" ||

@@ -82,19 +82,25 @@ class CartController extends Controller
 
     public function addToCart(Request $request, Product $product)
     {
+        $quantity = $request->input('quantity');
+
+        if ($quantity <= 0) {
+            $quantity = 1;
+        }
+
         // Check if the user is logged in
         if (!Auth::check()) {
             $cart = session('cart', []);
 
             // Check if the product is already in the session cart
             if (isset($cart[$product->id])) {
-                $cart[$product->id]['quantity'] += $request->quantity;
+                $cart[$product->id]['quantity'] += $quantity;
                 $cart[$product->id]['price_summary'] = $cart[$product->id]['quantity'] * $product->price;
             } else {
                 $cart[$product->id] = [
                     'product_id' => $product->id,
-                    'quantity' => $request->quantity,
-                    'price_summary' => $request->quantity * $product->price
+                    'quantity' => $quantity,
+                    'price_summary' => $quantity * $product->price
                 ];
             }
 
@@ -115,14 +121,14 @@ class CartController extends Controller
             $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $product->id)->first();
 
             if ($cartItem) {
-                $cartItem->quantity += $request->quantity;
-                $cartItem->price_summary = $cartItem->quantity * $product->price;
+                $cartItem->quantity += $quantity;
+                $cartItem->price_summary = $quantity * $product->price;
             } else {
                 $cartItem = new CartItem([
                     'cart_id' => $cart->id,
                     'product_id' => $product->id,
-                    'quantity' => $request->quantity,
-                    'price_summary' => $request->quantity * $product->price
+                    'quantity' => $quantity,
+                    'price_summary' => $quantity * $product->price
                 ]);
             }
 
