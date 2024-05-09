@@ -37,7 +37,7 @@ class CartController extends Controller
                     $total_price += $cartItem->price_summary;
                 }
             }
-            // Order the cart items by creation time in descending order
+
             $cartItems = array_reverse($cartItems);
         }
 
@@ -88,11 +88,9 @@ class CartController extends Controller
 
             // Check if the product is already in the session cart
             if (isset($cart[$product->id])) {
-                // Update quantity and price summary
                 $cart[$product->id]['quantity'] += $request->quantity;
                 $cart[$product->id]['price_summary'] = $cart[$product->id]['quantity'] * $product->price;
             } else {
-                // Add new product to the cart
                 $cart[$product->id] = [
                     'product_id' => $product->id,
                     'quantity' => $request->quantity,
@@ -100,7 +98,6 @@ class CartController extends Controller
                 ];
             }
 
-            // Save the updated cart back to the session
             session(['cart' => $cart]);
         } else {
             $user = Auth::user();
@@ -118,11 +115,9 @@ class CartController extends Controller
             $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $product->id)->first();
 
             if ($cartItem) {
-                // If already in the cart, just update the quantity and price summary
                 $cartItem->quantity += $request->quantity;
                 $cartItem->price_summary = $cartItem->quantity * $product->price;
             } else {
-                // If not in the cart, create a new cart item
                 $cartItem = new CartItem([
                     'cart_id' => $cart->id,
                     'product_id' => $product->id,
@@ -133,7 +128,6 @@ class CartController extends Controller
 
             $cartItem->save();
 
-            // Update the cart's total price
             $cart->total_price = $cart->cartItems->sum(function ($item) {
                 return $item->price_summary;
             });
@@ -145,17 +139,17 @@ class CartController extends Controller
 
     public function removeItem(Request $request)
     {
-        // Check if the user is logged in
         if (Auth::check()) {
             // User is authenticated, get the user and their cart from the database
             $user = Auth::user();
-            $cart = Cart::where('user_id', $user->id)->first();
+            $cart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
+
             if ($cart) {
                 $productId = $request->input('product_id');
                 $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $productId)->first();
                 if ($cartItem) {
                     $cartItem->delete();
-                    // Update the cart's total price
+
                     $cart->total_price = $cart->cartItems->sum(function ($item) {
                         return $item->price_summary;
                     });
@@ -168,7 +162,7 @@ class CartController extends Controller
             $productId = $request->input('product_id');
             if (isset($cart[$productId])) {
                 unset($cart[$productId]);
-                // Save the updated cart back to the session
+
                 session(['cart' => $cart]);
             }
         }
@@ -184,7 +178,8 @@ class CartController extends Controller
         if (Auth::check()) {
             // User is logged in, update the quantity in the database
             $user = Auth::user();
-            $cart = Cart::where('user_id', $user->id)->first();
+            $cart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
+
             if ($cart) {
                 $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $productId)->first();
                 if ($cartItem) {
@@ -200,10 +195,10 @@ class CartController extends Controller
             // User is not logged in, update the quantity in the session
             $cart = session('cart', []);
             if (isset($cart[$productId])) {
-                $product = Product::find($productId); // Retrieve the product from the database
+                $product = Product::find($productId);
                 if ($product) {
                     $cart[$productId]['quantity'] = $quantity;
-                    $cart[$productId]['price_summary'] = $quantity * $product->price; // Update the price summary using the product price
+                    $cart[$productId]['price_summary'] = $quantity * $product->price;
 
                     $total_price = 0;
                     foreach ($cart as $item) {
@@ -215,5 +210,151 @@ class CartController extends Controller
         }
 
         return redirect()->route('shopping-cart.show');
+    }
+
+    public function emptyCart(Request $request)
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
+
+            if ($cart) {
+                $cart->status = Cart::STATUS_CLOSED;
+                $cart->save();
+            }
+        } else {
+            $request->session()->forget('cart');
+        }
+
+        session()->forget('showModal');
+
+        return back()->with('success', 'Cart emptied successfully');
+    }
+
+    public function accountCart(Request $request)
+    {
+        if (Auth::check()) {
+            session()->forget('showModal');
+
+            return back()->with('success', 'Account cart selected successfully');
+        } else {
+            $copyCart = session('accountCartCopy', []);
+
+            // Copy the account cart to the session guest cart
+            if (!empty($copyCart)) {
+                session(['cart' => $copyCart]);
+                session()->forget('accountCartCopy');
+            }
+
+            session()->forget('showModal');
+
+            return back()->with('success', 'Account cart copied successfully');
+        }
+    }
+
+    public function guestCart(Request $request)
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $activeCart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
+
+            if ($activeCart) {
+                $activeCart->status = Cart::STATUS_CLOSED;
+                $activeCart->save();
+            }
+
+            // New cart with items from the guest cart
+            $guestCart = session('cart', []);
+            if (!empty($guestCart)) {
+                $newCart = Cart::create([
+                    'user_id' => $user->id,
+                    'total_price' => 0,
+                    'status' => Cart::STATUS_ACTIVE
+                ]);
+
+                foreach ($guestCart as $item) {
+                    CartItem::create([
+                        'cart_id' => $newCart->id,
+                        'product_id' => $item['product_id'],
+                        'quantity' => $item['quantity'],
+                        'price_summary' => $item['price_summary']
+                    ]);
+                }
+
+                $newCart->total_price = $newCart->cartItems->sum('price_summary');
+                $newCart->save();
+            }
+
+            session()->forget('showModal');
+
+            return back()->with('success', 'Guest cart copied successfully');
+        } else {
+            session()->forget('showModal');
+
+            return back()->with('success', 'Guest cart selected successfully');
+        }
+    }
+
+    public function mergeCarts(Request $request)
+    {
+        $guestCart = session('cart', []);
+
+        if (Auth::check()) {
+            // User is authenticated, merge of the session guest cart into the user's cart in the database
+            $user = Auth::user();
+            $activeCart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
+
+            if (!$activeCart) {
+                $activeCart = Cart::create([
+                    'user_id' => $user->id,
+                    'total_price' => 0,
+                    'status' => Cart::STATUS_ACTIVE
+                ]);
+            }
+
+            foreach ($guestCart as $item) {
+                $cartItem = CartItem::where('cart_id', $activeCart->id)->where('product_id', $item['product_id'])->first();
+                if ($cartItem) {
+                    // Product is already in the user's cart
+                    $cartItem->quantity += $item['quantity'];
+                    $cartItem->price_summary = $cartItem->quantity * $cartItem->product->price;
+                    $cartItem->save();
+                } else {
+                    CartItem::create([
+                        'cart_id' => $activeCart->id,
+                        'product_id' => $item['product_id'],
+                        'quantity' => $item['quantity'],
+                        'price_summary' => $item['price_summary']
+                    ]);
+                }
+            }
+
+            $activeCart->total_price = $activeCart->cartItems->sum('price_summary');
+            $activeCart->save();
+
+            session()->forget('showModal');
+
+            return back()->with('success', 'Guest cart merged into account cart successfully');
+        } else {
+            $accountCartCopy = session('accountCartCopy', []);
+
+            // User is a guest, merge the session account cart copy into the session guest cart
+            foreach ($accountCartCopy as $item) {
+                if (isset($guestCart[$item['product_id']])) {
+                    // If the product is already in the guest cart
+                    $guestCart[$item['product_id']]['quantity'] += $item['quantity'];
+                    $guestCart[$item['product_id']]['price_summary'] = $guestCart[$item['product_id']]['quantity'] * $item['price_summary'];
+                } else {
+                    $guestCart[$item['product_id']] = $item;
+                }
+            }
+
+            session(['cart' => $guestCart]);
+
+            session()->forget('accountCartCopy');
+            session()->forget('showModal');
+
+            return back()->with('success', 'Account cart copy merged into guest cart successfully');
+        }
     }
 }

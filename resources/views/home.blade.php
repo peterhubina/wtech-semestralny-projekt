@@ -4,6 +4,7 @@
 
 @section('stylesheets')
     @vite('resources/css/home.css')
+    @vite('resources/css/app.css')
 @endsection
 
 @section('content')
@@ -12,6 +13,11 @@
             {{ session('success') }}
         </div>
     @endif
+
+    @if (session('showModal'))
+        @include('cart-modal')
+    @endif
+
     <main class="flex-column">
         <div class="banner">
             <div class="main-wrapper">

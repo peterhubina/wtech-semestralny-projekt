@@ -33,6 +33,10 @@ Route::get('/shopping-cart', [CartController::class, 'index'])->name('shopping-c
 Route::post('/shopping-cart/update', [CartController::class, 'updateCart'])->name('shopping-cart.update');
 Route::post('/shopping-cart/remove', [CartController::class, 'removeItem'])->name('shopping-cart.remove');
 Route::post('/shopping-cart/{product}', [CartController::class, 'addToCart'])->name('shopping-cart.add');
+Route::post('/empty-cart', [CartController::class, 'emptyCart'])->name('empty-cart');
+Route::post('/account-cart', [CartController::class, 'accountCart'])->name('account-cart');
+Route::post('/guest-cart', [CartController::class, 'guestCart'])->name('guest-cart');
+Route::post('/merge-carts', [CartController::class, 'mergeCarts'])->name('merge-carts');
 
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.show');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout.process');
