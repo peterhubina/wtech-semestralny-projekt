@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Image;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -25,7 +27,19 @@ class ProductController extends Controller
     {
         $product->load('images');
 
-        return view('item-details', compact('product'));
+        if (Auth::check()) {
+            // User is authenticated, get the user and their cart from the database
+            $user = Auth::user();
+            $cart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
+        } else {
+            // User is a guest, get the cart from the session
+            $cart = session('cart', []);
+        }
+
+        return view('item-details', [
+            'product' => $product,
+            'cart' => $cart
+        ]);
     }
 
     public function showAllPlants(Request $request, $category = null) {

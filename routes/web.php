@@ -31,7 +31,7 @@ Route::get('/info-page', function () {
 
 Route::get('/shopping-cart', [CartController::class, 'index'])->name('shopping-cart.show');
 Route::post('/shopping-cart/update', [CartController::class, 'updateCart'])->name('shopping-cart.update');
-Route::post('/shopping-cart/remove', [CartController::class, 'removeItem'])->name('shopping-cart.remove');
+Route::post('/shopping-cart/remove/{product?}', [CartController::class, 'removeItem'])->name('shopping-cart.remove');
 Route::post('/shopping-cart/{product}', [CartController::class, 'addToCart'])->name('shopping-cart.add');
 Route::post('/empty-cart', [CartController::class, 'emptyCart'])->name('empty-cart');
 Route::post('/account-cart', [CartController::class, 'accountCart'])->name('account-cart');

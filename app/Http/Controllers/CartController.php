@@ -143,15 +143,16 @@ class CartController extends Controller
         return back()->with('cart-message', 'Product added to cart successfully');
     }
 
-    public function removeItem(Request $request)
+    public function removeItem(Request $request, Product $product = null)
     {
+        $productId = $product ? $product->id : $request->input('product_id');
+
         if (Auth::check()) {
             // User is authenticated, get the user and their cart from the database
             $user = Auth::user();
             $cart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
 
             if ($cart) {
-                $productId = $request->input('product_id');
                 $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $productId)->first();
                 if ($cartItem) {
                     $cartItem->delete();
@@ -165,7 +166,6 @@ class CartController extends Controller
         } else {
             // User is a guest, get the cart from the session
             $cart = session('cart', []);
-            $productId = $request->input('product_id');
             if (isset($cart[$productId])) {
                 unset($cart[$productId]);
 
