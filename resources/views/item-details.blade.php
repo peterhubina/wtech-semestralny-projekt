@@ -98,6 +98,25 @@
                                     <i class="fa fa-shopping-cart"></i>
                                 </button>
                             </form>
+                            @if (Auth::check())
+                                @if ($cart->cartItems->where('product_id', $product->id)->first())
+                                    <div class="mt-auto">
+                                        <form action="{{ route('shopping-cart.remove', $product) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Remove from cart</button>
+                                        </form>
+                                    </div>
+                                @endif
+                            @else
+                                @if (array_key_exists($product->id, $cart))
+                                    <div class="mt-auto">
+                                        <form action="{{ route('shopping-cart.remove', $product) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Remove from cart</button>
+                                        </form>
+                                    </div>
+                                @endif
+                            @endif
                         </div>
                         <p>{{ $product->description }}</p>
                         <!-- Additional information could go here -->
