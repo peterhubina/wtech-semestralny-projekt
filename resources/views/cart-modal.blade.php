@@ -7,13 +7,15 @@
                 With which cart would you like to continue shopping?
             </h3>
             <div class="mt-8 flex flex-col md:flex-row gap-2">
-                <form method="POST" action="{{ route('empty-cart') }}" class="w-full">
-                    @csrf
-                    <button type="submit"
-                            class="w-full p-4 bg-neutral-100 rounded hover:bg-black hover:text-white transition-all flex gap-4 md:flex-col items-center justify-center">
-                        <i class="fas fa-shopping-cart text-xl md:text-3xl"></i> Empty Cart
-                    </button>
-                </form>
+                @if (!session('afterRegistration'))
+                    <form method="POST" action="{{ route('empty-cart') }}" class="w-full">
+                        @csrf
+                        <button type="submit"
+                                class="w-full p-4 bg-neutral-100 rounded hover:bg-black hover:text-white transition-all flex gap-4 md:flex-col items-center justify-center">
+                            <i class="fas fa-shopping-cart text-xl md:text-3xl"></i> Empty Cart
+                        </button>
+                    </form>
+                @endif
                 <form method="POST" action="{{ route('account-cart') }}" class="w-full">
                     @csrf
                     <button
@@ -28,13 +30,15 @@
                         <i class="fas fa-user-secret text-xl md:text-3xl"></i> Guest Cart
                     </button>
                 </form>
-                <form method="POST" action="{{ route('merge-carts') }}" class="w-full">
-                    @csrf
-                    <button
-                        class="w-full p-4 bg-neutral-100 rounded hover:bg-black hover:text-white transition-all flex gap-4 md:flex-col items-center justify-center">
-                        <i class="fas fa-sync-alt text-xl md:text-3xl"></i> Merge Carts
-                    </button>
-                </form>
+                @if (!session('afterRegistration'))
+                    <form method="POST" action="{{ route('merge-carts') }}" class="w-full">
+                        @csrf
+                        <button
+                            class="w-full p-4 bg-neutral-100 rounded hover:bg-black hover:text-white transition-all flex gap-4 md:flex-col items-center justify-center">
+                            <i class="fas fa-sync-alt text-xl md:text-3xl"></i> Merge Carts
+                        </button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>
