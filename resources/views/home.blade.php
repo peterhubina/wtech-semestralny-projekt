@@ -34,10 +34,10 @@
             </div>
         </div>
 
-        <div class="container my-4" id="categories">
+        <div class="container my-4 sm:px-10" id="categories">
             @foreach ($categories as $category)
                 <section class="container my-4" id="{{ strtolower($category->title) }}">
-                    <h2 class="mb-3">{{ $category->title }}</h2>
+                    <h2 class="mb-3 text-2xl sm:text-3xl font-medium">{{ $category->title }}</h2>
                     <div class="row">
                         @foreach ($category->products as $product)
                             <div class="col-6 col-md-3 mb-3">
@@ -52,7 +52,7 @@
 
                                     <div class="card-body">
                                         <a href="{{ route('item-details.show', $product) }}">
-                                            <h5 class="card-title">{{ $product->title }}</h5>
+                                            <h5 class="card-title sm:text-lg line-clamp-2 font-medium">{{ $product->title }}</h5>
                                         </a>
                                     </div>
                                 </div>
