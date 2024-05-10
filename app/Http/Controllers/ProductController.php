@@ -196,20 +196,49 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'stockQuantity' => 'required|integer',
             'category_id' => 'required|integer',
-            'imagePath' => 'required|string|exists:images,imagePath'
+            'title-image' => 'required|file|mimes:jpeg,jpg,png,gif',
+            'sec-image' => 'required|array'
         ]);
 
-        Image::where('product_id', $product->id)
-        ->where('is_titular', true)
-        ->update(['is_titular' => false]);
+        Image::where('product_id', $product->id)->delete();
 
-        $image = Image::where('imagePath', $request->imagePath)->first();
-        if ($image) {
-            $image->product_id = $product->id;
-            $image->is_titular = true;
-            $image->save();
-        } else {
-            return back()->withErrors(['imagePath' => 'Image not found.'])->withInput();
+        $tImage = $request->file('title-image');
+        $sImages = $request->file('sec-image');
+        $destinationPath = public_path('assets/img');
+
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0755, true);
+        }
+    
+        $name = time() . '.' . $tImage->getClientOriginalExtension();
+        $tImage->move($destinationPath, $name);
+        $imageData = [
+            'title' => $data['title'] . '-title',
+            'imagePath'=> 'assets/img/' . $name,
+            'altText' => 'temp',
+            'product_id'=> $product->id,
+            'is_titular' => True,
+        ];
+
+        Image::create($imageData);
+
+        if (is_array($sImages)) {
+            foreach ($sImages as $index => $sImage) {
+                if ($sImage) {
+                    $name = time() . '_' . $index . '.' . $sImage->getClientOriginalExtension();
+                    $sImage->move($destinationPath, $name);
+
+                    $imageData = [
+                        'title' => $data['title'] . '-second' . $index,
+                        'imagePath'=> 'assets/img/' . $name,
+                        'altText' => 'temp',
+                        'product_id'=> $product->id,
+                        'is_titular' => False,
+                    ];
+        
+                    Image::create($imageData);
+                }
+            }
         }
 
         $product->update($data);

@@ -13,13 +13,13 @@
     <div class="container d-flex flex-column align-items-center" id="custom-form">
         <p class="fs-1 text-uppercase">Edit Product</p>
 
-        <form class="" action="{{ route('product.update', $product->id) }}" method="POST" >
+        <form class="category-form w-50" action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="_method" value="PUT"> 
 
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="category-form w-50">
+                    <div >
                         <div class="mb-3">
                             <label for="name" class="form-label">Title</label>
                             <input type="text" class="form-control" id="name" value="{{ $product->title }}" name="title">
@@ -50,38 +50,20 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="imagePath" class="form-label">Image Link</label>
-                            <select class="form-control" id="imagePath" name="imagePath" onchange="updateProductImage()">
-                                @foreach($images as $image)
-                                    <option value="{{ $image->imagePath }}" {{ ($product->getTitular()->first() && $product->getTitular()->first()->imagePath == $image->imagePath) ? 'selected' : '' }}>
-                                        {{ $image->title }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
                         
-                    </div>
-                    <div class="col-md-4 mb-4">
-                            <img src="{{ asset($product->getTitular()->first()->imagePath ?? '') }}" id="productImage" class="card-img-top titular" alt="Product Image">
+                        <div class="mb-3">
+                            <label for="title-image" class="form-label">Upload Title Image</label>
+                            <input type="file" class="form-control" id="title-image" name="title-image">
                         </div>
+                        <div class="mb-3">
+                            <label for="sec-image" class="form-label">Upload Secondary Images</label>
+                            <input type="file" class="form-control" id="sec-image" name="sec-image[]" multiple>
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-light btn-lg d-block mx-auto edit-button mt-3 mb-5">Save</button>
              </div>
         </form>
     </div>
-
-    <script>
-        var baseUrl = "{{ asset('') }}";
-    </script>
-
-    <script>
-        function updateProductImage() {
-            var imagePath = document.getElementById('imagePath').value;
-            var productImage = document.getElementById('productImage');
-            productImage.src = baseUrl + imagePath;  // Prepend the base URL to the relative image path
-        }
-    </script>
 </main>
 @endsection
