@@ -19,7 +19,7 @@
 
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="category-form">
+                    <div class="category-form w-50">
                         <div class="mb-3">
                             <label for="name" class="form-label">Title</label>
                             <input type="text" class="form-control" id="name" value="{{ $product->title }}" name="title">
@@ -60,22 +60,27 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        
                     </div>
                     <div class="col-md-4 mb-4">
-                        <img src="{{ $product->getTitular()->first() ? $product->getTitular()->first()->imagePath : '' }}" id="productImage" class="card-img-top titular" alt="Product Image">
-                    </div>
+                            <img src="{{ asset($product->getTitular()->first()->imagePath ?? '') }}" id="productImage" class="card-img-top titular" alt="Product Image">
+                        </div>
                 </div>
-                <button type="submit" class="btn btn-light btn-lg d-block mx-auto edit-button mb-5">Save</button>
-            </div>
+                <button type="submit" class="btn btn-light btn-lg d-block mx-auto edit-button mt-3 mb-5">Save</button>
+             </div>
         </form>
-
     </div>
+
+    <script>
+        var baseUrl = "{{ asset('') }}";
+    </script>
 
     <script>
         function updateProductImage() {
             var imagePath = document.getElementById('imagePath').value;
             var productImage = document.getElementById('productImage');
-            productImage.src = imagePath;
+            productImage.src = baseUrl + imagePath;  // Prepend the base URL to the relative image path
         }
     </script>
 </main>
