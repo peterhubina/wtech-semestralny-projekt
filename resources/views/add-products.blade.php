@@ -13,7 +13,7 @@
     <div class="container d-flex flex-column align-items-center" id="custom-form">
         <p class="fs-1 text-uppercase">Add Product</p>
 
-        <form class="category-form" action="{{ route('product.add') }}" method="POST">
+        <form class="category-form" action="{{ route('product.add') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="_method" value="PUT">
 
@@ -24,7 +24,7 @@
                             <input type="text" class="form-control" id="name" placeholder="Product Name" name="title">
                         </div>
                         <div class="mb-3 mt-3">
-                            <input type="text" class="form-control" id="height" placeholder="Product Code" name="height">
+                            <input type="text" class="form-control" id="height" placeholder="Height" name="height">
                         </div>
                         <div class="mb-3">
                             <input type="text" class="form-control" id="description" placeholder="Description" name="description">
@@ -52,15 +52,16 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="image" class="form-label">Upload Image</label>
-                            <input type="file" class="form-control" id="image" name="image">
+                            <label for="title-image" class="form-label">Upload Title Image</label>
+                            <input type="file" class="form-control" id="title-image" name="title-image">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sec-image" class="form-label">Upload Secondary Images</label>
+                            <input type="file" class="form-control" id="sec-image" name="sec-image[]" multiple>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-4">
-                        <img src="{{ asset('assets/img/plant.webp') }}" id="productImage" class="card-img-top titular" alt="Product Image">
-                    </div>
                 </div>
-                <button type="submit" class="btn btn-light btn-lg d-block mx-auto submit-button mb-5">Save</button>
+                <button type="submit" class="btn btn-light btn-lg d-block mx-auto submit-button mt-2 mb-5 w-25">Save</button>
             </div>
         </form>
         @if ($errors->any())

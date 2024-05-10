@@ -14,6 +14,7 @@ class Image extends Model
         'imagePath',
         'altText',
         'product_id',
+        'is_titular',
     ];
 
     public function product() {

@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Image;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -127,20 +128,53 @@ class ProductController extends Controller
             'stockQuantity' => 'required|integer',
             'country' => 'required|string|max:255',
             'type' => 'required|string|max:10',
-            'image' => 'required',
+            'title-image' => 'required|file|mimes:jpeg,jpg,png,gif',
+            'sec-image' => 'required|array'
         ]);
 
         $faker = Faker::create();
         $data['productCode'] = $faker->bothify('?????-#####');
 
-        // Handle the image upload
-        $image = $request->file('image');
-        $name = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('/assets');
-        $image->move($destinationPath, $name);
-        $data['imagePath'] = '/assets/'.$name;
-
+        $tImage = $request->file('title-image');
+        $sImages = $request->file('sec-image');
+        $destinationPath = public_path('assets/img');
+    
         $product = Product::create($data);
+
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0755, true);
+        }
+    
+        $name = time() . '.' . $tImage->getClientOriginalExtension();
+        $tImage->move($destinationPath, $name);
+        $imageData = [
+            'title' => $data['title'] . '-title',
+            'imagePath'=> 'assets/img/' . $name,
+            'altText' => 'temp',
+            'product_id'=> $product->id,
+            'is_titular' => True,
+        ];
+
+        Image::create($imageData);
+
+        if (is_array($sImages)) {
+            foreach ($sImages as $index => $sImage) {
+                if ($sImage) {
+                    $name = time() . '_' . $index . '.' . $sImage->getClientOriginalExtension();
+                    $sImage->move($destinationPath, $name);
+
+                    $imageData = [
+                        'title' => $data['title'] . '-second' . $index,
+                        'imagePath'=> 'assets/img/' . $name,
+                        'altText' => 'temp',
+                        'product_id'=> $product->id,
+                        'is_titular' => False,
+                    ];
+        
+                    Image::create($imageData);
+                }
+            }
+        }
 
         /*
         $image = Image::where('imagePath', $request->imagePath)->first();
