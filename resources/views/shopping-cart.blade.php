@@ -41,7 +41,7 @@
                     <!-- Card elements -->
                     @foreach($cartItems as $cartItem)
                         <div
-                            class="flex flex-col sm:flex-row sm:items-center bg-white rounded-2xl border overflow-clip gap-4">
+                            class="flex flex-col sm:flex-row sm:items-center bg-white rounded-2xl overflow-clip gap-4 shadow-sm">
                             <img src="{{ $cartItem->product->getTitular()->first()->imagePath }}" alt="plant"
                                  class="object-cover h-80 sm:h-52 xl:h-44 sm:w-40">
                             <div class="flex flex-col xl:flex-row items-start gap-4 xl:gap-4 p-4 w-full">
