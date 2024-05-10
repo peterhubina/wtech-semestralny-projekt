@@ -90,7 +90,7 @@
                         @else
                             @foreach($products as $product)
                             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 d-flex">
-                                <div class="card plants-card">
+                                <div class="card plants-card shadow-sm border-0">
                                     @if($product->images->isNotEmpty())
                                         <a href="{{ route('item-details.show', $product) }}">
                                             <img
@@ -138,17 +138,17 @@
                         @if ($products->lastPage() > 1)
                             <nav aria-label="Page navigation">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item {{ ($products->currentPage() == 1) ? 'disabled' : '' }}">
+                                    <li class="page-item shadow-sm {{ ($products->currentPage() == 1) ? 'disabled' : '' }}">
                                         <a class="page-link" href="{{ $products->url(1) . '&' . http_build_query(request()->except('page')) }}" aria-label="Previous">
                                             <i class="fa-solid fa-caret-left fas"></i>
                                         </a>
                                     </li>
                                     @for ($i = 1; $i <= $products->lastPage(); $i++)
-                                        <li class="page-item {{ ($products->currentPage() == $i) ? 'active' : '' }}">
+                                        <li class="page-item shadow-sm {{ ($products->currentPage() == $i) ? 'active' : '' }}">
                                             <a class="page-link" href="{{ $products->url($i) . '&' . http_build_query(request()->except('page')) }}">{{ $i }}</a>
                                         </li>
                                     @endfor
-                                    <li class="page-item {{ ($products->currentPage() == $products->lastPage()) ? 'disabled' : '' }}">
+                                    <li class="page-item shadow-sm {{ ($products->currentPage() == $products->lastPage()) ? 'disabled' : '' }}">
                                         <a class="page-link" href="{{ $products->url($products->currentPage()+1) . '&' . http_build_query(request()->except('page')) }}" aria-label="Next">
                                             <i class="fa-solid fa-caret-right fas"></i>
                                         </a>

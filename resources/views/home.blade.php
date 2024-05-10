@@ -41,7 +41,7 @@
                     <div class="row">
                         @foreach ($category->products as $product)
                             <div class="col-6 col-md-3 mb-3">
-                                <div class="card">
+                                <div class="card h-full shadow-sm">
                                     <a href="{{ route('item-details.show', $product) }}">
                                         <img
                                             src="{{ $product->getTitular()->first()->imagePath }}"
