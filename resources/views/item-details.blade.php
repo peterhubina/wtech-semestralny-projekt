@@ -99,7 +99,7 @@
                                 </button>
                             </form>
                             @if (Auth::check())
-                                @if ($cart->cartItems->where('product_id', $product->id)->first())
+                                @if ($cart && $cart->cartItems->where('product_id', $product->id)->first())
                                     <div class="mt-auto">
                                         <form action="{{ route('shopping-cart.remove', $product) }}" method="POST">
                                             @csrf
@@ -119,7 +119,6 @@
                             @endif
                         </div>
                         <p>{{ $product->description }}</p>
-                        <!-- Additional information could go here -->
                     </div>
                 </div>
             </div>

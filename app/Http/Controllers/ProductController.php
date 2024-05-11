@@ -32,6 +32,15 @@ class ProductController extends Controller
             // User is authenticated, get the user and their cart from the database
             $user = Auth::user();
             $cart = Cart::where('user_id', $user->id)->where('status', Cart::STATUS_ACTIVE)->first();
+
+            // If the cart does not exist, create a new one
+            if (!$cart) {
+                $cart = Cart::create([
+                    'user_id' => $user->id,
+                    'status' => Cart::STATUS_ACTIVE,
+                    'total_price' => 0
+                ]);
+            }
         } else {
             // User is a guest, get the cart from the session
             $cart = session('cart', []);
@@ -138,13 +147,13 @@ class ProductController extends Controller
         $tImage = $request->file('title-image');
         $sImages = $request->file('sec-image');
         $destinationPath = public_path('assets/img');
-    
+
         $product = Product::create($data);
 
         if (!file_exists($destinationPath)) {
             mkdir($destinationPath, 0755, true);
         }
-    
+
         $name = time() . '.' . $tImage->getClientOriginalExtension();
         $tImage->move($destinationPath, $name);
         $imageData = [
@@ -170,7 +179,7 @@ class ProductController extends Controller
                         'product_id'=> $product->id,
                         'is_titular' => False,
                     ];
-        
+
                     Image::create($imageData);
                 }
             }
@@ -209,7 +218,7 @@ class ProductController extends Controller
         if (!file_exists($destinationPath)) {
             mkdir($destinationPath, 0755, true);
         }
-    
+
         $name = time() . '.' . $tImage->getClientOriginalExtension();
         $tImage->move($destinationPath, $name);
         $imageData = [
@@ -235,7 +244,7 @@ class ProductController extends Controller
                         'product_id'=> $product->id,
                         'is_titular' => False,
                     ];
-        
+
                     Image::create($imageData);
                 }
             }
