@@ -94,8 +94,8 @@
                                 </div>
                                 <button class="shopping-button btn btn-dark" type="submit"
                                 >
-                                    Add to shopping cart
-                                    <i class="fa fa-shopping-cart"></i>
+                                    Add to shopping cart&nbsp;&nbsp;
+                                    <i class="fa fa-cart-plus"></i>
                                 </button>
                             </form>
                             @if (Auth::check())
@@ -112,7 +112,7 @@
                                     <div class="mt-auto">
                                         <form action="{{ route('shopping-cart.remove', $product) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn btn-danger">Remove from cart</button>
+                                            <button type="submit" class="btn btn-danger" style="min-height: 3.1rem">Remove from cart</button>
                                         </form>
                                     </div>
                                 @endif
