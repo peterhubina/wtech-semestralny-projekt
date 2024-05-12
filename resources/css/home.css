@@ -16,8 +16,8 @@
 }
 
 .main-content {
-    text-align: center; /* Center the text */
-    color: black; /* Set text color */
+    text-align: center;
+    color: black;
     display: flex;
     flex-direction: column;
 }

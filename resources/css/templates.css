@@ -15,18 +15,6 @@ body, html {
     min-height: 100vh;
 }
 
-/*
-header {
-    background-color: var(--bs-primary);
-}
-*/
-
-/*
-header > * {
-    color: white;
-}
-*/
-
 .footer {
     background-color: #f8f9fa;
 }

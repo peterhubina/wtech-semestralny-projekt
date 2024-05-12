@@ -185,16 +185,6 @@ class ProductController extends Controller
             }
         }
 
-        /*
-        $image = Image::where('imagePath', $request->imagePath)->first();
-        if ($image) {
-            $image->product_id = $product->id;
-            $image->is_titular = true;
-            $image->save();
-        } else {
-            return back()->withErrors(['imagePath' => 'Image not found.'])->withInput();
-        }*/
-
         return redirect()->route('mg-products.show')->with('success', 'Product inserted successfully!');
     }
 
@@ -286,17 +276,6 @@ class ProductController extends Controller
 
         return view('manage-category', compact('categories'));
     }
-    /*
-    public function search(Request $request) {
-        $searchTerm = $request->input('search');
-
-        $products = Product::with('images')
-            ->where('title', 'LIKE', '%' . $searchTerm . '%')
-            ->orWhere('description', 'LIKE', '%' . $searchTerm . '%')
-            ->paginate(8);
-
-        return view('all-plants', compact('products'));
-    }*/
 
     public function getPrice($id)
     {
